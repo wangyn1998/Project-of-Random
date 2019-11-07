@@ -10,22 +10,21 @@
 用户还可以在APP的论坛中进行交流，搜索热门话题，查看话题相关帖子，发表自己的所见所闻，相互提供旅游经验，分享自己的快乐。我们还通过积分排行榜的方法激励客户使用我们的软件。
 ## 项目成员
 * 王予诺（开发工程师）
-  * Email：
-  * Github：
+  * Email：928069834@qq.com
+  * Github：https://github.com/wangyn1998
 * 杨迪（开发工程师）
   * Email：736208296@qq.com
   * Github：https://github.com/YangDiaa
 * 郑尚姿（开发工程师）
-  * Email：
-  * Github：
+  * Email：1643613240@qq.com
+  * Github：https://github.com/zhengshangzi
 * 范钰敏（开发工程师）
-  * Email：
-  * Github：
+  * Email：1668576168@qq.com
+  * Github：https://github.com/fym1
 * 杜瑜萌（开发工程师）
-  * Email：
-  * Github：
+  * Email：272780382@qq.com
+  * Github：https://github.com/duyumengdym
 * 张宇娟（开发工程师）
-  * Email：
-  * Github：
-
+  * Email：1123243305@qq.com
+  * Github：https://github.com/zhangyujuan123
 
