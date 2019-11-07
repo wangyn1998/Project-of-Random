@@ -11,7 +11,7 @@
 ## 项目成员
 
 * 杨迪
-*   Email：736208296@qq.com
-*   Github：https://github.com/YangDiaa
+  * Email：736208296@qq.com
+  * Github：https://github.com/YangDiaa
 
 
