@@ -11,39 +11,38 @@
 
 项目成员
 -------
-王予诺
+* 王予诺
 <br>
- >>email：
+ email：
  <br>
- >>github：
+ github：
  <br>
-杨迪
+* 杨迪
 <br>
-  >>email：
+  email：
  <br>
- >> github：
+ github：
  <br>
-郑尚姿
+* 郑尚姿
 <br>
- >> email：
+email：
  <br>
-  >>github：
+ github：
  <br>
-范钰敏
+* 范钰敏
 <br>
-  >>email：
+ email：
  <br>
- >> github：
+ github：
  <br>
-张宇娟
+* 张宇娟
 <br>
-  >>email：
+ email：
  <br>
-  >>github：
+ github：
  <br>
-杜瑜萌
+* 杜瑜萌
 <br>
-  >>email：
+ email：
  <br>
- >> github：
- <br>
+github：
