@@ -11,36 +11,36 @@
 ## 项目成员
 *王予诺
 <br>
- email：
+ Email：
  <br>
- github：
+ Github：
  <br>
 *杨迪
 <br>
-  email：736208296@qq.com
+  Email：736208296@qq.com
  <br>
- github：https://github.com/YangDiaa
+ Github：https://github.com/YangDiaa
  <br>
 郑尚姿
 <br>
-email：
+Email：
  <br>
- github：
+ Github：
  <br>
 范钰敏
 <br>
- email：
+ Email：
  <br>
- github：
+ Github：
  <br>
 张宇娟
 <br>
- email：
+ Email：
  <br>
- github：
+ Github：
  <br>
 杜瑜萌
 <br>
- email：
+ Email：
  <br>
-github：
+Github：
