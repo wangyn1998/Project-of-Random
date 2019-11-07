@@ -17,9 +17,9 @@
  <br>
 * 杨迪
 <br>
- ** Email：736208296@qq.com
+ *  Email：736208296@qq.com
  <br>
- ** Github：https://github.com/YangDiaa
+ *  Github：https://github.com/YangDiaa
  <br>
 * 郑尚姿
 <br>
