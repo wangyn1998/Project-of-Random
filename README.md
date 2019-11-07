@@ -9,25 +9,25 @@
 <br>
 各个用户还可以在这个APP上进行交流，发表自己的所见所闻，相互提供旅游经验，分享自己的快乐。我们还通过积分排行榜的方法激励客户使用我们的软件。
 ## 项目成员
-*王予诺
+* 王予诺
 <br>
  Email：
  <br>
  Github：
  <br>
-*杨迪
+* 杨迪
 <br>
-  Email：736208296@qq.com
+ ** Email：736208296@qq.com
  <br>
- Github：https://github.com/YangDiaa
+ ** Github：https://github.com/YangDiaa
  <br>
-郑尚姿
+* 郑尚姿
 <br>
-Email：
+** Email：
  <br>
- Github：
+ ** Github：
  <br>
-范钰敏
+* 范钰敏
 <br>
  Email：
  <br>
