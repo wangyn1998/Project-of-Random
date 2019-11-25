@@ -3,7 +3,9 @@ import React,{Component} from 'react'
 export default class System extends Component {
     render() {
         return (
-            <div>System</div>
+            <div>
+                系统管理
+            </div>
         )
     }
 }

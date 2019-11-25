@@ -38,3 +38,16 @@
 .nav:active{
     background: #4177ca;
 }
+.link{
+    width: 230px;
+    height: 50px;
+    background: #61b3ed;
+    margin-top: 50px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 45px;
+}
+.link a{
+    color: white;
+
+}
