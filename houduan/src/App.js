@@ -14,12 +14,12 @@ import Manage from './container/Score/Manage'
 import List from './container/Score/List' 
 import Method from './container/Material/Method'
 import Spot from './container/Material/Spot'
+
 export default class App extends Component {
     render() {
         return (
             <Router>
-                
-                <div style={{width:'1200px',height:'530px',background:'white',margin:'0 auto'}}>
+                <div style={{width:'1200px',height:'530px',background:'white',margin:'0 auto',marginTop:'20px'}}>
                     <div>
                         <Header/>
                     </div>
