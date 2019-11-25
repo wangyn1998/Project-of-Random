@@ -1,0 +1,9 @@
+.block{
+    padding:5px 3%;
+    border-bottom: 2px gray solid;
+    overflow: hidden;
+    width: 100%;
+}
+body{
+    background-color: #fff;
+}
