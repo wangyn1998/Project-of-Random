@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Header from './component/Header'
 import Left from './component/Left'
+import Left1 from './component/Left1'
+import Left2 from './component/Left2'
+import Left3 from './component/Left3'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import Home from './container/Home'
 import User from './container/User/User'
@@ -25,7 +28,18 @@ export default class App extends Component {
                     </div>
                     <div className="content">
                         <div className="left">
-                            <Left/>
+                            <Route exact path='/' component={Left}/>
+                            <Route exact path='/user' component={Left}/>
+                            <Route exact path='/system' component={Left}/>
+                            <Route exact path='/block' component={Left}/>
+                            <Route exact path='/score' component={Left}/>
+                            <Route exact path='/material' component={Left}/>
+                            <Route exact path='/block/post' component={Left1}/>
+                            <Route exact path='/block/topic' component={Left1}/>
+                            <Route exact path='/score/list' component={Left2}/>
+                            <Route exact path='/score/manage' component={Left2}/>
+                            <Route exact path='/material/method' component={Left3}/>
+                            <Route exact path='/material/spot' component={Left3}/>
                         </div>
                         <div className="right">
                             <Route exact path='/' component={Home}/>
@@ -36,8 +50,8 @@ export default class App extends Component {
                             <Route exact path='/system' component={System}/> 
                             <Route exact path='/block/post' component={Post}/>
                             <Route exact path='/block/topic' component={Topic}/>
-                            <Route exact path='/score/manage' component={Manage}/>
                             <Route exact path='/score/list' component={List}/>
+                            <Route exact path='/score/manage' component={Manage}/>
                             <Route exact path='/material/method' component={Method}/>
                             <Route exact path='/material/spot' component={Spot}/>
                         </div>

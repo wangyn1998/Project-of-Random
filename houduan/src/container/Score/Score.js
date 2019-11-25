@@ -6,10 +6,10 @@ export default class Score extends Component {
         return (
             <div style={{marginTop:'150px',marginLeft:'400px'}}>
                 <div className="link">
-                    <Link to='/score/manage'>积分管理</Link>
+                    <Link to='/score/list'>积分表</Link>
                 </div>
                 <div className="link">
-                    <Link to='/score/list'>积分对照表</Link>
+                    <Link to='/score/manage'>积分对照表</Link>
                 </div>   
             </div>
         )
