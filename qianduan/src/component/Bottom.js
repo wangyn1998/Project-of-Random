@@ -9,7 +9,7 @@ export default class Bottom extends Component {
   render() {
     return (
       <Router>
-        <div style={{position:"absolute",bottom:"0",width:"100%",height:"70px",color:"#2278c9"}}>
+        <div style={{position:"fixed",zIndex:'999',background:'white',paddingTop:'15px',bottom:"0",width:"100%",height:"70px",color:"#2278c9"}}>
         <div className="bottom">
             <Link to="/">
               <div className="iconfont icon-xuanzhongshangcheng"></div>
