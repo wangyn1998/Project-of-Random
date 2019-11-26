@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {Route,Link}from 'react-router-dom'
+
 import { Table } from 'antd';
 const data = [
     {
@@ -65,7 +67,7 @@ const data = [
         key: 'action',
         render: (text, record) => (
           <span>
-            <a>个人积分明细</a>
+            <Link to='/score/list/in'>个人积分明细</Link>
           </span>
         ),
       },
@@ -75,9 +77,7 @@ export default class List extends Component {
     render() {
         return (
             <div>
-                 <Table columns={columns} dataSource={data} style={{marginLeft:'5%',marginRight:'5%',marginTop:"4%"}} pagination={{defaultPageSize:4}}/>
-
-                
+                 <Table columns={columns} dataSource={data} style={{marginLeft:'5%',marginRight:'5%',marginTop:"4%"}} pagination={{defaultPageSize:4}}/>                
             </div>
         )
     }s
