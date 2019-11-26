@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
-import {Carousel} from 'antd-mobile';
-import './Home.css'
+import React, { Component } from 'react';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+
+import './Home.css';
+import Spot from './Spot/Spot';
+import Make from './Make/Make';
+import Fun from './Fun/Fun';
+import First from './First';
 
 export default class Home extends Component {
     state = {
@@ -16,43 +21,13 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <div>
-                <Carousel
-                    autoplay={true}
-                    infinite
-                    beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                    afterChange={index => console.log('slide to', index)}
-                >
-                    {this.state.data.map(val => (
-                        <a  key={val}
-                            href="#"
-                            style={{ display: 'inline-block', width: '100%', height: '100%' }}
-                        >
-                            <div className="dropdown">
-                                <div className="iconfont icon-location" style={{position:'absolute',left:'0'}}></div>
-                                <span style={{marginLeft:"5px"}}>北京</span>
-                                <div className="dropdown-content">
-                                    <p>北京</p>
-                                    <p>上海</p>
-                                    <p>廣州</p>
-                                </div>
-                            </div>
-                            <input placeholder="请输入目的地" className="search"/>
-                            <img
-                                src={'./images/Carousel'+val+'.jpg'}
-                                alt=""
-                                style={{ width: '100%', verticalAlign: 'top' }}
-                                onLoad={() => {
-                                    // fire window resize event to change height
-                                    window.dispatchEvent(new Event('resize'));
-                                    this.setState({ imgHeight: 'auto' });
-                                }}
-                            />
-                            <p style={{color:'white',position:'absolute',bottom:'0',right:'0',fontSize:'16px'}}>13亿人都要旅行</p>
-                        </a>
-                    ))}
-                </Carousel>
-            </div>
+            <Router>
+                <Link to='/'/> 
+                <Route exact path='/' component={First}/>
+                <Route path='/spot' component={Spot}/>
+                <Route path='/fun' component={Fun}/>
+                <Route path='/make' component={Make}/>
+            </Router>
         )
     }
 }
