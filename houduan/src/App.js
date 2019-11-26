@@ -17,7 +17,7 @@ import Manage from './container/Score/Manage'
 import List from './container/Score/List' 
 import Method from './container/Material/Method'
 import Spot from './container/Material/Spot'
-
+import ListIn from './container/Score/ListIn'
 export default class App extends Component {
     render() {
         return (
@@ -37,6 +37,8 @@ export default class App extends Component {
                             <Route exact path='/block/post' component={Left1}/>
                             <Route exact path='/block/topic' component={Left1}/>
                             <Route exact path='/score/list' component={Left2}/>
+                            <Route exact path='/score/list/in' component={Left2}/>
+
                             <Route exact path='/score/manage' component={Left2}/>
                             <Route exact path='/material/method' component={Left3}/>
                             <Route exact path='/material/spot' component={Left3}/>
@@ -52,8 +54,10 @@ export default class App extends Component {
                             <Route exact path='/block/topic' component={Topic}/>
                             <Route exact path='/score/list' component={List}/>
                             <Route exact path='/score/manage' component={Manage}/>
+                            <Route exact path='/score/list/in' component={ListIn}/>
                             <Route exact path='/material/method' component={Method}/>
                             <Route exact path='/material/spot' component={Spot}/>
+                            
                         </div>
                     </div>
                 </div> 
