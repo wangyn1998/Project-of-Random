@@ -23,18 +23,6 @@ export default class Spot extends Component {
                         </p>
                     </div>
                 </div>
-                {/* <Card style={{}}>
-                    <Card.Header
-                        title={<div style={{height:'160px',borderRadius:'5px'}}><img src="" style={{height:'160px',borderRadius:'5px',}} /></div>}
-                    />
-                    <Card.Body>
-                        <div>
-                            <div>123456</div>
-                            <div>1111</div>
-                        </div>
-                    </Card.Body>
-                    <Card.Footer content="推荐指数" extra={<div>55555</div>} />
-                </Card> */}
             </div>
         )
     }
