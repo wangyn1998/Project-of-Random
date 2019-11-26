@@ -1,17 +1,18 @@
 ul,li{
     list-style: none;
 }
-.box1{
+.Postbox1{
     height: 40px;
+    width: 1045px;
 }
-.title{
+.Posttitle{
     color: #4177CA;
     font-size: 22px;
     float: left;
     margin-left: 50px;
     margin-top: 30px;
 }
-.search{
+.Postsearch{
     float: right;
     width: 500px;
     height: 40px;
@@ -22,7 +23,7 @@ ul,li{
     margin-right: 50px;
     font-size: 18px;
 }
-.searchBar{
+.PostsearchBar{
     float: left;
     width: 350px;
     height: 39px;
@@ -36,16 +37,14 @@ ul,li{
     float: right;
     margin-right: 25px;
 }
-.box2{
+.Postbox2{
     width: 600px;
     height: 40px;
     float: right;
     margin-top:10px;
     margin-right: 40px;
-    /* background-color: #eee; */
-    /* border:1px solid #eee; */
 }
-.date{
+.Postdate{
     width: 200px;
     float: left;
     height: 30px;
@@ -54,17 +53,17 @@ ul,li{
     border: 1px solid #eee;
     margin-left: 50px;
 }
-.date input{
+.Postdate input{
     width: 150px;
     height: 26px;
     float: left;
     border-style: none;
    
 }
-.date i{
+.Postdate i{
     float: right; margin-right: 10px;
 }
-.box3{
+.Postbox3{
     width: 945px;
     height: 300px;
     margin-top:70px;
@@ -72,62 +71,62 @@ ul,li{
     /* background-color: #eee; */
     border:1px solid #eee;
 }
-.box3 ul{
+.Postbox3 ul{
     width: 945px;
     height: 300px;
     float: left;
 }
-.box3 li{
+.Postbox3 li{
     width: 945px;
     height: 50px;
     border:1px solid #eee;
     /* line-height:3rem; */
     /* background-color: pink; */
     float: left;
-}
-.head{
+} 
+.Posthead{
     background-color: #61b3ed;
     text-align: center;
     line-height:3rem;
     
 }
-.head1{
+.Posthead1{
     float: left;
     width: 400px;
     color: #fff;
 }
-.head2{
+.Posthead2{
     float: left;
     width: 150px;
     color: #fff;
 }
-.img{
+.Postimg{
     float: left;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin: 5px 0 0 20px;
 }
-.article{
+.Postarticle{
     width:300px;
     float: left;
     height: 40px;
     margin-left: 20px;
     color: #888;
 }
-.article h3{
+.Postarticle h3{
     float: left;
     width: 200px;
     height: 20px;
     font-size: 18px;
     color: #888;
 }
-.article p{
+.Postarticle p{
     float: left;
     /* height: 20px; */
     font-size: 14px;
 }
-.del{
+.Postdel{
     width: 50px;
     height: 30px;
     background-color: #fff;
@@ -137,15 +136,13 @@ ul,li{
     margin-top: 10px;
     float: left;
 }
-.box4{
+.Postbox4{
     width: 945px;
     height:10px;
     text-align: center;
-    /* background-color: #eee; */
-    /* border:1px solid #eee; */
     margin:0 auto;
 }
-.box4 p{
+.Postbox4 p{
     width: 20px;
     height: 20px;
     border-radius: 50%;
