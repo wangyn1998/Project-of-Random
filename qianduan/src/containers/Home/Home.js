@@ -5,6 +5,9 @@ import './Home.css';
 import Spot from './Spot/Spot';
 import Make from './Make/Make';
 import Fun from './Fun/Fun';
+import Hot from './Hot/Hot';
+import Historic from './Historic/Historic';
+import Celebrity from './Celebrity/Celebrity';
 import First from './First';
 
 export default class Home extends Component {
@@ -27,6 +30,9 @@ export default class Home extends Component {
                 <Route path='/spot' component={Spot}/>
                 <Route path='/fun' component={Fun}/>
                 <Route path='/make' component={Make}/>
+                <Route path='/hot' component={Hot}/>
+                <Route path='/historic' component={Historic}/>
+                <Route path='/celebrity' component={Celebrity}/>
             </Router>
         )
     }
