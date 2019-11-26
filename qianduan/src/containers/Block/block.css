@@ -1,0 +1,10 @@
+.blockGrid1 .am-grid .am-flexbox .am-flexbox-item .am-grid-item-content{
+    text-align: center;
+    padding:0 0;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+.post1Grid .am-grid .am-flexbox .am-flexbox-item .am-grid-item-content{
+    background-color: #eeeeee;
+    height:14%;
+}
