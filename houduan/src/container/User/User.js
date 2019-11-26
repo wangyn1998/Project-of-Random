@@ -5,7 +5,7 @@ const { Search } = Input;
 const data = [
     {
       key: '1',
-      Uimage:'1.png',
+      Uimage:<img src='./images/logo.png' style={{width:'30px',height:'30px'}}></img>,
       Uname: '郑尚姿',
       Uphone:'15031530670',
       Usex:'女',
@@ -13,7 +13,7 @@ const data = [
     },
     {
         key: '2',
-        Uimage:'1.png',
+        Uimage:<img src='./images/logo.png' style={{width:'30px',height:'30px'}}></img>,
         Uname: '郑尚姿',
         Uphone:'15031530670',
         Usex:'女',
@@ -21,7 +21,7 @@ const data = [
       },
       {
         key: '3',
-        Uimage:'1.png',
+        Uimage:<img src='./images/logo.png' style={{width:'30px',height:'30px'}}></img>,
         Uname: '郑尚姿',
         Uphone:'15031530670',
         Usex:'女',
@@ -29,7 +29,7 @@ const data = [
       },
       {
         key: '4',
-        Uimage:'1.png',
+        Uimage:<img src='./images/logo.png' style={{width:'30px',height:'30px'}}></img>,
         Uname: '郑尚姿',
         Uphone:'15031530670',
         Usex:'女',
@@ -37,7 +37,7 @@ const data = [
       },
       {
         key: '5',
-        Uimage:'1.png',
+        Uimage:<img src='./images/logo.png' style={{width:'30px',height:'30px'}}></img>,
         Uname: '郑尚姿',
         Uphone:'15031530670',
         Usex:'女',
@@ -77,7 +77,7 @@ const data = [
         key: 'action',
         render: (text, record) => (
           <span>
-            <a><button style={{backgroundColor:'white',border:'1px solid grey',padding:'5px 10px'}}>移除</button></a>
+            <a><button style={{backgroundColor:'white',border:'1px solid grey',padding:'5px 10px'}} >移除</button></a>
           </span>
         ),
       },
@@ -89,7 +89,7 @@ export default class User extends Component {
                <Search
                     placeholder="搜索"
                     onSearch={value => console.log(value)}
-                    style={{ width: 350,marginTop:'4%',marginLeft:'5%',}}
+                    style={{ width: 350,marginTop:'4%',marginLeft:'5%'}}
                     />
                     <br />
                     <br />
