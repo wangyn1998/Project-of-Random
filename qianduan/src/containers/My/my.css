@@ -1,9 +1,48 @@
 .block{
-    padding:5px 3%;
-    border-bottom: 2px gray solid;
+    padding:5px 3% 5px 3%;
+    border-bottom: 1px gray solid;
     overflow: hidden;
-    width: 100%;
+    width: 94%;
+}
+.block1{
+    padding:5px 3% 5px 3%;
+    overflow: hidden;
+    width: 94%;
 }
 body{
     background-color: #fff;
+}
+.my-drawer {
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.my-drawer .am-drawer-sidebar {
+    background-color: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.my-drawer .am-drawer-sidebar .am-list {
+    width: 300px;
+    padding: 0;
+}
+.login{
+    width: 80%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px #708090 solid;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-left:3%;
+}
+.sub{
+    width: 60%;
+    height: 35px;
+    border-radius: 5px;
+    background-color:rgb(55, 96, 230);
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    border: none;
 }
