@@ -8,7 +8,7 @@ export default class Fun extends Component {
                 <NavBar
                 mode="dark"
                 icon={<Icon type="left" style={{color:'white'}}/>}
-                >周边景点</NavBar> 
+                >当地玩乐</NavBar> 
                 <div style={{height:'350px',borderRadius:'5px',marginTop:'5px',width:'94%',marginLeft:'3%',background:'white'}}>
                     <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}></div>
                     <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
