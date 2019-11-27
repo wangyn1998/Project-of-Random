@@ -10,7 +10,7 @@ export default class Spot extends Component {
                 mode="dark"
                 icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 >周边景点</NavBar> 
-                <div style={{height:'350px',borderRadius:'5px',marginTop:'5px',width:'94%',marginLeft:'3%',background:'white'}}>
+                <div style={{height:'400px',borderRadius:'5px',marginTop:'5px',width:'94%',marginLeft:'3%',background:'white'}}>
                     <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}></div>
                     <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
                         <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>阿那亚黄金海岸|一种情怀，一种生活方式</p>
