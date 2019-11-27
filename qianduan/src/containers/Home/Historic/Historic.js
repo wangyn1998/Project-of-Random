@@ -15,7 +15,7 @@ export default class Historic extends Component {
                         <div style={{height:'80%',width:'100%',background:'blue'}}></div>
                         <div style={{height:'15%',width:'100%',marginTop:'5%'}}>
                             <div style={{float:'left',fontSize:'22px',color:'black',width:'100%'}}>景点名称
-                                <span className="iconfont icon-xin" style={{marginLeft:'40%'}}></span>
+                                <span className="iconfont icon-xin" style={{marginLeft:'30%'}}></span>
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@ export default class Historic extends Component {
                     <div style={{height:'80%',width:'100%',background:'blue'}}></div>
                         <div style={{height:'15%',width:'100%',marginTop:'5%'}}>
                             <div style={{float:'left',fontSize:'22px',color:'black',width:'100%'}}>景点名称
-                                <span className="iconfont icon-xin" style={{marginLeft:'40%'}}></span>
+                                <span className="iconfont icon-xin" style={{marginLeft:'30%'}}></span>
                             </div>
                         </div>
                     </div>
