@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavBar,Icon} from 'antd-mobile';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export default class Message extends Component {
     render() {
@@ -7,7 +8,7 @@ export default class Message extends Component {
             <div>
                 <NavBar
                 mode="dark"
-                icon={<Icon type="left" style={{color:'white'}}/>}
+                icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 rightContent={[
                     <div className="iconfont icon-search" style={{color:'white'}}></div>
                 ]}
