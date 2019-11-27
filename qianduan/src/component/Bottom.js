@@ -4,6 +4,9 @@ import Home from '../containers/Home/Home';
 import Block from '../containers/Block/Block';
 import Message from '../containers/Message/Message';
 import My from '../containers/My/My';
+import Login from '../containers/My/Login'
+import Register from '../containers/My/Register'
+import UpdateUser from '../containers/My/Update'
 
 export default class Bottom extends Component {
   render() {
@@ -38,7 +41,10 @@ export default class Bottom extends Component {
         <Route exact path='/' component={Home}/>
         <Route path='/block' component={Block}/>
         <Route path='/message' component={Message}/>
-        <Route path='/my' component={My}/>
+        <Route exact path='/my' component={My}/>
+        <Route exact path='/my/login' component={Login}/>
+        <Route exact path='/my/register' component={Register}/>
+        <Route exact path='/my/updateuser' component={UpdateUser}/>
       </Router>
     )
   }
