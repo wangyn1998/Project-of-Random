@@ -22,13 +22,13 @@ app.post('/my/login', function (req, res) {  //接收POST请求
   console.log(data);
   let message1 = {success:true}
   let message2 = {success:false}
-  if(data.user==='凯文'&&data.password==='123456'){ //判断并返回结果
+  if(data.user==='123'&&data.password==='123'){ //判断并返回结果
     res.send(message1);
   }
   else res.send(message2);
 })
 
-var server = app.listen(8081, function () {
+var server = app.listen(8001, function () {
   var host = server.address().address
   var port = server.address().port
   console.log("应用实例，访问地址为 http://%s:%s", host, port)

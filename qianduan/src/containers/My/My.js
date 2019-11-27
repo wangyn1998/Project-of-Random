@@ -13,7 +13,7 @@ const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src
 const Item1 = List.Item;
 export default class App extends Component {
   state = {
-    visible: true,
+    visible: false,
     selected: '',
     data1:[
         {class:'iconfont icon-aite',tit:'关注',num:5},
@@ -73,7 +73,7 @@ export default class App extends Component {
                 onLeftClick={()=>window.location.href='/'}
                 // onLeftClick={this.onOpenChange}
                 rightContent={
-                <Popover mask
+                <Popover mask="true"
                     overlayClassName="fortest"
                     overlayStyle={{ color: 'currentColor' }}
                     visible={this.state.visible}
@@ -139,7 +139,7 @@ export default class App extends Component {
                             <Link to='/my/login' >去登录</Link>
                         </div>
                         <div style={{height:'20px',width:'100%',border:'1px black solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            <Link to='' >点此完善资料></Link>
+                            <Link to='/my/updateuser' >点此完善资料></Link>
                         </div>
                     </div>                 
                     <div style={{width:'50%',float:'left'}}>

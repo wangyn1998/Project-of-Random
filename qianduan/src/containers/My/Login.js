@@ -63,7 +63,7 @@ export default class Login extends Component {
                 <form >
                     <input type='text' name='username' id='user' className='login' placeholder='账号：' onChange={this.userChange}/>
                     <input type="password" name="password" id="password" className='login' placeholder='密码：' onChange={this.passwordChange}/>
-                    <input type="submit" value="登录" id="submit" className='sub' onClick={this.submit}/>
+                    <input type="submit"  id="submit" className='sub' onClick={this.submit}/>
                 </form>
                 <div onClick={this.register} type="primary">注册</div>
             </div>

@@ -46,3 +46,34 @@ body{
     margin-top: 30px;
     border: none;
 }
+.show-info {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .show-info .progress {
+    margin-right: 5px;
+    width: 100%;
+  }
+.users{
+    height: 25px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 1px #708090 solid;
+}
+
+.date-picker-list .am-list-item .am-list-line .am-list-extra {
+    flex-basis: initial;
+  }
+.touxiang{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:1px #708090  solid;
+    display:block;
+    margin:0 auto;
+    margin-top:50px
+}
