@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavBar,Icon} from 'antd-mobile';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export default class Spot extends Component {
     render() {
@@ -7,7 +8,7 @@ export default class Spot extends Component {
             <div style={{background:'#f0f0'}}>
                 <NavBar
                 mode="dark"
-                icon={<Icon type="left" style={{color:'white'}}/>}
+                icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 >周边景点</NavBar> 
                 <div style={{height:'350px',borderRadius:'5px',marginTop:'5px',width:'94%',marginLeft:'3%',background:'white'}}>
                     <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}></div>

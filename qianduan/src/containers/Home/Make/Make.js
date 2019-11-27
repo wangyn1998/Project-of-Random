@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavBar,Icon} from 'antd-mobile';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import './Make.css'
 
 export default class Make extends Component {
@@ -8,7 +9,7 @@ export default class Make extends Component {
             <div style={{background:'#f0f0'}}>
                 <NavBar
                 mode="dark"
-                icon={<Icon type="left" style={{color:'white'}}/>}
+                icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 >周边景点</NavBar>
                 <div>
                     <div className="make-dropdown" style={{float:'left'}}>

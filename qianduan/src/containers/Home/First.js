@@ -84,9 +84,9 @@ export default class First extends Component {
                     </div>
                 )}
                 />
-                <div style={{width:'90',height:'180px',textAlign:'center',background:'blue'}}>
+                <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/hot'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black'}}>热门推荐》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black',marginTop:'5px'}}>热门推荐》</p>
                     </Link>
                     <div>
                         <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
@@ -96,7 +96,7 @@ export default class First extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{width:'90',height:'180px',textAlign:'center',background:'blue'}}>
+                <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/historic'>
                         <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black'}}>名胜古迹》</p>
                     </Link>
@@ -108,7 +108,7 @@ export default class First extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'80px',background:'blue'}}>
+                <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'80px'}}>
                     <Link to='/celebrity'>
                         <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black'}}>网红打卡》</p>
                     </Link>
