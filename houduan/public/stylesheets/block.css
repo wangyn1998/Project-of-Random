@@ -1,0 +1,99 @@
+/* 帖子管理 */
+/* 话题管理 */
+#bianji{
+    background-color: #61b3ed;
+    color: #fff;
+}
+.Topicbox3{
+    width: 945px;
+    height: 300px;
+    margin-left: 50px;
+    border:1px solid rgb(218, 208, 208);
+    color: #000;
+}
+.TopicList>li{
+    width: 945px;
+    height: 50px;
+    border:1px solid #eee;
+    /* line-height:3rem; */
+    /* background-color: pink; */
+    float: left;
+}
+.TopicList{
+    width: 945px;
+    height: 270px;
+    float: left;
+}
+.Topichead{
+    text-align: center;
+    width: 945px;
+    height: 50px;
+    border:1px solid #eee;
+    /* line-height:3rem; */
+    /* background-color: pink; */
+    float: left;
+}
+.Topichead1{
+    float: left;
+    width: 400px;
+}
+.TopicContent{
+    float: left;
+    margin:15px 0 0 50px;
+}
+.Topichead2{
+    float: left;
+    width: 170px;
+}
+.Topicoperation{
+    float: left;
+    margin:10px 0 0 70px;
+}
+.Topicoperation>button{
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border:1px solid #888;
+    color: #4177CA;
+}
+#Topicuser{
+    float: left;;
+    margin-top:'5px';
+    /* font-size:'26px'; */
+    color: pink;
+}
+#time{
+    float:'left';
+    margin-left:'78px';
+    margin-top:'5px';
+    font-size:'20px';
+}
+.Topicbox4{
+    width: 1030px;
+    height:10px;
+    text-align: center;
+    /* background-color: #eee; */
+    /* border:1px solid #eee; */
+}
+.Topicbox4 p{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    /* color: #fff; */
+    color: #4177CA;
+    background-color: #61b3ed;
+}
+#popLayer{
+    position: absolute;
+    display:none;
+    left:0;
+    top:0;
+    z-index:0;
+    background:#fff;
+    opacity:0.8;
+    filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+}
+.pop{
+    border: 2px solid #888;
+}

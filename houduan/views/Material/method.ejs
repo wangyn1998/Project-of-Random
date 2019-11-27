@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/material.css' />
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1506624_rw0sat5f54l.css">
     <!-- 后端论坛 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1528101_39ha99o5h31.css">
     <!-- 后端积分 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1529410_z44h9faz7b.css">
@@ -37,12 +38,77 @@
             </div>
             <div class="box2">
                 <p style="font-size:22px;font-weight:bold">爱游不错游攻略管理
-                    <span style="margin-left:30px" class="iconfont icon-wuuiconxiangjifangda"></span>
+                    <span style="margin-left:30px" class="iconfont icon-wuuiconxiangjifangda" id="btn"></span>
                     <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
                 </p>
+            </div>
+            <div class='Managebox3'>
+                <ul class='ManageList' style="padding-inline-start: 0px;margin-block-start: 0;
+                margin-block-end: 0">
+                    <li class='Managehead'>
+                        <h3 class='Managehead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>任务编号</b></h3>
+                        <h3 class='Managehead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>任务内容</b></h3>
+                        <h3 class='Managehead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>分数</b></h3>
+                         <h3 class='Managehead1' style="margin-block-start:0.5em;
+                         margin-block-end: 0;"><b>操作</b></h3>
+                    </li>
+                    <li>
+                        <p class='Managebody'>1</p>  
+                        <p class='Managebody'>打卡</p>
+                        <p class='Managebody'>10</p>
+                        <div class='Managebody'>
+                            <div class='Topicoperation'>
+                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
+                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                            </div> 
+                        </div>   
+                    </li>    
+                </ul>
+            </div>
+            <div class='Managebox4'> 
+                <div style="margin-left:450px;margin-top:10px">
+                    <p>&lt;</p>
+                    <p>1</p>
+                    <p>&gt;</p>
+                </div>
+            </div>
+        </div>
+        <div >
+            <div id="pop-container">
+                <div id="cover-tier" class="popPosition"></div>
+                <div id="pop-tier" class="popPosition">
+                    <i id="close-pop">&#10006;</i>
+                    <div style="width:380px;float:left;">
+                        <h2 style="float:left;margin-left:20px;margin-top:25px;">任务内容:</h2>
+                        <input type='text' id="content" style="width:340px;height:200px;"/>
+                    </div>
+                    <h2 style="float:left;margin-left:20px;margin-top:27px;">分数:</h2>
+                    <input type='text' id="create" style="width:200px;height:30px;margin-top:27px;"/>
+                    <br/>
+                    <button id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:20px">保存</button> 
+                </div>
             </div>
         </div>
     </div>
 
 </body>
+<script type="text/javascript">
+    function temp(id) {
+        return document.getElementById(id);
+    }
+    // 点击按钮出现弹出层
+    temp('btn').onclick = function() {
+        temp('pop-container').style.display = 'block';
+    }
+    temp('bianji').onclick = function() {
+        temp('pop-container').style.display = 'block';
+    }
+    // 点击右上角X弹出层隐藏
+    temp('close-pop').onclick = function() {
+        temp('pop-container').style.display = 'none';
+    }
+</script>
 </html>
