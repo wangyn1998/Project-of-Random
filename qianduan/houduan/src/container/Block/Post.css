@@ -1,0 +1,152 @@
+ul,li{
+    list-style: none;
+}
+.Postbox1{
+    height: 40px;
+    width: 1045px;
+}
+.Posttitle{
+    color: #4177CA;
+    font-size: 22px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+.Postsearch{
+    float: right;
+    width: 500px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #eee;
+    border:1px solid #eee;
+    margin-top: 20px;
+    margin-right: 50px;
+    font-size: 18px;
+}
+.PostsearchBar{
+    float: left;
+    width: 350px;
+    height: 39px;
+    border-radius: 20px;
+    margin-left: 20px;
+    background-color: #eee;
+    border:1px solid #eee;
+}
+.da{
+    margin-top: 8px;
+    float: right;
+    margin-right: 25px;
+}
+.Postbox2{
+    width: 600px;
+    height: 40px;
+    float: right;
+    margin-top:10px;
+    margin-right: 40px;
+}
+.Postdate{
+    width: 200px;
+    float: left;
+    height: 30px;
+    margin-top: 8px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-left: 50px;
+}
+.Postdate input{
+    width: 150px;
+    height: 26px;
+    float: left;
+    border-style: none;
+   
+}
+.Postdate i{
+    float: right; margin-right: 10px;
+}
+.Postbox3{
+    width: 945px;
+    height: 300px;
+    margin-top:70px;
+    margin-left: 50px;
+    /* background-color: #eee; */
+    border:1px solid #eee;
+}
+.Postbox3 ul{
+    width: 945px;
+    height: 300px;
+    float: left;
+}
+.Postbox3 li{
+    width: 945px;
+    height: 50px;
+    border:1px solid #eee;
+    /* line-height:3rem; */
+    /* background-color: pink; */
+    float: left;
+} 
+.Posthead{
+    background-color: #61b3ed;
+    text-align: center;
+    line-height:3rem;
+    
+}
+.Posthead1{
+    float: left;
+    width: 400px;
+    color: #fff;
+}
+.Posthead2{
+    float: left;
+    width: 150px;
+    color: #fff;
+}
+.Postimg{
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 5px 0 0 20px;
+}
+.Postarticle{
+    width:300px;
+    float: left;
+    height: 40px;
+    margin-left: 20px;
+    color: #888;
+}
+.Postarticle h3{
+    float: left;
+    width: 200px;
+    height: 20px;
+    font-size: 18px;
+    color: #888;
+}
+.Postarticle p{
+    float: left;
+    /* height: 20px; */
+    font-size: 14px;
+}
+.Postdel{
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border:1px solid #888;
+    color: #4177CA;
+    margin-left: 70px;
+    margin-top: 10px;
+    float: left;
+}
+.Postbox4{
+    width: 945px;
+    height:10px;
+    text-align: center;
+    margin:0 auto;
+}
+.Postbox4 p{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    color: #fff;
+    background-color: #4177CA;
+}

@@ -1,0 +1,505 @@
+*{
+  padding:0;
+  margin:0;
+}
+ul,li{
+  list-style: none;
+}
+.all{
+  width:1200px;
+  height:530px;
+  margin:0 auto; 
+  margin-top:20px;
+  background: white;
+}
+.left{
+  float: left;
+  width: 150px;
+  height: 450px;
+}
+.right{
+  float: left;
+  width: 1050px;
+  height: 450px;
+}
+.nav{
+  color: white;
+  width: 150px;
+  height: 40px;
+  background: #61b3ed;
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+}
+.nav a{
+  color: white;
+  text-decoration: none;
+}
+.nav:hover{
+  background: #4177ca;
+}
+.nav:active{
+  background: #4177ca;
+}
+/* 搜索 */
+.box1{
+  height: 40px;
+  width:500px;
+  margin-top: 20px; 
+  margin-left: 10px;
+}
+.search{
+  float: left;
+  width: 400px;
+  height: 40px;
+  border-radius: 20px;
+  border:1px solid #eee;
+  background: #eee;
+  font-size: 18px;
+}
+.Bar{
+  float: left;
+  width: 340px;
+  height: 39px;
+  border-radius: 20px;
+  border: none;
+  background: #eee;
+}
+.box2{
+  height: 40px;
+  width:500px;
+  margin-top: 20px; 
+  margin-left: 10px;
+}
+/* 用户 */
+.Userbox3{
+  width: 945px;
+  height: 300px;
+  margin-top:10px;
+  margin-left: 50px;
+  /* background-color: #eee; */
+  border:1px solid #eee;
+}
+.Userbox3 ul{
+  width: 945px;
+  height: 300px;
+  float: left;
+}
+.Userbox3 li{
+  width: 945px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+} 
+.Userhead{
+  background-color:white;
+  text-align: center;
+  line-height:3rem;
+  
+}
+.Userhead1{
+  float: left;
+  width: 135px;
+  color: black;
+}
+
+.Userimg{
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px 0 0 45px;
+}
+.Userbody{
+  float: left;
+  width: 135px;
+  color: black;
+  text-align: center;
+  line-height:3rem;
+}
+.Userdel{
+  width: 50px;
+  height: 30px;
+  background-color: #fff;
+  border:1px solid #888;
+  color: #4177CA;
+  margin-left: 45px;
+  margin-top: 10px;
+  float: left;
+}
+/* 帖子管理 */
+/* 话题管理 */
+.Topicbox1{
+  height: 40px;
+  width:500px;
+  margin-top: 10px; 
+  margin-left: 12px;
+}
+.Topicsearch{
+  float: left;
+  width: 400px;
+  height: 40px;
+  border-radius: 20px;
+  background: #eee;
+  border:1px solid #eee;
+  font-size: 18px;
+}
+.TopicBar{
+  float: left;
+  width: 340px;
+  height: 39px;
+  border-radius: 20px;
+  border: none;
+  background: #eee;
+}
+.da{
+  margin-top: 8px;
+  float: right;
+  margin-right: 25px;
+}
+.Topicbox2{
+  height: 50px;
+  width: 1030px;
+  margin:10px 0 0 10px;
+  /* border:1px solid rgb(218, 208, 208); */
+}
+.Topicbox2>h1{
+ float: left;
+ font-size: 20px;
+ margin:10px 0 0 10px;
+}
+.Topicbox2>h2{
+  float: left;
+  font-size: 17px;
+  margin:11px 0 0 10px;
+}
+.Topicbox2>button{
+  float: left;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  background-color: black;
+  font-size: 20px;
+  border: 1px solid #000;
+  margin: 10px 0 0 80px;
+  border-radius: 5px;
+}
+#bianji{
+  background-color: #61b3ed;
+  color: #fff;
+}
+.Topicbox3{
+  width: 1030px;
+  height: 270px;
+  margin:0 0 0 10px;
+  border:1px solid rgb(218, 208, 208);
+  color: #000;
+}
+.TopicList>li{
+  width: 1030px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.TopicList{
+  width: 1030px;
+  height: 270px;
+  float: left;
+}
+.Topichead{
+  text-align: center;
+  width: 945px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.Topichead1{
+  float: left;
+  width: 400px;
+}
+.TopicContent{
+  float: left;
+  margin:15px 0 0 50px;
+}
+.Topichead2{
+  float: left;
+  width: 170px;
+}
+.Topicoperation{
+  float: left;
+  margin:10px 0 0 70px;
+}
+.Topicoperation>button{
+  width: 50px;
+  height: 30px;
+  background-color: #fff;
+  border:1px solid #888;
+  color: #4177CA;
+}
+#Topicuser{
+  float: left;;
+  margin-top:'5px';
+  /* font-size:'26px'; */
+  color: pink;
+}
+#time{
+  float:'left';
+  margin-left:'78px';
+  margin-top:'5px';
+  font-size:'20px';
+}
+.Topicbox4{
+  width: 1030px;
+  height:10px;
+  text-align: center;
+  /* background-color: #eee; */
+  /* border:1px solid #eee; */
+}
+.Topicbox4 p{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  float: left;
+  /* color: #fff; */
+  color: #4177CA;
+  background-color: #61b3ed;
+}
+#popLayer{
+  position: absolute;
+  display:none;
+  left:0;
+  top:0;
+  z-index:0;
+  background:#fff;
+  opacity:0.8;
+  filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+}
+.pop{
+  border: 2px solid #888;
+}
+/* 积分 */
+/* 积分表 */
+.Listbox3{
+  width: 1030px;
+  height: 330px;
+  margin:30px 10px;
+  border:1px solid rgb(218, 208, 208);
+  color: #000;
+}
+.ListList>li{
+  width: 1030px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.ListList{
+  width: 1030px;
+  height: 270px;
+  float: left;
+}
+.Listhead{
+  text-align: center;
+  width: 945px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.Listhead1{
+  float: left;
+  width: 200px;
+}
+.Listbody{
+  float: left;
+  width: 200px;
+  text-align: center;
+}
+.Listbox4{
+  width: 1030px;
+  height:10px;
+  text-align: center;
+  /* background-color: #eee; */
+  /* border:1px solid #eee; */
+}
+.Listbox4 p{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  float: left;
+  /* color: #fff; */
+  color: #4177CA;
+  background-color: #61b3ed;
+}
+/* 个人详细积分 */
+.Userbox3{
+  width: 945px;
+  height: 300px;
+  margin-top:30px;
+  margin-left: 50px;
+  /* background-color: #eee; */
+  border:1px solid #eee;
+}
+.Userbox3 ul{
+  width: 945px;
+  height: 300px;
+  float: left;
+}
+.Userbox3 li{
+  width: 945px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+} 
+.Userhead{
+  background-color:white;
+  text-align: center;
+  line-height:3rem;
+  
+}
+.Userhead1{
+  float: left;
+  width: 300px;
+  color: black;
+}
+
+.Userimg{
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px 0 0 45px;
+}
+.Userbody{
+  float: left;
+  width: 300px;
+  color: black;
+  text-align: center;
+  line-height:3rem;
+  
+}
+/* 积分对照表 */
+.Managebox3{
+  width: 1030px;
+  height: 270px;
+  margin:0 0 0 10px;
+  border:1px solid rgb(218, 208, 208);
+  color: #000;
+}
+.ManageList>li{
+  width: 1030px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.ManageList{
+  width: 1030px;
+  height: 270px;
+  float: left;
+}
+.Managehead{
+  text-align: center;
+  width: 945px;
+  height: 50px;
+  border:1px solid #eee;
+  /* line-height:3rem; */
+  /* background-color: pink; */
+  float: left;
+}
+.Managehead1{
+  float: left;
+  width: 250px;
+}
+.Managebody{
+  float: left;
+  width: 250px;
+  text-align: center;
+}
+
+.Managebox4{
+  width: 1030px;
+  height:10px;
+  text-align: center;
+}
+.Managebox4 p{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  float: left;
+  /* color: #fff; */
+  color: #4177CA;
+  background-color: #61b3ed;
+}
+#pop-container {
+  display: none;
+  z-index: 999;
+}
+/*遮盖层*/
+#cover-tier {
+  /* background-color: #D9D9D9; */
+  background-color: red;
+  opacity: 0.5;
+}
+/*弹出层内容*/
+#pop-tier {
+  width: 380px;
+  height: 390px;
+  border: 2px solid #C3C3C3;
+  background-color: #fff;
+  margin: auto;
+  text-align: center;
+}
+/*关闭弹框*/
+#close-pop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}#pop-container {
+  display: none;
+  z-index: 999;
+}
+/*遮盖层*/
+#cover-tier {
+  background-color: #D9D9D9;
+  opacity: 0.5;
+}
+/*弹出层内容*/
+#pop-tier {
+  width: 380px;
+  height: 390px;
+  border: 2px solid #C3C3C3;
+  background-color: #fff;
+  margin: auto;
+  text-align: center;
+}
+/*关闭弹框*/
+#close-pop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.popPosition {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+/* 资料 */
+/* 攻略管理 */
+/* 景点管理 */
