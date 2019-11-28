@@ -106,16 +106,6 @@ export default class App extends Component {
             >
                 我的
             </NavBar>
-            {/* <Drawer
-                className="my-drawer"
-                style={{ minHeight: document.documentElement.clientHeight }}
-                enableDragHandle
-                contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
-                sidebar={sidebar}
-                open={this.state.open}
-                onOpenChange={this.onOpenChange}
-                >
-            </Drawer> */}
             <div className='block'>
                 <div style={{width:'100%'}}>
                     <div>
@@ -123,16 +113,6 @@ export default class App extends Component {
                             <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}></div>
                             <p style={{textAlign:'center'}}>用户名</p>
                         </div>  
-                        {/* <Drawer
-                            className="my-drawer"
-                            style={{ minHeight: document.documentElement.clientHeight }}
-                            enableDragHandle
-                            contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
-                            sidebar={sidebar}
-                            open={this.state.open}
-                            onOpenChange={this.onOpenChange}
-                            >
-                        </Drawer> */}
                     </div>
                     <div style={{float:'left',width:'30%'}}>
                         <div style={{height:'20px',width:'50%',border:'1px blue solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
@@ -165,7 +145,7 @@ export default class App extends Component {
                     )}
                 />
                 <div style={{width:'25%',height:'25%',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
-                    <Link to='' style={{lineHeight:'25%'}}>签到领积分</Link>
+                    <Link to='/my/getscore' style={{lineHeight:'25%'}}>签到领积分</Link>
                 </div>   
                 <div style={{fontSize:'15px',marginTop:'10%'}}>积分排行榜</div>       
             </div>
@@ -215,19 +195,6 @@ export default class App extends Component {
                     <Item1  arrow="horizontal" onClick={() => {}}>关于我们</Item1>
                 </List>
             </div>
-            {/* <div>
-                <NavBar icon={<Icon type="ellipsis" />} onLeftClick={this.onOpenChange}>Basic</NavBar>
-                    <Drawer
-                        className="my-drawer"
-                        style={{ minHeight: document.documentElement.clientHeight }}
-                        enableDragHandle
-                        contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
-                        sidebar={sidebar}
-                        open={this.state.open}
-                        onOpenChange={this.onOpenChange}
-                        >
-                    </Drawer>
-            </div>; */}
         </div>
     );
   }

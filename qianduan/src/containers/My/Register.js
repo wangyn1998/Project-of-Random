@@ -13,34 +13,27 @@ class Register extends Component {
     }
 
     render() {
-        const RadioItem = Radio.RadioItem
         return (
             <div className="page-register">
                 <NavBar
                     mode="dark"
                     leftContent="&lt;"
-                    onLeftClick={()=>window.location.href='/my'}
+                    onLeftClick={()=>window.location.href='/my/login'}
                     >注册
                 </NavBar>
-                <List>
-                    <InputItem onChange={value => this.handleChange('username', value)}>lbj-账号</InputItem>
-                    <InputItem onChange={value => this.handleChange('pwd', value)}>lbj-密码</InputItem>
-                    <InputItem onChange={value => this.handleChange('pwdConfirm', value)}>lbj-确认</InputItem>
-                </List>
+                <p style={{fontSize:'20px',marginLeft:'15px'}}>手机号码注册</p>
+                <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <List>
-                    <RadioItem
-                        onClick={() => this.handleChange('type', 'worker')}
-                        checked={this.state.type === 'worker'}>牛人    </RadioItem>
-                    <RadioItem
-                        onClick={() => this.handleChange('type', 'boss')}
-                        checked={this.state.type === 'boss'}>BOSS</RadioItem>
+                    <InputItem onChange={value => this.handleChange('username', value)} type='phone'>手机号</InputItem>
+                    <InputItem onChange={value => this.handleChange('pwd', value) }type='password'>密码</InputItem>
+                    <InputItem onChange={value => this.handleChange('pwdConfirm', value)} type='password'>确认</InputItem>
                 </List>
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <WingBlank>
-                    <Button type="primary">登录</Button>
+                    <Button type="primary" onClick={this.handleNext.bind(this)}>下一步</Button>
                     <WhiteSpace></WhiteSpace>
                     <Button onClick={this.handleGoLogin.bind(this)} type="primary">已有账号，去登录</Button>
                 </WingBlank>
@@ -54,7 +47,6 @@ class Register extends Component {
     handleGoLogin() {
         this.props.history.push('/my/login')
     }
-
     /*
     *     绑定表单值
     * */
@@ -62,6 +54,16 @@ class Register extends Component {
         this.setState({
             [key]: val
         })
+    }
+    /**
+     * 登录验证
+     */
+    handleNext(){
+        if(this.state.pwd === this.state.pwdConfirm){
+            this.props.history.push('/my/login')
+        }else{
+            window.alert('两次密码输入不一致！！！')
+        }
     }
 }
 
