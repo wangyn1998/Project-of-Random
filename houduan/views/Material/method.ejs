@@ -19,7 +19,7 @@
             <p style="float:left;color:white;font-size:35px;line-height:75px;margin-left:40px;">爱游不错游后台管理系统</p>
         </header>
         <div class="left">
-            <div class="nav">
+            <div class="nav" style="background: #4177ca;">
                 <a href="/material/method">攻略管理</a>
             </div>
             <div class="nav">
@@ -42,33 +42,56 @@
                     <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
                 </p>
             </div>
-            <div class='Managebox3'>
-                <ul class='ManageList' style="padding-inline-start: 0px;margin-block-start: 0;
+            <div class='Materialbox3'>
+                <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
                 margin-block-end: 0">
-                    <li class='Managehead'>
-                        <h3 class='Managehead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>任务编号</b></h3>
-                        <h3 class='Managehead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>任务内容</b></h3>
-                        <h3 class='Managehead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>分数</b></h3>
-                         <h3 class='Managehead1' style="margin-block-start:0.5em;
-                         margin-block-end: 0;"><b>操作</b></h3>
+                    <li class='Materialhead'>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>编号</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市名</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>天数</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市介绍</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市照片</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>攻略</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>操作</b></h3>
                     </li>
                     <li>
-                        <p class='Managebody'>1</p>  
-                        <p class='Managebody'>打卡</p>
-                        <p class='Managebody'>10</p>
-                        <div class='Managebody'>
-                            <div class='Topicoperation'>
+                        <p class='Materialbody'>01</p>  
+                        <p class='Materialbody'>苏州</p>
+                        <p class='Materialbody'>3</p>
+                        <p class='Materialbody'>01.txt</p>  
+                        <p class='Materialbody'>01.jpg</p>
+                        <p class='Materialbody'>01.doc</p>
+                        <div class='Materialbody'>
+                            <div class='Materialoperation'>
                                 <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
                                 <button type='button' id='remove' onClick={handleRemove}>移除</button>
                             </div> 
                         </div>   
-                    </li>    
+                    </li>
+                    <li>
+                        <p class='Materialbody'>01</p>  
+                        <p class='Materialbody'>苏州</p>
+                        <p class='Materialbody'>3</p>
+                        <p class='Materialbody'>01.txt</p>  
+                        <p class='Materialbody'>01.jpg</p>
+                        <p class='Materialbody'>01.doc</p>
+                        <div class='Materialbody'>
+                            <div class='Materialoperation'>
+                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
+                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                            </div> 
+                        </div>   
+                    </li>       
                 </ul>
             </div>
-            <div class='Managebox4'> 
+            <div class='Materialbox4'> 
                 <div style="margin-left:450px;margin-top:10px">
                     <p>&lt;</p>
                     <p>1</p>
@@ -81,14 +104,29 @@
                 <div id="cover-tier" class="popPosition"></div>
                 <div id="pop-tier" class="popPosition">
                     <i id="close-pop">&#10006;</i>
-                    <div style="width:380px;float:left;">
-                        <h2 style="float:left;margin-left:20px;margin-top:25px;">任务内容:</h2>
-                        <input type='text' id="content" style="width:340px;height:200px;"/>
+                    <div style="margin-top:40px">
+                        <div class='text'>
+                            <h4>城市名：</h4>
+                            <input class="first" type="text" placeholder="1232"/>
+                        </div>
+                        <div class='text'>
+                            <h4>天数：</h4>
+                            <input class="first" type="text" placeholder="1232"/>
+                        </div>
+                        <div class='text'>
+                            <h4>城市介绍：</h4>
+                            <input class="second" type="file"/>
+                        </div>
+                        <div class='text'>
+                            <h4>城市照片：</h4>
+                            <input class="second" type="file"/>
+                        </div>
+                        <div class='text'>
+                            <h4>攻略：</h4>
+                            <input class="second" type="file"/>
+                        </div>
                     </div>
-                    <h2 style="float:left;margin-left:20px;margin-top:27px;">分数:</h2>
-                    <input type='text' id="create" style="width:200px;height:30px;margin-top:27px;"/>
-                    <br/>
-                    <button id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:20px">保存</button> 
+                    <button id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@
             <div class="nav">
                 <a href="/material/method">攻略管理</a>
             </div>
-            <div class="nav">
+            <div class="nav" style="background: #4177ca;">
                 <a href="/material/spot">景点管理</a>
             </div>
             <div class="nav">
@@ -42,8 +42,111 @@
                     <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
                 </p>
             </div>
+            <div class='Materialbox3'>
+                <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
+                margin-block-end: 0">
+                    <li class='Materialhead'>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>编号</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市名</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>景点名</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>景点介绍</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>景点照片</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>类别</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>操作</b></h3>
+                    </li>
+                    <li>
+                        <p class='Materialbody'>01</p>  
+                        <p class='Materialbody'>北京</p>
+                        <p class='Materialbody'>太仆寺旗</p>
+                        <p class='Materialbody'>01.txt</p>  
+                        <p class='Materialbody'>01.jpg</p>
+                        <p class='Materialbody'>当地玩乐</p>
+                        <div class='Materialbody'>
+                            <div class='Materialoperation'>
+                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
+                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                            </div> 
+                        </div>   
+                    </li>
+                    <li>
+                        <p class='Materialbody'>01</p>  
+                        <p class='Materialbody'>北京</p>
+                        <p class='Materialbody'>太仆寺旗</p>
+                        <p class='Materialbody'>01.txt</p>  
+                        <p class='Materialbody'>01.jpg</p>
+                        <p class='Materialbody'>当地玩乐</p>
+                        <div class='Materialbody'>
+                            <div class='Materialoperation'>
+                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
+                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                            </div> 
+                        </div>   
+                    </li>       
+                </ul>
+            </div>
+            <div class='Materialbox4'> 
+                <div style="margin-left:450px;margin-top:10px">
+                    <p>&lt;</p>
+                    <p>1</p>
+                    <p>&gt;</p>
+                </div>
+            </div>
+        </div>
+        <div >
+            <div id="pop-container">
+                <div id="cover-tier" class="popPosition"></div>
+                <div id="pop-tier" class="popPosition">
+                    <i id="close-pop">&#10006;</i>
+                    <div style="margin-top:40px">
+                        <div class='text'>
+                            <h4>城市名：</h4>
+                            <input class="first" type="text" placeholder="1232"/>
+                        </div>
+                        <div class='text'>
+                            <h4>景点名：</h4>
+                            <input class="first" type="text" placeholder="1232"/>
+                        </div>
+                        <div class='text'>
+                            <h4>景点介绍：</h4>
+                            <input class="second" type="file"/>
+                        </div>
+                        <div class='text'>
+                            <h4>景点照片：</h4>
+                            <input class="second" type="file"/>
+                        </div>
+                        <div class='text'>
+                            <h4>类别：</h4>
+                            <input class="first" type="text" placeholder="1232"/>
+                        </div>
+                    </div>
+                    <button id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
+                </div>
+            </div>
         </div>
     </div>
 
 </body>
+<script type="text/javascript">
+    function temp(id) {
+        return document.getElementById(id);
+    }
+    // 点击按钮出现弹出层
+    temp('btn').onclick = function() {
+        temp('pop-container').style.display = 'block';
+    }
+    temp('bianji').onclick = function() {
+        temp('pop-container').style.display = 'block';
+    }
+    // 点击右上角X弹出层隐藏
+    temp('close-pop').onclick = function() {
+        temp('pop-container').style.display = 'none';
+    }
+</script>
 </html>
