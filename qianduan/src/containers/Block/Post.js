@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { NavBar, Icon ,List, TextareaItem,Grid} from 'antd-mobile';
+import Aite from './Aite';
+import Jinghao from './Jinghao';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
-const data1=['iconfont icon-tupian','iconfont icon-aite','iconfont icon-jinghao','iconfont icon-smile'].map((item)=>({
-    icon:item
+const data1=[{icon:'iconfont icon-tupian',path:'/'},{icon:'iconfont icon-aite',path:'/aite'},{icon:'iconfont icon-jinghao',path:'/jinghao'},{icon:'iconfont icon-smile',path:'/'}].map((item)=>({
+    icon:item.icon,
+    path:item.path
 }))
 export default class Post extends Component {
     render() {
@@ -11,11 +15,10 @@ export default class Post extends Component {
                  <NavBar
                     mode="light"
                     leftContent={[
-                        <i className='iconfont icon-guanbi' style={{color:'black'}}/>
+                        <Link to='/'><i className='iconfont icon-guanbi' style={{color:'black'}}/></Link>
                     ]}
-                    onLeftClick={() => console.log('onLeftClick')}
                     rightContent={[
-                         <button style={{borderRadius:'9px',backgroundColor:'blue',width:'50%',height:'70%'}}>发布</button>
+                         <Link to='/'><button style={{borderRadius:'9px',backgroundColor:'blue',width:'100%',height:'70%'}}>发布</button></Link>
                     ]}
                     style={{border:'1px solid #BBBBBB'}}
                     >发帖</NavBar>
@@ -26,14 +29,19 @@ export default class Post extends Component {
                     rows={10}
                 />
                 </List>
-                <div className='post1Grid' style={{position:'absolute',bottom:'0'}}>
+                <div className='post1Grid' style={{width:'100%',position:'absolute',bottom:'0px'}}>
                     <Grid data={data1}
                     columnNum={4}
+                    hasLine={false}
+                    square={false}
                     renderItem={dataItem => {
-                        return <i className={dataItem.icon}/>
+                        return <Link to={dataItem.path}><i className={dataItem.icon}/></Link>
                     }}
                     />
                 </div>
+                {/* <Aite/> */}
+                {/* <Jinghao/> */}
+                
             </div>
         )
     }

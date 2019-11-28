@@ -8,3 +8,36 @@
     background-color: #eeeeee;
     height:14%;
 }
+.message1 .am-segment-item{
+    border: 0;
+}
+
+.message2{
+   
+    background: url('/images/block4.png') ; 
+    background-size: cover;
+    position: relative;
+    width:372px;
+    height: 300px;
+    opacity: 0.7;
+}
+.message2:before{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0,0,0.3); 
+    z-index:-1;
+}
+
+.aite1:hover{
+    background-color: blue;
+}
+.block1list{
+    background-color: #eeeeee;
+}
+.block1list .am-accordion .block1panel .am-accordion-header{
+    color:blue;
+    font-size: 8px;
+}
