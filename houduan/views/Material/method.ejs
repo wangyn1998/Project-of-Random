@@ -61,34 +61,22 @@
                         <h3 class='Materialhead1' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>操作</b></h3>
                     </li>
-                    <li>
-                        <p class='Materialbody'>01</p>  
-                        <p class='Materialbody'>苏州</p>
-                        <p class='Materialbody'>3</p>
-                        <p class='Materialbody'>01.txt</p>  
-                        <p class='Materialbody'>01.jpg</p>
-                        <p class='Materialbody'>01.doc</p>
-                        <div class='Materialbody'>
-                            <div class='Materialoperation'>
-                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
-                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
-                            </div> 
-                        </div>   
-                    </li>
-                    <li>
-                        <p class='Materialbody'>01</p>  
-                        <p class='Materialbody'>苏州</p>
-                        <p class='Materialbody'>3</p>
-                        <p class='Materialbody'>01.txt</p>  
-                        <p class='Materialbody'>01.jpg</p>
-                        <p class='Materialbody'>01.doc</p>
-                        <div class='Materialbody'>
-                            <div class='Materialoperation'>
-                                <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
-                                <button type='button' id='remove' onClick={handleRemove}>移除</button>
-                            </div> 
-                        </div>   
-                    </li>       
+                    <% for(var i=0;i<methodList.length;i++){ %>
+                        <li>
+                            <p class='Materialbody'><%= methodList[i].methodId %></p>  
+                            <p class='Materialbody'><%= methodList[i].cityName %></p>
+                            <p class='Materialbody'><%= methodList[i].methodDay %></p>
+                            <p class='Materialbody'><%= methodList[i].cityContent %></p>  
+                            <p class='Materialbody'><%= methodList[i].cityImage %></p>
+                            <p class='Materialbody'><%= methodList[i].methodContent %></p>
+                            <div class='Materialbody'>
+                                <div class='Materialoperation'>
+                                    <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
+                                    <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                                </div> 
+                            </div>   
+                        </li>
+                    <% } %>      
                 </ul>
             </div>
             <div class='Materialbox4'> 
@@ -104,29 +92,29 @@
                 <div id="cover-tier" class="popPosition"></div>
                 <div id="pop-tier" class="popPosition">
                     <i id="close-pop">&#10006;</i>
-                    <div style="margin-top:40px">
+                    <form action="/material/method" method="POST" style="height:300px;margin-top:40px;border:1px solid;">
                         <div class='text'>
                             <h4>城市名：</h4>
-                            <input class="first" type="text" placeholder="1232"/>
+                            <input class="first" type="text" placeholder="1232" name="cityName"/>
                         </div>
                         <div class='text'>
                             <h4>天数：</h4>
-                            <input class="first" type="text" placeholder="1232"/>
+                            <input class="first" type="text" placeholder="1232" name="methodDay"/>
                         </div>
                         <div class='text'>
                             <h4>城市介绍：</h4>
-                            <input class="second" type="file"/>
+                            <input class="second" type="file" name="cityContent"/>
                         </div>
                         <div class='text'>
                             <h4>城市照片：</h4>
-                            <input class="second" type="file"/>
+                            <input class="second" type="file" name="cityImage"/>
                         </div>
                         <div class='text'>
                             <h4>攻略：</h4>
-                            <input class="second" type="file"/>
+                            <input class="second" type="file" name="methodContent"/>
                         </div>
-                    </div>
-                    <button id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
+                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
+                    </form>
                 </div>
             </div>
         </div>
