@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Carousel,Grid} from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import Historic from './Historic/Historic';
 
 const data = [
     {
@@ -21,9 +22,15 @@ const data = [
 ]
 
 export default class First extends Component {
-    state = {
-        data:['1','2','3'],
-        imgHeight:180,
+    constructor(){
+        super();
+        this.state={
+            hot:[],
+            Historic:[],
+            celebrity:[],
+            data:['1','2','3'],
+            imgHeight:180,
+        }
     }
     componentDidMount(){
         setTimeout(() => {
@@ -31,6 +38,31 @@ export default class First extends Component {
                 data:['1','2','3'],
             });
         },1000)
+        //发起请求
+        fetch('https://localhost:3000/hot')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+            this.setState({
+                hot:res.data
+            })
+        })
+        fetch('http://localhost:3000/historic')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+            this.setState({
+                historic:res.data
+            })
+        })
+        fetch('http://localhost:3000/celebrity')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+            this.setState({
+                celebrity:res.data
+            })
+        })
     }
     render() {
         return (
