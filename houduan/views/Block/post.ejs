@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/block.css' />
+    <link rel='stylesheet' href='/stylesheets/post.css' />
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1506624_rw0sat5f54l.css">
     <!-- 后端论坛 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1528101_39ha99o5h31.css">
     <!-- 后端积分 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1529410_z44h9faz7b.css">
@@ -30,7 +31,59 @@
             </div>
         </div>
         <div class="right">
-            123
+            <div class="Postbox1">
+                <b><h1 class='Posttitle'>帖子记录</h1></b>
+                 <div class='Postsearch'>
+                     <input  class='PostsearchBar' placeholder="搜索"/>
+                     <i class="iconfont icon-sousuo da"></i>
+                 </div>
+            </div>
+            <div class='Postbox2'>
+                <p style="float:left;margin-top:10px">操作时间</p>
+                <div class='Postdate'>
+                    <input type="date" value="2015-09-24"/>
+                    <i class="iconfont icon-date"></i>
+                </div>
+                <p style="float:left;margin-top:10px">至</p>
+                <div class='Postdate'>
+                    <input type="date" value="2015-09-24"/>
+                    <i class="iconfont icon-date"></i>
+                </div>
+            </div>
+            <div class='Postbox3'>
+                    <ul style="padding-inline-start: 0px;margin-block-start: 0;
+                    margin-block-end: 0">
+                        <li class='Posthead'>
+                            <h2 class='Posthead1' style="margin-block-start:0;
+                            margin-block-end: 0;">帖子内容</h2>
+                            <h2 class='Posthead2' style="margin-block-start:0;
+                            margin-block-end: 0;">操作</h2>
+                            <h2 class='Posthead2' style="margin-block-start:0;
+                            margin-block-end: 0;">操作人</h2>
+                            <h2 class='Posthead2' style="margin-block-start:0;
+                            margin-block-end: 0;">操作时间</h2>
+                        </li>  
+                        <li>
+                            <img class="Postimg" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2973069531,657782944&fm=26&gp=0.jpg"/>
+                            <div class="Postarticle">
+                                <h3 style="margin-block-start:0.5em;
+                                margin-block-end: 0;">一只兔子</h3>
+                                <p style="margin-block-start: 0;
+                                margin-block-end:0;">啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈....</p>
+                            </div>
+                            <button class='Postdel'>移除</button>
+                            <p style="float:left;width:150px;margin-left:50px;margin-top:12px;font-size:20px" id="user">user1</p>
+                            <p style="float:left;margin-top:12px;font-size:20px" id="time">2019-10-20 11:01</p>
+                        </li>    
+                    </ul>
+            </div>
+            <div class='Postbox4'> 
+                <div style="margin-left:400px">
+                    <p>&lt;</p>
+                    <p>1</p>
+                    <p>&gt;</p>
+                </div>
+            </div>
         </div>
     </div>
 
