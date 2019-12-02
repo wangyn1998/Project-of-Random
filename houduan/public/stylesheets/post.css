@@ -1,6 +1,6 @@
 ul,li{
     list-style: none;
-}
+} 
 .Postbox1{
     height: 40px;
     width: 1045px;
@@ -71,7 +71,7 @@ ul,li{
     /* background-color: #eee; */
     border:1px solid #eee;
 }
-.Postbox3 ul{
+.Postbox3>ul{
     width: 945px;
     height: 300px;
     float: left;
@@ -85,20 +85,19 @@ ul,li{
     float: left;
 } 
 .Posthead{
-    background-color: #61b3ed;
     text-align: center;
+    color: #000;
     line-height:3rem;
-    
 }
 .Posthead1{
     float: left;
     width: 400px;
-    color: #fff;
+    color: #000;
 }
 .Posthead2{
     float: left;
-    width: 150px;
-    color: #fff;
+    width: 160px;
+    color: #000;
 }
 .Postimg{
     float: left;
@@ -116,13 +115,15 @@ ul,li{
 }
 .Postarticle h3{
     float: left;
-    width: 200px;
+    width: 300px;
     height: 20px;
+    margin-top: 10px;
     font-size: 18px;
     color: #888;
 }
 .Postarticle p{
     float: left;
+    margin-top: 10px;
     /* height: 20px; */
     font-size: 14px;
 }
