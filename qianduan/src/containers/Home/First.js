@@ -7,7 +7,7 @@ const data = [
     {
         data:'iconfont icon-foot',
         text:'周边景点',
-        link:'/spot'
+        link:'/spot?cityName='
     },
     {
         data:'iconfont icon-zihangche',
@@ -28,6 +28,8 @@ export default class First extends Component {
             hot:[],
             Historic:[],
             celebrity:[],
+            pot:[],
+            allpot:[],
             data:['1','2','3'],
             imgHeight:180,
         }
@@ -63,6 +65,22 @@ export default class First extends Component {
                 celebrity:res.data
             })
         })
+        fetch('https://elm.cangdu.org/v1/cities?type=guess')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                pot:res
+            })
+        })
+        fetch('https://elm.cangdu.org/v1/cities?type=group')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res.E[0].name);
+            this.setState({
+                allpot:res.E
+            })
+            console.log(this.state.allpot[0].name)
+        })
     }
     render() {
         return (
@@ -80,11 +98,9 @@ export default class First extends Component {
                         >
                             <div className="dropdown">
                                 <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}></div>
-                                <span style={{marginLeft:"5px"}}>北京</span>
+                                    <span style={{marginLeft:"5px"}}>{this.state.pot.name}</span>
                                 <div className="dropdown-content">
-                                    <p>北京</p>
-                                    <p>上海</p>
-                                    <p>廣州</p>
+                                    {/* <p>{this.state.allpot[0].name}</p> */}
                                 </div>
                             </div>
                             <input placeholder="请输入目的地" className="search"/>
@@ -102,7 +118,7 @@ export default class First extends Component {
                         </a>
                     ))}
                 </Carousel>
-                <Grid data={data}
+                {/* <Grid data={data}
                 style={{height:'50px'}}
                 hasLine={false}
                 square={false}
@@ -115,10 +131,30 @@ export default class First extends Component {
                         </Link>
                     </div>
                 )}
-                />
+                /> */}
+                <div style={{height:'50px'}}>
+                    <Link to={'/spot?city=' + this.state.pot.name}>
+                        <div style={{float:'left',width:'25%',padding:'4%'}}>
+                            <div className='iconfont icon-foot' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
+                            <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>周边景点</p>
+                        </div>
+                    </Link>
+                    <Link to={'/fun?city=' + this.state.pot.name}>
+                        <div style={{float:'left',width:'25%',padding:'4%'}}>
+                            <div className='iconfont icon-zihangche' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
+                            <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>当地玩乐</p>
+                        </div>
+                    </Link>
+                    <Link to={'/make?city=' + this.state.pot.name}>
+                        <div style={{float:'left',width:'25%',padding:'4%'}}>
+                            <div className='iconfont icon-wendang' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
+                            <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>纯享定制</p>
+                        </div>
+                    </Link>
+                </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/hot'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black',marginTop:'5px'}}>热门推荐》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'15%'}}>热门推荐》</p>
                     </Link>
                     <div>
                         <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
@@ -130,7 +166,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/historic'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black'}}>名胜古迹》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'12%',color:'black'}}>名胜古迹》</p>
                     </Link>
                     <div>
                         <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
@@ -142,7 +178,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'80px'}}>
                     <Link to='/celebrity'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'0px',color:'black'}}>网红打卡》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'10%',color:'black'}}>网红打卡》</p>
                     </Link>
                     <div>
                         <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
