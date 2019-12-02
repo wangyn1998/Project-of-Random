@@ -21,6 +21,32 @@ router.get('/user', function(req, res, next) {
     }
   })
 });
+router.get("/deleteuser",function(req,res,next){
+  var userName=req.query.userName;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from user where userName=?",[userName],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("User/shanchu",{ title: 'Express' })
+      }
+    })
+})
+router.post("/searchuser",function (req,res,next) {
+  var userName=req.body.userName;
+  var con=mysql.createConnection(dbconfig);
+  con.connect(); 
+  con.query("select * from user where userName=?",[userName],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("User/searchuser",{userList:result,userName:userName});
+    }
+  })
+})
 router.get('/block', function(req, res, next) {
   res.render('Block/block', { title: 'Express' });
 });
@@ -126,6 +152,21 @@ router.get('/score/list', function(req, res, next) {
      }
    })
 });
+router.get('/score/slist', function(req, res, next) {
+  var userName=req.query.userName;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  //进行操作(sql语句变化)
+  con.query("select * from slist where userName=?",[userName],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Score/listIn",{slistList:result,userName:userName});
+    }
+  })
+  
+});
 router.get('/score/manage', function(req, res, next) {
   //数据库的连接
   var con=mysql.createConnection(dbconfig);
@@ -142,31 +183,8 @@ router.get('/score/manage', function(req, res, next) {
     }
   })
 });
-router.get("/user/del",function(req,res,next){
-  var userName=req.query.userName;
-  var con=mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("delete from user where userName=?",[userName],function(err,result){
-    if(err){
-      console.log(err);
-    }
-    else{
-      //显示到页面--渲染方法--render,
-      //进行操作(sql语句变化)
-      // con.query("select * from user",function(err,result){
-      //   if(err){
-      //     console.log(err);
-      //   }
-      //   else{
-      //     //显示到页面--渲染方法--render,
-      //     res.render("User/user",{userList:result});
-      //   }
-      //   })
-      res.render("User/shanchu",{ title: 'Express' })
-      }
-    })
-})
-router.get("/score/manager/del",function(req,res,next){
+
+router.get("/score/deletemanage",function(req,res,next){
   var taskId=req.query.taskId;
   var con=mysql.createConnection(dbconfig);
   con.connect();
@@ -190,21 +208,34 @@ router.get("/score/manager/del",function(req,res,next){
       }
     })
 })
-router.get('/score/list/listIn', function(req, res, next) {
-  var userName=req.query.userName;
+let taskId=0;
+router.post("/task",function (req,res,next) {
+  taskId=req.body.task;
   var con=mysql.createConnection(dbconfig);
   con.connect();
-  //进行操作(sql语句变化)
-  con.query("select * from slist where userName=?",[userName],function(err,result){
+  console.log(taskId);
+  con.query("select * from task",function (err,result) {
     if(err){
       console.log(err);
+    }else{
+      res.render("Score/taskbianji",{taskList:result});
     }
-    else{
-      res.render("Score/listIn",{slistList:result,userName:userName});
+  });
+})
+router.post("/task1",function (req,res,next) {
+  taskId=req.body.task;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  console.log(taskId);
+ 
+  con.query("select * from task where taskId=?",[taskId],function (err,result) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Score/taskbianji1",{taskList:result});
     }
-  })
-  
-});
+  });
+})
 router.post('/addtask',function (req,res,next) {
   var score=req.body.score;
   var content=req.body.content;
@@ -221,23 +252,7 @@ router.post('/addtask',function (req,res,next) {
   }
 });
 });
-//找到id值
-let taskId=0;
-router.post("/task",function (req,res,next) {
-  taskId=req.body.task;
-  var con=mysql.createConnection(dbconfig);
-  con.connect();
-  console.log(taskId);
-  con.query("select * from task",function (err,result) {
-    if(err){
-      console.log(err);
-    }else{
-      res.render("Score/taskbianji",{taskList:result});
-    }
-  });
-})
-// 编辑话题页面
-router.post("/taskupdate",function (req,res,next) {
+router.post("/updatetask",function (req,res,next) {
   var taskContent=req.body.content1;
   var taskScore=req.body.score1;
   var con=mysql.createConnection(dbconfig);
@@ -249,6 +264,19 @@ router.post("/taskupdate",function (req,res,next) {
       res.render("Score/new",{ title: 'Express' });
     }
   });
+})
+router.post("/searchtask",function (req,res,next) {
+  var taskId=req.body.taskId;
+  var con=mysql.createConnection(dbconfig);
+  con.connect(); 
+  con.query("select * from task where taskId=?",[taskId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Score/searchtask",{taskList:result});
+    }
+  })
 })
 router.get('/material', function(req, res, next) {
   res.render('Material/material', { title: 'Express' });
