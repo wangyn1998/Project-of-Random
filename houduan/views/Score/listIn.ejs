@@ -33,27 +33,26 @@
             <div class='Userbox3'>
                 <ul>
                      <li style='text-align: left;line-height:3rem;'>
-                         <h1>用户:一只兔子</h1>
+                         <h1>用户:<%= userName%></h1>
                             
                          </li> 
                     <li class='Userhead'>
                         <h2 class='Userhead1'>完成任务内容</h2>
                         <h2 class='Userhead1'>积分变换</h2>
-                        <h2 class='Userhead1'>总结分</h2>
+                        <h2 class='Userhead1'>总积分</h2>
                        
                     </li> 
-                    <li>
-                        
-                        <p class='Userbody'>zhangsan</p>
-                        <p class='Userbody'>123456</p>
-                        <p class='Userbody'>man</p>
-
-                       
-                    </li>    
+                        <% for(var i = 0 ; i < slistList.length; i++) {%>
+                            <li>
+                                <p class='Userbody'><%= slistList[i]["taskContent"] %></p>
+                                <p class='Userbody'>+<%= slistList[i]["taskScore"] %></p>
+                                <p class='Userbody'><%= slistList[i]["taskScore"] %></p>
+                            </li>
+                        <%}%>  
                 </ul>
             </div>
             <div style=" width: 945px;height:10px;text-align: center;margin:20px auto;"> 
-                <div style="margin-left:400px">
+                <div style="margin-left:400px;">
                     <p style=" width: 20px;
                     height: 20px;
                     border-radius: 50%;
@@ -74,6 +73,11 @@
                     background-color: #4177CA;">&gt;</p>
                 </div>
             </div>
+            <div style="margin-right:50px;float:right;">
+                <a style="text-decoration:none" href='/score/list'><button style="background-color: white;color:#61b3ed;border: 1px solid #61b3ed;width: 50px;height: 30px;">返回</button></a>
+           </div>
+           
+            
         </div>
     </div>
 
