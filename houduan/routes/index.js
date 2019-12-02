@@ -50,9 +50,60 @@ router.post("/searchuser",function (req,res,next) {
 router.get('/block', function(req, res, next) {
   res.render('Block/block', { title: 'Express' });
 });
+// 展示帖子管理页面
 router.get('/block/post', function(req, res, next) {
-  res.render('Block/post', { title: 'Express' });
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from post",function (err,result) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Block/post",{postList:result});
+    }
+  });
 });
+
+// 删除帖子页面
+router.get("/delpost",function (req,res,next) {
+  var postId=req.query.id;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from post where postId=?",[postId],function (err,result) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Block/postdel",{topicList:result});
+    }
+  });
+});
+// 展示帖子细节
+router.get('/postdetail', function(req, res, next) {
+  var postId=req.query.id;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from post where postId=?",[postId],function (err,result) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Block/postdetail",{postList:result,postId:postId});
+    }
+  });
+});
+// 搜索帖子
+router.post("/searchpost",function (req,res,next) {
+  var userName=req.body.userName;
+  var con=mysql.createConnection(dbconfig);
+  console.log(userName);
+  con.connect(); 
+  con.query("select * from post where userName=?",[userName],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Block/postsearchResult",{postList:result,userName:userName});
+    }
+  })
+})
 // 展示话题页
 router.get('/block/topic', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
@@ -118,7 +169,7 @@ router.post("/topic",function (req,res,next) {
       res.render("Block/bianji",{topicList:result});
     }
   });
-})
+});
 // 编辑话题页面
 router.post("/update",function (req,res,next) {
   var adminUsername=req.body.name1;
@@ -132,6 +183,20 @@ router.post("/update",function (req,res,next) {
       res.render("Block/topicnew",{topicList:result});
     }
   });
+});
+// 搜索话题
+router.post("/searchtopic",function (req,res,next) {
+  var topicContent=req.body.topicContent;
+  var con=mysql.createConnection(dbconfig);
+  con.connect(); 
+  con.query("select * from topic where topicContent=?",[topicContent],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Block/topicsearchResult",{topicList:result,topicContent:topicContent});
+    }
+  })
 })
 router.get('/score', function(req, res, next) {
   res.render('Score/score', { title: 'Express' });
