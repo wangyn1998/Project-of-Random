@@ -30,21 +30,10 @@
             </div>
         </div>
         <div class="right">
-            <div class="box1">
-                <div class='search'>
-                    <form method="post" action="/searchtask" style="line-height: 2.5em;">
-                        <input class='Bar' placeholder="请输入要查找的任务编号" name='taskId'/>
-                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;"><input  type="submit" value="搜索"style="margin-left:3px;border:0px solid #eee;
-                            background: #eee;"></div>
-                    </form>
+                <div class="box1">
+                    <h2>您搜索的结果是:</h2>
+                    <br/>
                 </div>
-            </div>
-            <div class="box2">
-                <p style="font-size:22px;font-weight:bold">爱游不错游任务管理
-                    <span style="margin-left:30px" class="iconfont icon-wuuiconxiangjifangda" id="btn"></span>
-                    <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
-                </p>
-            </div>
             <div class='Managebox3'>
                 <ul class='ManageList' style="padding-inline-start: 0px;margin-block-start: 0;
                 margin-block-end: 0">
@@ -66,7 +55,7 @@
                             <p class='Managebody'><%= taskList[i]["taskScore"] %></p>            
                             <div class='Managebody'>
                                     <div class='Topicoperation'>
-                                        <form method="post" action="/task" class="operation1">
+                                        <form method="post" action="/task1" class="operation1">
                                             <button style="color: white;border:1px solid white;width: 50px;
                                             height: 30px;">编辑
                                                 <input type='submit' style="float: right;border:1px solid #61b3ed" id='bianji' name="task" value='<%= taskList[i]["taskId"] %>'></button>
@@ -83,13 +72,10 @@
                     <%}%>      
                 </ul>
             </div>
-            <div class='Managebox4'> 
-                <div style="margin-left:450px;margin-top:10px">
-                    <p>&lt;</p>
-                    <p>1</p>
-                    <p>&gt;</p>
+            <div style=" width: 945px;height:10px;text-align: center;margin:20px auto;">
+                    <a href='/score/manage'><button style="color: white;border:1px solid white;width: 50px;
+                    height: 30px;background-color:  #61b3ed;">返回</button></a>
                 </div>
-            </div>
         </div>
         <div >
             <div id="pop-container">

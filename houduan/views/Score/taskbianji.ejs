@@ -67,7 +67,7 @@
                                             height: 30px;">编辑
                                             <input type='submit' id='bianji' style="float: right;border:1px solid #61b3ed"name="topic" value='<%=taskList[i]["taskId"]%>'></button>
                                         </form>
-                                        <a href='/score/manager/del?taskId=<%= taskList[i]["taskId"]%>'><button  style=" width: 50px;
+                                        <a href='/score/deletemanage?taskId=<%= taskList[i]["taskId"]%>'><button  style=" width: 50px;
                                             height: 30px;
                                             background-color: #fff;
                                             border:1px solid #888;
@@ -91,7 +91,7 @@
                 <div id="cover-tier1" class="popPosition1"></div>
                 <div id="pop-tier1" class="popPosition1">
                     <i id="close-pop1">&#10006;</i>
-                    <form action="/taskupdate" method="post">
+                    <form action="/updatetask" method="post">
                     <div style="width:380px;float:left;">
                         <h2 style="float:left;margin-left:20px;margin-top:25px;">任务内容:</h2>
                         <input type='text' id="content" style="width:340px;height:200px;"name="content1"  />
