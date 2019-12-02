@@ -39,13 +39,9 @@
         </div>
         <div class="right">
             <div class="box1">
-                <div class='search'>
-                    <form method="post" action="/searchuser" style="line-height: 2.5em;">
-                        <input class='Bar' placeholder="搜索用户" name='userName'/>
-                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;"><input  type="submit" value="搜索"style="margin-left:3px;border:0px solid #eee;
-                            background: #eee;"></div>
-                    </form>
-                </div>
+                <br/>
+                <h2>您搜索的结果是:</h2>
+                <br/>
             </div>
            <div class='Userbox3'>
                <ul>
@@ -61,7 +57,7 @@
                    <% for(var i = 0 ; i < userList.length; i++) {%>
                     <li>
                         <div class='Userbody'>
-                        <img class="Userimg" src='<%= userList[i]["Uimage"] %>'/>
+                        <img class="Userimg" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2973069531,657782944&fm=26&gp=0.jpg"/>
                         </div>
                         <p class='Userbody'><%= userList[i]["userName"] %></p>
                         <p class='Userbody'><%= userList[i]["Uphone"] %></p>
@@ -73,28 +69,12 @@
                 <%}%>
                </ul>
            </div>
-           <div style=" width: 945px;height:10px;text-align: center;margin:20px auto;"> 
-               <div style="margin-left:400px">
-                   <p style=" width: 20px;
-                   height: 20px;
-                   border-radius: 50%;
-                   float: left;
-                   color: #fff;
-                   background-color: #4177CA;">&lt;</p>
-                   <p style=" width: 20px;
-                   height: 20px;
-                   border-radius: 50%;
-                   float: left;
-                   color: #fff;
-                   background-color: #4177CA;">1</p>
-                   <p style=" width: 20px;
-                   height: 20px;
-                   border-radius: 50%;
-                   float: left;
-                   color: #fff;
-                   background-color: #4177CA;">&gt;</p>
-               </div>
-           </div>
+           <div style=" width: 945px;height:10px;text-align: center;margin:20px auto;">
+                <a href='/user'><button style="color: white;border:1px solid white;width: 50px;
+                height: 30px;background-color:  #61b3ed;">返回</button></a>
+            </div>
+
+           
         </div>
     </div>
 </body>
