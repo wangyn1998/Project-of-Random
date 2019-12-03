@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-var dbconfig = require('../config/dbconfig');
+var dbconfig = require('../config/dbconfig.json');
 var login = false;
 var user = "";
 /* GET home page. */
