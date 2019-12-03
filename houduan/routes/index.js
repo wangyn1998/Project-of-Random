@@ -16,7 +16,6 @@ router.post('/home', function(req,res,next) {
   var test = req.body.test;
   var testcode = req.body.testcode;
   user = username;
-  console.log(username,password,test,testcode);
   var con=mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from alist",function(err,result){
@@ -28,10 +27,10 @@ router.post('/home', function(req,res,next) {
         if(username == result[i].adminUsername && password == result[i].adminPwd){
           login=true;
           if(test == testcode){
-            console.log("登录成功");
+            res.end("success");
           }
           else{
-            console.log("验证码错误");
+            res.end("codeerror");
           }
           break;
         }
@@ -39,12 +38,14 @@ router.post('/home', function(req,res,next) {
           continue;
         }
       }
-      console.log(login);
       if(login == false){
-        console.log("账户或密码错误");
+        res.end("error");
       }    
     }
   });
+});
+router.get('/home',function(req,res,next){
+  res.render('home',{title: 'home'});
 });
 
 router.get('/user', function(req, res, next) {
@@ -652,6 +653,7 @@ router.get('/material/delspot', function(req, res, next) {
   });
 });
 
+//显示管理员信息
 router.get('/system', function(req, res, next) {
   var con = mysql.createConnection(dbconfig);
   con.connect();
@@ -664,5 +666,29 @@ router.get('/system', function(req, res, next) {
     }
   });
   
+});
+//编辑管理员信息
+router.post('/system', function(req, res, next) {
+  var sex = req.body.sex;
+  var phone = req.body.phone;
+  var email = req.body.email;
+  var position = req.body.position;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("update ainflist set adminSex=?,adminTel=?,adminEmail=?,adminPosition=? where adminUsername=?",[sex,phone,email,position,user],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      con.query("select * from ainflist where adminUsername=?",[user],function(err,result){
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.render('System/system', { user: result[0] });   
+        }
+      });
+    }
+  });
 });
 module.exports = router;
