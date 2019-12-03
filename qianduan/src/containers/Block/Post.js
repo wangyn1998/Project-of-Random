@@ -9,6 +9,21 @@ const data1=[{icon:'iconfont icon-tupian',path:'/'},{icon:'iconfont icon-aite',p
     path:item.path
 }))
 export default class Post extends Component {
+    getConnect=()=>{  //api请求函数
+        let text = {postContent:this.inp.state.value} //获取数据
+        let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+        fetch(`http://localhost:8001/postmessage`,{   //Fetch方法y
+            method: 'POST',
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            body: send
+        })
+        .then(res => res.json())
+        .then(
+            data => {
+            }
+        )
+    }
+
     render() {
         return (
             <div>
@@ -18,15 +33,15 @@ export default class Post extends Component {
                         <Link to='/'><i className='iconfont icon-guanbi' style={{color:'black'}}/></Link>
                     ]}
                     rightContent={[
-                         <Link to='/'><button style={{borderRadius:'9px',backgroundColor:'blue',width:'100%',height:'70%'}}>发布</button></Link>
+                         <Link to='/'><button style={{borderRadius:'9px',backgroundColor:'blue',width:'100%',height:'70%'}} onClick={this.getConnect}>发布</button></Link>
                     ]}
                     style={{border:'1px solid #BBBBBB'}}
                     >发帖</NavBar>
                <List>
                 <TextareaItem
                     placeholder="分享你的游记和心情..."
-                    clear
                     rows={10}
+                    ref={(inp)=>{this.inp=inp}}
                 />
                 </List>
                 <div className='post1Grid' style={{width:'100%',position:'absolute',bottom:'0px'}}>
@@ -39,6 +54,7 @@ export default class Post extends Component {
                     }}
                     />
                 </div>
+                
                 {/* <Aite/> */}
                 {/* <Jinghao/> */}
                 
