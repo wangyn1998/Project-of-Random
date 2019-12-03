@@ -42,26 +42,23 @@ ul,li{
     height: 40px;
     float: right;
     margin-top:10px;
-    margin-right: 40px;
+    margin-right: -55px;
 }
 .Postdate{
-    width: 200px;
+    width: 400px;
     float: left;
     height: 30px;
     margin-top: 8px;
     border-radius: 10px;
     border: 1px solid #eee;
-    margin-left: 50px;
 }
 .Postdate input{
-    width: 150px;
+    width: 270px;
     height: 26px;
+    font-size:15px;
     float: left;
     border-style: none;
-   
-}
-.Postdate i{
-    float: right; margin-right: 10px;
+    
 }
 .Postbox3{
     width: 945px;
