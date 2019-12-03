@@ -15,7 +15,7 @@
 <body style="background:#dfdfdf">
     <div class="all">
         <header style="background:#61b3ed;width:1200px;height:80px;float:left;"> 
-            <img src="./images/logo.png" style="width:7%;height:100%;float:left;margin-left:30px;"/>
+            <img src="../images/logo.png" style="width:7%;height:100%;float:left;margin-left:30px;"/>
             <p style="float:left;color:white;font-size:35px;line-height:75px;margin-left:40px;">爱游不错游后台管理系统</p>
         </header>
         <div class="left">
@@ -49,22 +49,24 @@
             </div>
             <div class='Materialbox3'>
                 <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
-                margin-block-end: 0">
-                    <li class='Materialhead'>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>编号</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>城市名</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>天数</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>城市介绍</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>城市照片</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>攻略</b></h3>
-                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                        margin-block-end: 0;"><b>操作</b></h3>
+                margin-block-end: 0" id="all">
+                    <li>
+                        <div class='Materialhead'>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>编号</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>城市名</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>天数</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>城市介绍</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>城市照片</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>攻略</b></h3>
+                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>操作</b></h3>
+                        </div>
                     </li>
                     <% for(var i=0;i<methodList.length;i++){ %>
                         <li>
@@ -93,11 +95,10 @@
                     <% } %>      
                 </ul>
             </div>
-            <div class='Materialbox4'> 
-                <div style="margin-left:450px;margin-top:10px">
-                    <p>&lt;</p>
-                    <p>1</p>
-                    <p>&gt;</p>
+            <div style=" width: 945px;height:30px;text-align: center;margin:10px auto;"> 
+                <div class="page">
+                    <div id="page">
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,6 +136,7 @@
     </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     function temp(id) {
         return document.getElementById(id);
@@ -150,5 +152,66 @@
     temp('close-pop').onclick = function() {
         temp('pop-container').style.display = 'none';
     }
+
+    function getzz() {
+        var a = $("ul#all li");
+        var zz =new Array(a.length);
+        for(var i=0;i <a.length;i++){
+            zz[i]=a[i].innerHTML;
+        } //div的字符串数组付给zz
+        return zz;
+    }
+    function change(e){
+        pageno=e;
+        if(e<1){
+            e=1;pageno=1;//就等于第1页 ， 当前页为1
+        }
+        if(e>pageall){  //如果输入页大于最大页
+            e=pageall;pageno=pageall; //输入页和当前页都=最大页
+        }
+        $("#all").html("");//全部清空
+        if(pageno==1){
+            var html="";
+        }
+        else{
+            var html="<li><div class='Materialhead'>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>天数</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市介绍</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市照片</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>攻略</b></h3>"
+                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div></li>";
+        }
+        for(var i=0;i<pagesize;i++){
+            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
+        }
+        $("ul#all").html(html);//给ul列表写入html
+        var ye="";
+        for(var j=1;j<=pageall;j++){
+            if(e==j){
+                ye=ye+"<span><a href='#' onClick='change("+j+")' style='color:#FF0000'>"+j+"</a></span> "
+            }else{
+                ye=ye+"<a href='#' onClick='change("+j+")'>"+j+"</a> "
+            }
+        }
+        var pageContent="";
+        pageContent +='第<span id=\"a2\">'+pageno+'</span>/';
+        pageContent +='<span id="a1">'+pageall+'</span>页';
+        pageContent +="<span id='a3' style='margin-left:10px'>"+ye+'</span>';
+        pageContent +='<a href="#" style="margin-left:10px;" onClick="change(--pageno)">上一页</a>';
+        pageContent +='<a href="#" style="margin-left:5px;" onClick="change(++pageno)">下一页</a>';
+        $("#page").html(pageContent);
+    }
+    var zz=getzz()
+    var pageno=1 ; //当前页
+    var pagesize=5; //每页多少条信息
+    if(zz.length%pagesize==0){
+        var  pageall =zz.length/pagesize ;
+    }else{
+        var  pageall =parseInt(zz.length/pagesize)+1;
+    }   //一共多少页
+    change(1);
 </script>
 </html>
