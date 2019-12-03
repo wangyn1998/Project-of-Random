@@ -104,6 +104,21 @@ router.post("/searchpost",function (req,res,next) {
     }
   })
 })
+// 时间搜索帖子
+router.post("/timesearchpost",function (req,res,next) {
+  var postTime=req.body.postTime;
+  var con=mysql.createConnection(dbconfig);
+  console.log(postTime);
+  con.connect(); 
+  con.query("select * from post where postTime=?",[postTime],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Block/timesearchpostResult",{postList:result,postTime:postTime});
+    }
+  })
+})
 // 展示话题页
 router.get('/block/topic', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
