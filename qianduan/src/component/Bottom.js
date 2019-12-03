@@ -7,7 +7,14 @@ import My from '../containers/My/My';
 import Login from '../containers/My/Login'
 import Register from '../containers/My/Register'
 import UpdateUser from '../containers/My/Update'
-
+import Signin from '../containers/My/SignIn'
+import Set from '../containers/My/Set/Set'
+import About from '../containers/My/About/About'
+import Help from '../containers/My/Help'
+import Score from '../containers/My/Set/Score'
+import Personal from '../containers/My/Set/Personal'
+import Contact from '../containers/My/About/Contact'
+import Introduction from '../containers/My/About/Introduction'
 export default class Bottom extends Component {
   render() {
     return (
@@ -42,10 +49,19 @@ export default class Bottom extends Component {
         <Route path='/block' component={Block}/>
         <Route path='/message' component={Message}/>
         <Route exact path='/my' component={My}/>
-        <Route exact path='/my/login' component={Login}/>
-        <Route exact path='/my/register' component={Register}/>
-        <Route exact path='/my/updateuser' component={UpdateUser}/>
+        <Route exact path='/login' component={Login}/>
+        <Route exact path='/register' component={Register}/>
+        <Route exact path='/updateuser' component={UpdateUser}/>
+        <Route exact path='/getscore' component={Signin}/>
+        <Route exact path='/setup' component={Set}/>
+        <Route exact path='/about' component={About}/>
+        <Route exact path='/help' component={Help}/>
+        <Route exact path='/personal' component={Personal}/>
+        <Route exact path='/score' component={Score}/>
+        <Route exact path='/contact' component={Contact}/>
+        <Route exact path='/introduction' component={Introduction}/>
       </Router>
     )
   }
 }
+
