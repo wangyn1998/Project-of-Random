@@ -1,7 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
-var router = express.Router();
-var dbconfig = require('../config/dbconfig.json');
+var mysql=require('mysql');
+var dbconfig=require('../config/dbconfig.json');
 var login = false;
 var user = "";
 /* GET home page. */
@@ -275,6 +275,8 @@ router.get('/score/list', function(req, res, next) {
    })
 });
 router.get('/score/slist', function(req, res, next) {
+  sum=[];
+  var sum0=0;
   var userName=req.query.userName;
   var con=mysql.createConnection(dbconfig);
   con.connect();
@@ -284,7 +286,15 @@ router.get('/score/slist', function(req, res, next) {
       console.log(err);
     }
     else{
-      res.render("Score/listIn",{slistList:result,userName:userName});
+      for(var i = 0 ; i < result.length; i++) {
+        if(i==0){
+          sum[i]=parseInt(result[i].taskScore)
+        }
+        else{
+          sum[i]=parseInt(result[i].taskScore)+sum[i-1]
+        }
+      }
+      res.render("Score/listIn",{slistList:result,userName:userName,sum:sum});
     }
   })
   
