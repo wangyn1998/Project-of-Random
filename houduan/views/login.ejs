@@ -14,24 +14,36 @@
         <p style="text-align:center">登录</p>
         <form>
             <input class="first" type="text" placeholder=" 用户名:" id="username"/>
-            <input class="first" type="text" placeholder=" 密码:" id="pwd"/>
-            <span class="iconfont icon-eye"></span>
+            <input class="first" type="password" placeholder=" 密码:" id="pwd"/>
+            <span class="iconfont icon-eye" id="eye"></span>
             <input class="second" type="text" placeholder=" 验证码:" id="test"/>
             <input class="test" type="button" value="获取验证码" id="testcode"/>
-            <button id="login">登 录</button>
+            <button type="button" id="login">登 录</button>
         </form>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"></script>
 <script>
+    function temp(id) {
+        return document.getElementById(id);
+    }
+    temp('eye').onmouseout = function(){
+        temp('pwd').type="password";
+    }
+    temp('eye').onmouseover = function(){
+        temp('pwd').type="text";
+    }
     $("#testcode").click(function() {
         var code=rand(1000,9999);
         $('#testcode').val(code);
+        $('#testcode').css('font-size','22px');
     });
     function rand(min,max) {
         return Math.floor(Math.random()*(max-min))+min;
     }
-    $("#login").click(function(){
+    $(function(){
+        $("#login").click(function(){
         $.ajax({
             url: "/home",
             method: "POST",
@@ -40,8 +52,21 @@
                 pwd: $('#pwd').val(),
                 test: $('#test').val(),
                 testcode: $('#testcode').val(),
+            },
+            success:function(data){
+                if(data=="success"){
+                    window.location.href = "/home";
+                }
+                else if(data == "error"){
+                        alert("账号或密码错误，请重新输入！");
+                    }
+                else if(data == "error"){
+                    alert("账号或密码错误，请重新输入！");
+                }
             }
         })
     });
+    })
+    
 </script>
 </html>
