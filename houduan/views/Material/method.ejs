@@ -32,8 +32,13 @@
         <div class="right">
             <div class="box1">
                 <div class='search'>
-                    <input class='Bar' placeholder="请输入要查找的关键字"/>
-                    <div class="iconfont icon-sousuo da" style="margin-top:5px;margin-right:15px;float:right"></div>
+                    <form method="post" action="/searchmethod" style="line-height: 2.5em;">
+                        <input class='Bar' placeholder="请输入要查找的景点编号" name='methodId'/>
+                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;">
+                            <input  type="submit" value="搜索"style="margin-left:3px;border:0px solid #eee;
+                            background: #eee;">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="box2">
@@ -71,8 +76,17 @@
                             <p class='Materialbody'><%= methodList[i].methodContent %></p>
                             <div class='Materialbody'>
                                 <div class='Materialoperation'>
-                                    <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
-                                    <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                                    <form method="post" action="/method" class="operation1">
+                                        <button style="color: white;border:1px solid white;width: 50px;
+                                        height: 30px;">编辑
+                                            <input type='submit' style="float: right;border:1px solid #61b3ed" id='bianji' name="method" value='<%=methodList[i].methodId%>'/>
+                                        </button>
+                                    </form>
+                                    <a href='/material/delmethod?methodId=<%= methodList[i].methodId %>'>
+                                        <button style=" width: 50px;height: 30px;background-color: #fff;border:1px solid #888;color: #4177CA;">
+                                        移除
+                                        </button>
+                                    </a>
                                 </div> 
                             </div>   
                         </li>
@@ -87,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div >
+        <div>
             <div id="pop-container">
                 <div id="cover-tier" class="popPosition"></div>
                 <div id="pop-tier" class="popPosition">

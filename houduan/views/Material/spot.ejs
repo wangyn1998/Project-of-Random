@@ -32,8 +32,13 @@
         <div class="right">
             <div class="box1">
                 <div class='search'>
-                    <input class='Bar' placeholder="请输入要查找的关键字"/>
-                    <div class="iconfont icon-sousuo da" style="margin-top:5px;margin-right:15px;float:right"></div>
+                    <form method="post" action="/searchspot" style="line-height: 2.5em;">
+                        <input class='Bar' placeholder="请输入要查找的景点编号" name='spotId'/>
+                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;">
+                            <input  type="submit" value="搜索"style="margin-left:3px;border:0px solid #eee;
+                            background: #eee;">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="box2">
@@ -71,8 +76,17 @@
                             <p class='Materialbody'><%= spotList[i].spotType %></p>
                             <div class='Materialbody'>
                                 <div class='Materialoperation'>
-                                    <button type='button' id='bianji'onClick={handleInClick}>编辑</button>
-                                    <button type='button' id='remove' onClick={handleRemove}>移除</button>
+                                    <form method="post" action="/spot" class="operation1">
+                                        <button style="color: white;border:1px solid white;width: 50px;
+                                        height: 30px;">编辑
+                                            <input type='submit' style="float: right;border:1px solid #61b3ed" id='bianji' name="spot" value='<%=spotList[i].spotId%>'/>
+                                        </button>
+                                    </form>
+                                    <a href='/material/delspot?spotId=<%= spotList[i].spotId %>'>
+                                        <button style=" width: 50px;height: 30px;background-color: #fff;border:1px solid #888;color: #4177CA;">
+                                        移除
+                                        </button>
+                                    </a>
                                 </div> 
                             </div>   
                         </li>
@@ -95,27 +109,26 @@
                     <form action="/material/spot" method="POST" style="height:300px;margin-top:40px;border:1px solid;">
                         <div class='text'>
                             <h4>城市名：</h4>
-                            <input class="first" type="text" placeholder="1232"/>
+                            <input class="first" type="text" placeholder="1232" name="spotCity"/>
                         </div>
                         <div class='text'>
                             <h4>景点名：</h4>
-                            <input class="first" type="text" placeholder="1232"/>
+                            <input class="first" type="text" placeholder="1232" name="spotTitle"/>
                         </div>
                         <div class='text'>
                             <h4>景点介绍：</h4>
-                            <input class="second" type="file"/>
+                            <input class="second" type="file" name="spotContent"/>
                         </div>
                         <div class='text'>
                             <h4>景点照片：</h4>
-                            <input class="second" type="file"/>
+                            <input class="second" type="file" name="spotImage"/>
                         </div>
                         <div class='text'>
                             <h4>类别：</h4>
-                            <input class="first" type="text" placeholder="1232"/>
+                            <input class="first" type="text" placeholder="1232" name="spotType"/>
                         </div>
                         <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
-                    </form>
-                    
+                    </form>  
                 </div>
             </div>
         </div>
