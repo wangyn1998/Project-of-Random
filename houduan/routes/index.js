@@ -343,17 +343,221 @@ router.post("/searchtask",function (req,res,next) {
     }
   })
 })
+
 router.get('/material', function(req, res, next) {
   res.render('Material/material', { title: 'Express' });
 });
 router.get('/material/method', function(req, res, next) {
-  res.render('Material/method', { title: 'Express' });
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from method",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/method', { methodList:result });
+    }
+  });
+  
 });
-router.get('/material/spot', function(req, res, next) {
-  res.render('Material/spot', { title: 'Express' });
+//搜索攻略
+router.post("/searchmethod",function (req,res,next) {
+  var methodId=req.body.methodId;
+  var con=mysql.createConnection(dbconfig);
+  con.connect(); 
+  con.query("select * from method where methodId=?",[methodId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Material/searchmethod",{methodList:result});
+    }
+  })
+})
+//添加攻略
+router.post('/material/method', function(req, res, next) {
+  var cityName = req.body.cityName;
+  var methodDay = req.body.methodDay;
+  var cityContent = req.body.cityContent;
+  var cityImage = req.body.cityImage;
+  var methodContent = req.body.methodContent;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("insert into method(cityName,methodDay,cityContent,cityImage,methodContent) values(?,?,?,?,?)",[cityName,methodDay,cityContent,cityImage,methodContent],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      con.query("select * from method",function(err,result){
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.render('Material/method', { methodList:result });
+        }
+      });
+    }
+  });
+  
 });
-router.get('/system', function(req, res, next) {
-  res.render('System/system', { title: 'Express' });
+//编辑攻略
+var methodId = 0;
+router.post('/method', function(req, res, next) {
+  methodId = req.body.method;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from method",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/upmethod', { methodList:result });
+    }
+  });    
+});
+router.post('/upmethod', function(req, res, next) {
+  var cityName = req.body.cityName;
+  var methodDay = req.body.methodDay;
+  var cityContent = req.body.cityContent;
+  var cityImage = req.body.cityImage;
+  var methodContent = req.body.methodContent;
+  console.log(cityName);
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("update method set cityName=?,methodDay=?,cityContent=?,cityImage=?,methodContent=? where methodId=?",[cityName,methodDay,cityContent,cityImage,methodContent,methodId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/methodsuc', { title: 'upsuccess' });
+    }
+  });
+});
+//删除攻略
+router.get('/material/delmethod', function(req, res, next) {
+  var methodId = req.query.methodId;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from method where methodId=?",[methodId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/delmethod', { title: 'delMethod' });
+    }
+  });
 });
 
+router.get('/material/spot', function(req, res, next) {
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from spot",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/spot', { spotList:result });
+    }
+  });
+});
+//搜索景点
+router.post("/searchspot",function (req,res,next) {
+  var spotId=req.body.spotId;
+  var con=mysql.createConnection(dbconfig);
+  con.connect(); 
+  con.query("select * from spot where spotId=?",[spotId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("Material/searchspot",{spotList:result});
+    }
+  })
+})
+//添加景点
+router.post('/material/spot', function(req, res, next) {
+  var spotCity = req.body.spotCity;
+  var spotContent = req.body.spotContent;
+  var spotImage = req.body.spotImage;
+  var spotTitle = req.body.spotTitle;
+  var spotType = req.body.spotType;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("insert into spot(spotCity,spotContent,spotImage,spotTitle,spotType) values(?,?,?,?,?)",[spotCity,spotContent,spotImage,spotTitle,spotType],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      con.query("select * from spot",function(err,result){
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.render('Material/spot', { spotList:result });
+        }
+      });
+    }
+  });
+  
+});
+//编辑景点
+var spotId = 0;
+router.post('/spot', function(req, res, next) {
+  spotId = req.body.spot;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from spot",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/upspot', { methodList:result });
+    }
+  });    
+});
+router.post('/upspot', function(req, res, next) {
+  var spotCity = req.body.spotCity;
+  var spotTitle = req.body.spotTitle;
+  var spotContent = req.body.spotContent;
+  var spotImage = req.body.spotImage;
+  var spotType = req.body.spotType;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("update spot set spotCity=?,spotTitle=?,spotContent=?,spotImage=?,spotType=? where spotId=?",[spotCity,spotTitle,spotContent,spotImage,spotType,spotId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/spotsuc', { title: 'upsuccess' });
+    }
+  });
+});
+//删除景点
+router.get('/material/delspot', function(req, res, next) {
+  var spotId = req.query.spotId;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from spot where spotId=?",[spotId],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/delspot', { title: 'delspot' });
+    }
+  });
+});
+
+router.get('/system', function(req, res, next) {
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from ainflist where adminUsername=?",[user],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('System/system', { user: result[0] });   
+    }
+  });
+  
+});
 module.exports = router;
