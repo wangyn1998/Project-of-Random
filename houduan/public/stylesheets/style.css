@@ -5,6 +5,48 @@
 ul,li{
   list-style: none;
 }
+/* 登录 */
+.login{
+  width: 500px;
+  height: 320px;
+  background: #70bdf1;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+.login form{
+  width: 330px;
+  margin-left: 100px;
+}
+.login input{
+  margin-top: 20px;
+  border-radius: 5px;
+  border: none;
+}
+.login .first{
+  width: 300px;
+  height: 35px;
+}
+.login .second{
+  width: 220px;
+  height: 35px;
+}
+.login .test{
+  width: 70px;
+  height: 35px;
+  float: right;
+  margin-right: 30px;
+  background: white;
+}
+#login{
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  margin-left: 100px;
+  background: white;
+  border: none;
+  border-radius: 5px;
+}
+
 .all{
   width:1200px;
   height:530px;
