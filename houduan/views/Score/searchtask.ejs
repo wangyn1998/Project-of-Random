@@ -22,7 +22,7 @@
             <div class="nav">
                 <a href="/score/list">积分表</a>
             </div>
-            <div class="nav">
+            <div class="nav" style="background: #4177ca;">
                 <a href="/score/manage">积分对照表</a>
             </div>
             <div class="nav">
@@ -100,10 +100,6 @@
 <script type="text/javascript">
     function temp(id) {
         return document.getElementById(id);
-    }
-    // 点击按钮出现弹出层
-    temp('btn').onclick = function() {
-        temp('pop-container').style.display = 'block';
     }
     // 点击右上角X弹出层隐藏
     temp('close-pop').onclick = function() {
