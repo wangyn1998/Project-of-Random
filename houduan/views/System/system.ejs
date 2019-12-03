@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/system.css' />
 </head>
 <body style="background:#dfdfdf">
     <div class="all">
@@ -65,14 +66,55 @@
                     </div>
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
                         <p>职位：
-                            <span><%= user.adminPositon %></span>
+                            <span><%= user.adminPosition %></span>
                         </p>
                     </div>
-                    <button style="width:180px;height:40px;background:#70bdf1;border:none;color:#6882da;margin-left:40px;margin-top:30px;font-size:18px;">编辑</button>
+                    <button id="btn" style="width:180px;height:40px;background:#70bdf1;border:none;color:#6882da;margin-left:40px;margin-top:30px;font-size:18px;">编辑</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="pop-container">
+                <div id="cover-tier" class="popPosition"></div>
+                <div id="pop-tier" class="popPosition">
+                    <i id="close-pop">&#10006;</i>
+                    <form action="/system" method="post" style="margin-top:40px;border:1px solid;">
+                        <div class='text'>
+                            <h4>性别：</h4>
+                            <input class="first" type="text" placeholder="1232" name="sex"/>
+                        </div>
+                        <div class='text'>
+                            <h4>手机号：</h4>
+                            <input class="first" type="text" placeholder="1232" name="phone"/>
+                        </div>
+                        <div class='text'>
+                            <h4>邮箱：</h4>
+                            <input class="first" type="text" placeholder="1232" name="email"/>
+                        </div>
+                        <div class='text'>
+                            <h4>职位：</h4>
+                            <input class="first" type="text" placeholder="1232" name="position"/>
+                        </div>
+                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    function temp(id) {
+        return document.getElementById(id);
+    }
+    // 点击按钮出现弹出层
+    temp('btn').onclick = function() {
+        temp('pop-container').style.display = 'block';
+    }
+    // 点击右上角X弹出层隐藏
+    temp('close-pop').onclick = function() {
+        temp('pop-container').style.display = 'none';
+    }
+</script>
 </html>
