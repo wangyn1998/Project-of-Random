@@ -13,13 +13,15 @@ export default class SignIn extends Component {
         let s = this.state.score;
         s=s+10;
         this.setState({
-            score:s
+            score:s            
         })
-        const { isClick } = this.state
-        if (isClick) {   //如果为true 开始执行
+        console.log(this.state.score);
+        const isClick = this.state.isClick;
+        if (isClick == true) {   //如果为true 开始执行
             Toast.success('签到成功，积分+10', 1);
+            console.log(this.state.isClick)
             this.setState({ isClick: false })   //将isClick 变成false，将不会执行处理事件
-            // 编写点击事件执行的代码
+            console.log(this.state.isClick)
             const that = this   // 为定时器中的setState绑定this
             const now = new Date().getHours();
             const now1 = new Date().getMinutes();
@@ -27,13 +29,29 @@ export default class SignIn extends Component {
             const hour = (23-now)*60*60*1000;
             const minutes = (59-now1)*60*1000;
             const seconds = (60-now2)*1000;
-            const time = hour+minutes+seconds
+            const time = hour+minutes+seconds;
+            console.log(that.state.isClick)
+            localStorage.setItem('click',that.state.isClick);
+            
             setTimeout(function () {       // 设置延迟事件，1秒后将执行
                 that.setState({ isClick: true })   // 将isClick设置为true
-            }, time);
+            }, 5000);
+            localStorage.setItem('click',this.state.isClick);
+            console.log(that.state.isClick)
         }
     }
-       
+    aaa=()=>{
+        console.log(this.state);
+    }
+    componentDidMount () {
+        // var todoList = JSON.parse(localStorage.getItem('todoList'));
+        // console.log(todoList);
+        // if (todoList) {
+        //   this.setState({
+        //     list: todoList
+        //   })
+        // }
+    } 
     render() {
         return (
             <div>
@@ -64,7 +82,7 @@ export default class SignIn extends Component {
                         <Item >每日签到</Item>
                     </div>                    
                     <Item extra="去发帖" arrow="horizontal" onClick={()=>window.location.href='/post'}>发帖</Item>
-                    {/* <Item extra="去发攻略" arrow="horizontal" onClick={()=>window.location.href='/my/login'}>发攻略</Item> */}
+                    <Item extra="去发攻略" arrow="horizontal" onClick={this.aaa}>发攻略</Item>
                 </List>
             </div>
         )

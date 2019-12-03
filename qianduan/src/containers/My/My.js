@@ -1,40 +1,50 @@
 import React, { Component } from 'react'
 import { Popover, NavBar, Icon,Grid,List,Drawer} from 'antd-mobile';
 import {BrowserRouter as Router,Link,Route} from 'react-router-dom'
+import {createBrowserHistory} from 'history'
 import './my.css'
-import Login from './Login';
-import Edit from './Edit';
-import SignIn from './SignIn';
-import Set from './Set';
-import Help from './Help';
-import About from './About';
+import {con} from './context'
+const his = createBrowserHistory();
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const Item1 = List.Item;
 export default class App extends Component {
-  state = {
-    visible: false,
-    selected: '',
-    data1:[
-        {class:'iconfont icon-aite',tit:'关注',num:5},
-        {class:'iconfont icon-xin',tit:'粉丝',num:5},
-        {class:'iconfont icon-dianzan',tit:'获赞',num:5},
-    ],
-    // 积分排名
-    data2:[
-        {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'',score:100,color:'#A0522D '},
-        {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'',score:100,color:'#C0C0C0'},
-        {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'',score:100,color:'#F4A460'}
-    ],
-    //我的收藏等
-    data3:[
-        {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-1',tit:'我的收藏'},
-        {class:'iconfont icon-shijianzhongbiao',tit:'浏览历史'},
-        {class:'iconfont icon-fujinderen',tit:'附近的人'}
-    ],
-    //抽屉
-    open: true,
-  };
+    constructor(props){
+        super(props);
+        this.state = {
+            visible: false,
+            selected: '',
+            data1:[
+                {class:'iconfont icon-aite',tit:'关注',num:5},
+                {class:'iconfont icon-xin',tit:'粉丝',num:5},
+                {class:'iconfont icon-dianzan',tit:'获赞',num:5},
+            ],
+            // 积分排名
+            data2:[
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'',score:100,color:'#A0522D '},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'',score:100,color:'#C0C0C0'},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'',score:100,color:'#F4A460'}
+            ],
+            //我的收藏等
+            data3:[
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-1',tit:'我的收藏'},
+                {class:'iconfont icon-shijianzhongbiao',tit:'浏览历史'},
+                {class:'iconfont icon-fujinderen',tit:'附近的人'}
+            ],
+            //抽屉
+            open: true,
+            username:''
+        };
+    }
+    componentDidMount(){
+        fetch('http://localhost:8001/my')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                username:res[0].userName
+            })
+        })
+    }
   onSelect = (opt) => {
     // console.log(opt.props.value);
     this.setState({
@@ -50,6 +60,13 @@ export default class App extends Component {
   onOpenChange = (...args) => {
     console.log(args);
     this.setState({ open: !this.state.open });
+  }
+  jump(value){
+    this.props.history.push(value)
+  }
+  a=()=>{
+    his.push('/a');
+    window.location.reload();
   }
   render() {
     const sidebar = (<List>
@@ -111,15 +128,18 @@ export default class App extends Component {
                     <div>
                         <div style={{float:'left',width:'20%'}} onClick={this.onOpenChange}>
                             <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}></div>
-                            <p style={{textAlign:'center'}}>用户名</p>
+                            {/* <con.Consumer>
+                                {value=><p style={{textAlign:'center'}}>{value}</p>}
+                            </con.Consumer> */}
+                            <p style={{textAlign:'center'}}>{this.state.username}</p>
                         </div>  
                     </div>
                     <div style={{float:'left',width:'30%'}}>
                         <div style={{height:'20px',width:'50%',border:'1px blue solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            <Link to='/my/login' >去登录</Link>
+                            <Link to='/login' >去登录</Link>
                         </div>
                         <div style={{height:'20px',width:'100%',border:'1px black solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            <Link to='/my/updateuser' >点此完善资料></Link>
+                            <Link to='/updateuser' >点此完善资料></Link>
                         </div>
                     </div>                 
                     <div style={{width:'50%',float:'left'}}>
@@ -145,7 +165,7 @@ export default class App extends Component {
                     )}
                 />
                 <div style={{width:'25%',height:'25%',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
-                    <Link to='/my/getscore' style={{lineHeight:'25%'}}>签到领积分</Link>
+                    <Link to='/getscore' style={{lineHeight:'25%'}}>签到领积分</Link>
                 </div>   
                 <div style={{fontSize:'15px',marginTop:'10%'}}>积分排行榜</div>       
             </div>
@@ -187,12 +207,12 @@ export default class App extends Component {
                     )}
                 />
             </div>
-            <div className='block1'>
+            <div className='block1' style={{marginBottom:'100px'}}>
                 <List>
-                    <Item1>退出登录</Item1>
-                    <Item1  arrow="horizontal" onClick={() => {}}>设置</Item1>
-                    <Item1  arrow="horizontal" onClick={() => {}}>帮助反馈</Item1>
-                    <Item1  arrow="horizontal" onClick={() => {}}>关于我们</Item1>
+                    <Item1 onClick={() => this.jump('/my')}>退出登录</Item1>
+                    <Item1  arrow="horizontal" onClick={() => this.jump('/setup')}>设置</Item1>
+                    <Item1  arrow="horizontal" onClick={() => this.jump('/help')}>帮助反馈</Item1>
+                    <Item1  arrow="horizontal" onClick={() => this.jump('/about')}>关于我们</Item1>
                 </List>
             </div>
         </div>
