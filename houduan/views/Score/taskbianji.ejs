@@ -156,12 +156,12 @@ function change(e){
         }
     }
     var pageContent="";
-    pageContent +='第<span id=\"a2\">'+pageno+'</span>/';
-    pageContent +='<span id="a1">'+pageall+'</span>页';
-    pageContent +='<span id="a3">'+ye+'</span>';
-    pageContent +='<a href="#" onClick="change(--pageno)">上一页</a>';
-    pageContent +='<a href="#" onClick="change(++pageno)">下一页</a>';
-    $("#page").html(pageContent);
+        pageContent +='第<span id=\"a2\">'+pageno+'</span>/';
+        pageContent +='<span id="a1">'+pageall+'</span>页';
+        pageContent +="<span id='a3' style='margin-left:10px'>"+ye+'</span>';
+        pageContent +='<a href="#" style="margin-left:10px;" onClick="change(--pageno)">上一页</a>';
+        pageContent +='<a href="#" style="margin-left:5px;" onClick="change(++pageno)">下一页</a>';
+        $("#page").html(pageContent);
 }
     var zz=getzz()
     var pageno=1 ; //当前页
