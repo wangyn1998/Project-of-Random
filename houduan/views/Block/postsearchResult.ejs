@@ -42,11 +42,11 @@
                  </div>
             </div>
             <div class='Postbox2'>
-                <p style="float:left;margin-top:10px">操作时间</p>
+                <p style="float:left;margin-top:10px">发帖时间</p>
                 <div class='Postdate' >
                         <form method="post" action="/timesearchpost">
                             <div style="float: left;">
-                                <input id="myDay" type="date" name="postTime" value="2015-09-24"/>
+                                <input id="myDay" type="date" name="postTime"/>
                                 <i class="iconfont icon-date"></i>
                             </div>
                             <input type="submit" value="搜索" style="float:left;margin-left:3px;width:40px;background-color: white;"/>
@@ -64,7 +64,7 @@
                             <h2 class='Posthead2' style="margin-block-start:0;
                             margin-block-end: 0;">操作人</h2>
                             <h2 class='Posthead2' style="margin-block-start:0;
-                            margin-block-end: 0;">操作时间</h2>
+                            margin-block-end: 0;">发帖时间</h2>
                         </li>
                         <% for(var i=0;i<postList.length;i++){%>
                             <li>

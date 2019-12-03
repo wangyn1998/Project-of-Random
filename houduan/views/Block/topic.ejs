@@ -80,7 +80,7 @@
                         <div id="page">
                         </div>
                     </div>
-                    </div>
+            </div>
             <div>
                 <div id="pop-container">
                     <div id="cover-tier" class="popPosition"></div>
@@ -171,5 +171,25 @@ function change(e){
         var  pageall =parseInt(zz.length/pagesize)+1;
     }   //一共多少页
     change(1);
+    $(function(){
+			var date=new Date();
+			var year=date.getFullYear();
+			var day=date.getDate();
+			var month=date.getMonth();
+		// 格式化日，如果小于9，前面补0
+			if(day<10){
+				 day = "0" + day;
+			}
+		// 	格式化月，如果小于9，前面补0
+			if(month<10){
+				 month = (month + 1);
+			}
+		// 	拼装完整日期格式
+			var today = date.getFullYear()+"-"+(month)+"-"+(day);
+	});
+    $('#bianji').onclick = function() {
+        console.log("ok");
+        $('#time').innerHTML=myDay;
+    }
     </script>
 </html>
