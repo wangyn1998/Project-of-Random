@@ -161,6 +161,32 @@ router.post("/timesearchpost",function (req,res,next) {
     }
   })
 })
+// 帖子回复
+router.get('/postreply', function(req, res, next) {
+  var con=mysql.createConnection(dbconfig);
+  var postId=req.query.id;
+  con.connect();
+  con.query("select * from reply where postId=?",[postId],function(err,result){
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Block/postReply",{replyList:result});
+    }
+  });
+});
+// 回复删除
+router.get("/delpostreply",function (req,res,next) {
+  var replyId=req.query.id;
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("delete from reply where replyId=?",[replyId],function (err,result) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("Block/postReplydel",{replyList:result});
+    }
+  });
+});
 // 展示话题页
 router.get('/block/topic', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
@@ -231,9 +257,21 @@ router.post("/topic",function (req,res,next) {
 router.post("/update",function (req,res,next) {
   var adminUsername=req.body.name1;
   var topicContent=req.body.content1;
+  let now='';
+    function getDate(){
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        now = year + '-' + conver(month) + "-" + conver(date);
+    }
+    function conver(s) {
+        return s < 10 ? '0' + s : s;
+    }
+    getDate();
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("update topic set topicContent=?,adminUsername=? where topicId=?",[topicContent,adminUsername,topicId],function (err,result) {
+  con.query("update topic set topicContent=?,adminUsername=?,topicTime=? where topicId=?",[topicContent,adminUsername,now,topicId],function (err,result) {
     if(err){
       console.log(err);
     }else{
@@ -254,7 +292,7 @@ router.post("/searchtopic",function (req,res,next) {
       res.render("Block/topicsearchResult",{topicList:result,topicContent:topicContent});
     }
   })
-})
+});
 router.get('/score', function(req, res, next) {
   res.render('Score/score', { title: 'Express' });
 });
