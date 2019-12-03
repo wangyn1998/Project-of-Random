@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/material.css' />
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1506624_rw0sat5f54l.css">
+    <!-- 后端论坛 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1528101_39ha99o5h31.css">
+    <!-- 后端积分 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1529410_z44h9faz7b.css">
+    <!-- 后端资料 --><link rel="stylesheet" href="https://at.alicdn.com/t/font_1506624_ktip1pgrai.css">
+</head>
+<body style="background:#dfdfdf">
+    <div class="all">
+        <header style="background:#61b3ed;width:1200px;height:80px;float:left;"> 
+            <img src="./images/logo.png" style="width:7%;height:100%;float:left;margin-left:30px;"/>
+            <p style="float:left;color:white;font-size:35px;line-height:75px;margin-left:40px;">爱游不错游后台管理系统</p>
+        </header>
+        <div class="left">
+            <div class="nav" style="background: #4177ca;">
+                <a href="/material/method">攻略管理</a>
+            </div>
+            <div class="nav">
+                <a href="/material/spot">景点管理</a>
+            </div>
+            <div class="nav">
+                <a href="/material">返回</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="box1">
+                <div class='search'>
+                    <input class='Bar' placeholder="请输入要查找的"/>
+                    <div class="iconfont icon-sousuo da" style="margin-top:5px;margin-right:15px;float:right"></div>
+                </div>
+            </div>
+            <div class="box2">
+                <p style="font-size:22px;font-weight:bold">爱游不错游攻略管理
+                    <span style="margin-left:30px" class="iconfont icon-wuuiconxiangjifangda" id="btn"></span>
+                    <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
+                </p>
+            </div>
+            <div class='Materialbox3'>
+                <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
+                margin-block-end: 0">
+                    <li class='Materialhead'>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>编号</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市名</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>天数</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市介绍</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>城市照片</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>攻略</b></h3>
+                        <h3 class='Materialhead1' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>操作</b></h3>
+                    </li>
+                    <% for(var i=0;i<methodList.length;i++){ %>
+                            <li>
+                                <p class='Materialbody'><%= methodList[i].methodId %></p>  
+                                <p class='Materialbody'><%= methodList[i].cityName %></p>
+                                <p class='Materialbody'><%= methodList[i].methodDay %></p>
+                                <p class='Materialbody'><%= methodList[i].cityContent %></p>  
+                                <p class='Materialbody'><%= methodList[i].cityImage %></p>
+                                <p class='Materialbody'><%= methodList[i].methodContent %></p>
+                                <div class='Materialbody'>
+                                    <div class='Materialoperation'>
+                                        <form action="/method" method="POST" class="operation1">
+                                            <button style="color: white;border:1px solid white;width: 50px;
+                                            height: 30px;">编辑
+                                            <input type='submit' id='bianji' style="float: right;border:1px solid #61b3ed" name="method" value='<%= methodList[i].methodId %>'></button>
+                                        </form>
+                                        <a href='/material/delmethod?methodId=<%= methodList[i].methodId %>'>
+                                            <button  style=" width: 50px;height: 30px;background-color: #fff;border:1px solid #888;color: #4177CA;">
+                                            移除
+                                            </button>
+                                        </a>
+                                    </div> 
+                            </div>                               
+                        </li>
+                    <%}%>      
+                </ul>
+            </div>
+            <div class='Materialbox4'> 
+                <div style="margin-left:450px;margin-top:10px">
+                    <p>&lt;</p>
+                    <p>1</p>
+                    <p>&gt;</p>
+                </div>
+            </div>
+        </div>
+        <div >
+            <div id="pop-container1" style="display: block;">
+                <div id="cover-tier1" class="popPosition1"></div>
+                <div id="pop-tier1" class="popPosition1">
+                    <i id="close-pop1">&#10006;</i>
+                    <form action="/upmethod" method="POST" style="height:300px;margin-top:40px;border:1px solid;">
+                        <div class='text'>
+                            <h4>城市名：</h4>
+                            <input class="first" type="text" name="cityName"/>
+                        </div>
+                        <div class='text'>
+                            <h4>天数：</h4>
+                            <input class="first" type="text" name="methodDay"/>
+                        </div>
+                        <div class='text'>
+                            <h4>城市介绍：</h4>
+                            <input class="second" type="file" name="cityContent"/>
+                        </div>
+                        <div class='text'>
+                            <h4>城市照片：</h4>
+                            <input class="second" type="file" name="cityImage"/>
+                        </div>
+                        <div class='text'>
+                            <h4>攻略：</h4>
+                            <input class="second" type="file" name="methodContent"/>
+                        </div>
+                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
+                    </form>
+                    
+            </div>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript " src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    function temp(id) {
+        return document.getElementById(id);
+    }
+    // 点击右上角X弹出层隐藏
+    temp('close-pop1').onclick = function() {
+        temp('pop-container1').style.display = 'none';
+        window.location.href="/material/method"
+    }
+</script>
+</html>
