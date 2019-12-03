@@ -25,10 +25,7 @@ export default class First extends Component {
     constructor(){
         super();
         this.state={
-            hot:[],
-            Historic:[],
-            celebrity:[],
-            pot:[],
+            pot:['北京'],
             allpot:[],
             data:['1','2','3'],
             imgHeight:180,
@@ -41,30 +38,6 @@ export default class First extends Component {
             });
         },1000)
         //发起请求
-        fetch('https://localhost:3000/hot')
-        .then((res)=>res.json())
-        .then((res)=>{
-            console.log(res);
-            this.setState({
-                hot:res.data
-            })
-        })
-        fetch('http://localhost:3000/historic')
-        .then((res)=>res.json())
-        .then((res)=>{
-            console.log(res);
-            this.setState({
-                historic:res.data
-            })
-        })
-        fetch('http://localhost:3000/celebrity')
-        .then((res)=>res.json())
-        .then((res)=>{
-            console.log(res);
-            this.setState({
-                celebrity:res.data
-            })
-        })
         fetch('https://elm.cangdu.org/v1/cities?type=guess')
         .then((res)=>res.json())
         .then((res)=>{
@@ -133,19 +106,19 @@ export default class First extends Component {
                 )}
                 /> */}
                 <div style={{height:'50px'}}>
-                    <Link to={'/spot?city=' + this.state.pot.name}>
+                    <Link to={'/spot?city=' + encodeURI(this.state.pot.name)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-foot' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>周边景点</p>
                         </div>
                     </Link>
-                    <Link to={'/fun?city=' + this.state.pot.name}>
+                    <Link to={'/fun?city=' + encodeURI(this.state.pot.name)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-zihangche' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>当地玩乐</p>
                         </div>
                     </Link>
-                    <Link to={'/make?city=' + this.state.pot.name}>
+                    <Link to={'/method?city=' + encodeURI(this.state.pot.name)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-wendang' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>纯享定制</p>
@@ -154,37 +127,55 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/hot'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'15%'}}>热门推荐》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'14%'}}>热门推荐》</p>
                     </Link>
                     <div>
-                        <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
+                        <div>
+                            <img src="./images/hot1.jpg" style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}} />
+                        </div>
                         <div style={{float:'left',width:'40%'}}>
-                            <div style={{height:'68px',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
-                            <div style={{height:'68px',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
+                            <div>
+                                <img src="./images/hot2.jpg" style={{height:'68px',width:'100%',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
+                            <div>
+                                <img src="./images/hot3.jpg"  style={{height:'68px',width:'100%',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/historic'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'12%',color:'black'}}>名胜古迹》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'14%',color:'black'}}>名胜古迹》</p>
                     </Link>
                     <div>
-                        <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
+                        <div>
+                            <img src="./images/historic1.jpg"  style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}} />
+                        </div>
                         <div style={{float:'left',width:'40%'}}>
-                            <div style={{height:'68px',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
-                            <div style={{height:'68px',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
+                            <div>
+                                <img src="./images/historic2.jpg"  style={{height:'68px',width:'100%',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
+                            <div>
+                                <img src="./images/historic3.jpg"  style={{height:'68px',width:'100%',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'80px'}}>
+                <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'140px'}}>
                     <Link to='/celebrity'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'10%',color:'black'}}>网红打卡》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'13%',color:'black'}}>网红打卡》</p>
                     </Link>
                     <div>
-                        <div style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}}></div>
+                        <div>
+                            <img src="./images/celebrity1.jpg"  style={{marginTop:'30px',marginLeft:'5%',float:'left',width:'50%',background:'yellow',height:'140px',borderRadius:'10px',border:'0'}} />
+                        </div>
                         <div style={{float:'left',width:'40%'}}>
-                            <div style={{height:'68px',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
-                            <div style={{height:'68px',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}}></div>
+                            <div>
+                                <img src="./images/celebrity2.jpg" style={{height:'68px',width:'100%',marginTop:'30px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
+                            <div>
+                                <img src="./images/celebrity3.jpg" style={{height:'68px',width:'100%',marginTop:'5px',marginLeft:'5px',borderRadius:'10px',border:'0',background:'yellow'}} />
+                            </div>
                         </div>
                     </div>
                 </div>

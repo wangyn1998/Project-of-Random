@@ -3,28 +3,69 @@ import {NavBar,Icon} from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export default class Spot extends Component {
+    constructor(){
+        super();
+        this.state = {
+            spot:[]
+        }
+    }
+    componentDidMount(){
+        fetch('http://localhost:8001/spot')
+        .then((res)=>res.json())
+        .then((res)=>{
+            let url = window.location.search;
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1)
+                var city = str.split("=")[1];
+                city = decodeURI(city);
+                console.log(city);
+            } 
+            console.log(res[0].spotCity);
+            var data = [];
+            for (var i = 0;i<res.length;i++){
+                if(res[i].spotCity == city){
+                    console.log(res[i]);
+                    
+                    data.push(res[i]);
+                }
+            }
+            console.log(data);
+            this.setState({
+                spot:data
+            })
+        })
+    }
+    
     render() {
-        return (
-            <div style={{background:'#f0f0'}}>
+        return (            
+            <div style={{background:'#f0f0',marginBottom:'100px'}}>
                 <NavBar
                 mode="dark"
                 icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 >周边景点</NavBar> 
-                <div style={{height:'400px',borderRadius:'5px',marginTop:'5px',width:'94%',marginLeft:'3%',background:'white'}}>
-                    <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}></div>
-                    <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
-                        <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>阿那亚黄金海岸|一种情怀，一种生活方式</p>
-                        <p style={{color:'grey',fontSize:'18px',lineHeight:'30px'}}>阿那亚黄金海岸社区，是一个全自愿还频率有独家综合题，坐落于河北秦皇岛昌黎县黄金海岸中区，是北中国一线亲海的全资源玩家胜地</p>
-                        <p style={{fontSize:'10px',color:'#62c1df'}}>推荐指数：
-                            <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
-                            <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
-                            <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
-                            <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
-                            <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+                {
+                    this.state.spot.map((item)=>(
+                        <div>
+                            <div style={{height:'500px',borderRadius:'5px',marginTop:'20px',width:'94%',marginLeft:'3%',background:'white'}}>
+                                <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}>
+                                    <img src={item.spotImage} style={{height:'160px',borderRadius:'5px',width:'100%'}}/>
+                                </div>
+                                <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
+                                    <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>{item.spotTitle}</p>
+                                    <p style={{color:'grey',fontSize:'18px',lineHeight:'30px'}}>{item.spotContent}</p>
+                                    <p style={{fontSize:'10px',color:'#62c1df'}}>推荐指数：
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+             </div>
         )
     }
 }
