@@ -1,10 +1,50 @@
 var express = require('express');
 var router = express.Router();
-
+var login = false;
+var user = "";
 /* GET home page. */
+//渲染登录页面
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Express' });
+  res.render('login', { title: 'login' });
 });
+//验证身份
+router.post('/home', function(req,res,next) {
+  var username = req.body.username;
+  var password = req.body.pwd;
+  var test = req.body.test;
+  var testcode = req.body.testcode;
+  user = username;
+  console.log(username,password,test,testcode);
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from alist",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      for(var i=0;i<result.length;i++){
+        if(username == result[i].adminUsername && password == result[i].adminPwd){
+          login=true;
+          if(test == testcode){
+            console.log("登录成功");
+          }
+          else{
+            console.log("验证码错误");
+          }
+          break;
+        }
+        else{
+          continue;
+        }
+      }
+      console.log(login);
+      if(login == false){
+        console.log("账户或密码错误");
+      }    
+    }
+  });
+});
+
 router.get('/user', function(req, res, next) {
   //数据库的连接
   var con=mysql.createConnection(dbconfig);
