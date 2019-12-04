@@ -526,7 +526,6 @@ router.post('/material/method', function(req, res, next) {
       res.end("success");
     }
   });
-});
 //编辑攻略
 var methodId = 0;
 router.post('/method', function(req, res, next) {
@@ -604,7 +603,7 @@ router.post("/searchspot",function (req,res,next) {
 //添加景点
 router.post('/material/spot', function(req, res, next) {
   var spotCity = req.body.spotCity;
-  var spotContent = req.body.spotContent;
+  var spotContent = req.body.fileString;
   var spotImage = req.body.spotImage;
   var spotTitle = req.body.spotTitle;
   var spotType = req.body.spotType;
@@ -615,6 +614,7 @@ router.post('/material/spot', function(req, res, next) {
       console.log(err);
     }
     else{
+      res.end("success");
       con.query("select * from spot",function(err,result){
         if(err){
           console.log(err);
@@ -655,7 +655,20 @@ router.post('/upspot', function(req, res, next) {
       console.log(err);
     }
     else{
-      res.render('Material/spotsuc', { title: 'upsuccess' });
+      res.end("success");
+      // res.render('Material/spotsuc', { title: 'upsuccess' });   
+    }
+  });
+});
+router.get('/material/spotsuc', function(req, res, next) {
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from spot",function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/spotsuc', { spotList:result });
     }
   });
 });
