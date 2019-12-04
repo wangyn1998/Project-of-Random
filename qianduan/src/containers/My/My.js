@@ -21,9 +21,9 @@ export default class App extends Component {
             ],
             // 积分排名
             data2:[
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'',score:100,color:'#A0522D '},
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'',score:100,color:'#C0C0C0'},
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'',score:100,color:'#F4A460'}
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'https://img2.woyaogexing.com/2019/12/02/7a13bf2032be4e5d9aa6ba26a4000eb2!400x400.jpeg',score:100,color:'#A0522D '},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'https://img2.woyaogexing.com/2019/12/02/670eddc0b97a4f83a6ad6d0e1025ec9a!400x400.jpeg',score:100,color:'#C0C0C0'},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'https://img2.woyaogexing.com/2019/12/02/16d0f486d8ab4b8490cc92416495a733!400x400.jpeg',score:100,color:'#F4A460'}
             ],
             //我的收藏等
             data3:[
@@ -95,7 +95,7 @@ export default class App extends Component {
         })}
     </List>);
     return (
-        <div>
+        <div style={{backgroundColor:'white'}}>
             <NavBar
                 mode="dark"
                 leftContent="&lt;"
@@ -139,7 +139,9 @@ export default class App extends Component {
                 <div style={{width:'100%'}}>
                     <div>
                         <div style={{float:'left',width:'20%'}} onClick={this.onOpenChange}>
-                            <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}></div>
+                            <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto'}}>
+                                <img src='https://img2.woyaogexing.com/2019/12/02/0f799dade52e4717a238670a5851e6a4!400x400.jpeg' style={{width:'100%',height:'100%',borderRadius:'50%'}}/>
+                            </div>
                             {/* <con.Consumer>
                                 {value=><p style={{textAlign:'center'}}>{value}</p>}
                             </con.Consumer> */}
@@ -196,8 +198,8 @@ export default class App extends Component {
                                 <i className={dataItem.class} style={{height:'20px',width:'20px',float:'left'}}></i>
                             }
                             </div>
-                            <div style={{height:'20px',width:'20px',marginTop:'3%',borderRadius:'50%',backgroundColor:'red',float:"left",marginLeft:'3%'}}>
-                                <image src={dataItem.img}/>
+                            <div style={{height:'20px',width:'20px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%'}}>
+                                <img src={dataItem.img} style={{width:'100%',height:'100%',borderRadius:'50%'}}/>
                             </div>
                             <p style={{float:'left',marginLeft:'5%'}}>{dataItem.tit}</p>
                             <p style={{float:'right',marginRight:'15%'}}>{dataItem.score}分</p>

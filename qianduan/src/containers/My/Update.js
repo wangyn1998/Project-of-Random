@@ -124,7 +124,7 @@ export default class Update extends Component {
         .then(
             data => {
                 if(data.success){
-                    window.alert('修改成功');
+                    // window.alert('修改成功');
                     // his.push('/my')
                     // window.location.reload();
                 }

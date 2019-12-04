@@ -3,6 +3,10 @@ import { NavBar, Icon ,List, TextareaItem,Grid} from 'antd-mobile';
 import Aite from './Aite';
 import Jinghao from './Jinghao';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {createBrowserHistory} from 'history'
+
+const his = createBrowserHistory();
+
 
 const data1=[{icon:'iconfont icon-tupian',path:'/'},{icon:'iconfont icon-aite',path:'/aite'},{icon:'iconfont icon-jinghao',path:'/jinghao'},{icon:'iconfont icon-smile',path:'/'}].map((item)=>({
     icon:item.icon,
@@ -23,17 +27,21 @@ export default class Post extends Component {
             }
         )
     }
-
+    score=()=>{
+        his.push('/block');
+        window.location.reload();
+      }
+    
     render() {
         return (
             <div>
                  <NavBar
                     mode="light"
                     leftContent={[
-                        <Link to='/'><i className='iconfont icon-guanbi' style={{color:'black'}}/></Link>
+                        <Link to='/block'><i className='iconfont icon-guanbi' style={{color:'black'}}/></Link>
                     ]}
                     rightContent={[
-                         <Link to='/'><button style={{borderRadius:'9px',backgroundColor:'blue',width:'100%',height:'70%'}} onClick={this.getConnect}>发布</button></Link>
+                         <div onClick={this.score}><button style={{borderRadius:'9px',backgroundColor:'blue',width:'100%',height:'70%'}} onClick={this.getConnect}>发布</button></div>
                     ]}
                     style={{border:'1px solid #BBBBBB'}}
                     >发帖</NavBar>

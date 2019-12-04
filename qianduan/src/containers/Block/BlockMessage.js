@@ -32,7 +32,7 @@ export default class BlockMessage extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{marginBottom:'100px'}}>
                <NavBar
                     mode="dark"
                     icon={<Link to='/'><Icon type="left" /></Link>}
@@ -41,17 +41,17 @@ export default class BlockMessage extends Component {
                         <Icon key="1" type="ellipsis" />,
                     ]}
                     >详情</NavBar>
-                <div className='message3'>
-                <Card className='message2'>
+                <div className='message3' style={{width:'100%'}}>
+                <Card className='message2' style={{width:'100%'}}>
                     <Card.Header
-                        title={this.state.post.userName}
+                        title={<span style={{color:'white'}}>{this.state.post.userName}</span>}
                         thumb={this.state.post.Uimage}
                         thumbStyle={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}
                         extra={<button style={{borderRadius:'10px',height:'35px',backgroundColor:'white'}}>+关注</button>}
                     />
                     <Card.Body>
                         <div>
-                <p style={{color:'blue',margin:'5% 0'}}>{this.state.post.postTopic}</p>
+                            <p style={{color:'blue',margin:'5% 0'}}>{this.state.post.postTopic}</p>
                             <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src={this.state.post.postImage} style={{width:'40%'}}/></div>
                         </div>
                     </Card.Body>

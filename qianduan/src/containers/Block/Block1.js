@@ -89,7 +89,7 @@ export default class Block1 extends Component {
         // }))
         // console.log(data3[0].item);
         return (
-            <div>
+            <div style={{marginBottom:'100px'}}>
                 <NavBar
                     mode="dark"
                     leftContent={[
@@ -101,7 +101,7 @@ export default class Block1 extends Component {
                     ]}
                     >论坛</NavBar>
                 <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'0.3%',position:'relative'}}>
-                    <img src='/images/block4.jpg' style={{width:'100%',height:'50px',borderRadius:'5px'}}/>
+                    <img src='/images/block4.jpg' style={{width:'100%',height:'120px',borderRadius:'5px'}}/>
                     <NoticeBar marqueeProps={{ loop: true,style: { padding: '0 7.5px'} }} style={{background:'rgba(255,255,255,0)'}}>
                         热门话题：网红打卡地 最后悔去的地方 十一最值得看的风景 
                     </NoticeBar>
@@ -115,10 +115,10 @@ export default class Block1 extends Component {
                      renderItem={dataItem=>{
                          console.log(dataItem);
                             if(dataItem.idx<3){
-                                return <li style={{color:'black',fontSize:'80%'}}>{dataItem.item.topicContent}</li>
+                                return <li style={{color:'black',fontSize:'14px'}}>{dataItem.item.topicContent}</li>
                             }
                             else if(dataItem.idx==3){
-                                return <li style={{color:'black',fontSize:'80%'}}>{dataItem.item.topicContent}<div style={{position:'absolute',right:'0',marginRight:'10%',bottom:'8%'}}><Link to='/postmessage'><i className='iconfont icon-gengduo'/></Link></div></li>
+                                return <li style={{color:'black',fontSize:'14px'}}>{dataItem.item.topicContent}<div style={{position:'absolute',right:'0',marginRight:'5%',bottom:'5%'}}><Link to='/postmessage'><i className='iconfont icon-gengduo'/></Link></div></li>
                             }
                      }}
                      />

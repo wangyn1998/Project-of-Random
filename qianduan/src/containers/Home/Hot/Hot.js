@@ -33,9 +33,9 @@ export default class Hot extends Component {
                                 <div style={{height:'80%',width:'100%',background:'blue'}}>
                                     <img src={item.hotImage} style={{height:'100%',width:'100%',background:'blue'}}/>
                                 </div>
-                                <div style={{height:'15%',width:'100%',marginTop:'5%',marginBottom:'100px'}}>
-                                    <div style={{float:'left',fontSize:'22px',color:'black',width:'100%'}}>{item.hotTitle}
-                                        <span className="iconfont icon-xin" style={{marginRight:'5%'}}></span>
+                                <div style={{height:'15%',width:'95%',marginTop:'5%',marginBottom:'100px',paddingLeft:'5%'}}>
+                                    <div style={{float:'left',fontSize:'18px',color:'black',width:'100%'}}>{item.hotTitle}
+                                        <span className="iconfont icon-xin xin" style={{marginRight:'5%',float:'right',marginTop:'5px'}}></span>
                                     </div>
                                 </div>
                             </div>

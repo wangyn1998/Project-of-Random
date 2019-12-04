@@ -89,7 +89,8 @@ export default class SignIn extends Component {
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <div style={{float:'left',width:'20%',marginLeft:'10%'}}>
-                    <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}>                       
+                    <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto'}}>
+                        <img src='https://img2.woyaogexing.com/2019/12/02/0f799dade52e4717a238670a5851e6a4!400x400.jpeg' style={{width:'100%',height:'100%',borderRadius:'50%'}}/>                       
                     </div>
                     <p style={{textAlign:'center'}}>{this.state.username}</p>
                 </div>  

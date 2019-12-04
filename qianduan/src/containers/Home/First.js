@@ -58,6 +58,16 @@ export default class First extends Component {
     render() {
         return (
             <div>
+                <div style={{zIndex:999,position:'absolute',width:'100%'}}>
+                    <div className="dropdown">
+                                    <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}></div>
+                                        <span style={{marginLeft:"10px",lineHeight:'20px'}}>{this.state.pot.name}</span>
+                                    <div className="dropdown-content">
+                                        {/* <p>{this.state.allpot[0].name}</p> */}
+                                    </div>
+                                </div>
+                    <input placeholder="请输入目的地" className="search"/>
+                </div>
                 <Carousel
                     autoplay={true}
                     infinite
@@ -69,14 +79,14 @@ export default class First extends Component {
                             href="#"
                             style={{ display: 'inline-block', width: '100%', height: '100%' }}
                         >
-                            <div className="dropdown">
+                            {/* <div className="dropdown">
                                 <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}></div>
-                                    <span style={{marginLeft:"5px"}}>{this.state.pot.name}</span>
+                                    <span style={{marginLeft:"5px",marginTop:'5px'}}>{this.state.pot.name}</span>
                                 <div className="dropdown-content">
-                                    {/* <p>{this.state.allpot[0].name}</p> */}
+                  
                                 </div>
                             </div>
-                            <input placeholder="请输入目的地" className="search"/>
+                            <input placeholder="请输入目的地" className="search"/> */}
                             <img
                                 src={'./images/Carousel'+val+'.jpg'}
                                 alt=""
@@ -127,7 +137,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/hot'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'14%'}}>热门推荐》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'12%'}}>热门推荐》</p>
                     </Link>
                     <div>
                         <div>
@@ -145,7 +155,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/historic'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'14%',color:'black'}}>名胜古迹》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'12%',color:'black'}}>名胜古迹》</p>
                     </Link>
                     <div>
                         <div>
@@ -163,7 +173,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'140px'}}>
                     <Link to='/celebrity'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'13%',color:'black'}}>网红打卡》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'11%',color:'black'}}>网红打卡》</p>
                     </Link>
                     <div>
                         <div>
