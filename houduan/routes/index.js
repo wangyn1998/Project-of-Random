@@ -515,6 +515,7 @@ router.post('/material/method', function(req, res, next) {
   var cityContent = req.body.cityContent;
   var cityImage = req.body.cityImage;
   var methodContent = req.body.methodContent;
+  console.log(req.body);
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("insert into method(cityName,methodDay,cityContent,cityImage,methodContent) values(?,?,?,?,?)",[cityName,methodDay,cityContent,cityImage,methodContent],function(err,result){
@@ -522,18 +523,9 @@ router.post('/material/method', function(req, res, next) {
       console.log(err);
     }
     else{
-      con.query("select * from method",function(err,result){
-        if(err){
-          console.log(err);
-        }
-        else{
-          res.render('Material/method', { methodList:result });
-        }
-      });
+      res.end("success");
     }
   });
-  
-});
 //编辑攻略
 var methodId = 0;
 router.post('/method', function(req, res, next) {
