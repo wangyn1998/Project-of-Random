@@ -56,25 +56,19 @@ router.get('/home',function(req,res,next){
   function conver(s) {
       return s < 10 ? '0' + s : s;
   }
-  console.log(now);
   let beginTime=new Date(now);
-
   var endTime=new Date(beginTime.getTime()+24*60*60*1000);
-  console.log(beginTime);
-  console.log(endTime)
   con.query("select * from user;select * from user where Uday between ? and ?;select * from post",[beginTime,endTime],function(err,result){
       if(err){
         console.log(err);
       }
       else{
         console.log();
-        console.log(result[1])
         res.render('home',{userListall:result[0],userListnew:result[1],postList:result[2]});
       }
     })
-   
-
 });
+
 
 router.get('/user', function(req, res, next) {
   //数据库的连接
@@ -588,10 +582,10 @@ router.get('/material/spot', function(req, res, next) {
 });
 //搜索景点
 router.post("/searchspot",function (req,res,next) {
-  var city=req.body.city;
+  var spotId=req.body.spotId;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("select * from spot where spotCity=?",[spotCity],function(err,result){
+  con.query("select * from spot where spotId=?",[spotId],function(err,result){
     if(err){
       console.log(err);
     }
