@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavBar ,Progress, List,InputItem,DatePicker,ImagePicker, WingBlank, SegmentedControl } from 'antd-mobile';
-import PicturesWall from './a'
 import {createBrowserHistory} from 'history'
 const his = createBrowserHistory();
 export default class Update extends Component {
@@ -33,8 +32,16 @@ export default class Update extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res);
-            let data=Object.assign({},this.state.users,{phone:res});
-            console.log(data);
+            console.log(res[0].Ubirthday)
+            console.log(typeof(res[0].Ubirthday))
+            let data={name:res[0].userName,
+                img:res[0].Uimage,
+                sex:res[0].Usex,
+                birthday:'',
+                place:res[0].Uaddress,
+                sign:res[0].Usign,
+                phone:res[0].Uphone
+            }
             this.setState({
                 users:data
             })
@@ -79,7 +86,7 @@ export default class Update extends Component {
                 p ++;
             }
         }
-        let pp = Math.round(p*16.6) 
+        let pp = Math.round(p*15) 
         this.setState({ percent: pp });
     }
     //图片选择
@@ -96,15 +103,15 @@ export default class Update extends Component {
     });
     }
     getConnect=()=>{  //api请求函数
-        let p = 0
+        let p = -1
         for(let key in this.state.users){
             console.log(key)
             console.log(this.state.users[key])
-            if(this.state.users[key] !== ''){
+            if(this.state.users[key] !== '' && this.state.users[key] !=='-'){
                 p ++;
             }
         }
-        let pp = Math.round(p*16.6) 
+        let pp = Math.round(p*15) 
         this.setState({ percent: pp });
         let text = this.state.users //获取数据
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
@@ -117,9 +124,9 @@ export default class Update extends Component {
         .then(
             data => {
                 if(data.success){
-                    window.alert('验证');
-                    his.push('/my')
-                    window.location.reload();
+                    window.alert('修改成功');
+                    // his.push('/my')
+                    // window.location.reload();
                 }
                 else{
                     window.alert('验证失败，用户名或密码错误')
@@ -138,7 +145,6 @@ export default class Update extends Component {
                     onLeftClick={()=>window.location.href='/my'}
                     >编辑资料
                 </NavBar>  
-                {/* <PicturesWall/>              */}
                 <div className="progress-container">
                     <div className="show-info">
                         <div className="progress"><Progress percent={percent} position="normal" /></div>
@@ -181,7 +187,7 @@ export default class Update extends Component {
                     <DatePicker
                         mode="date"
                         title="Select Date"
-                        extra="Optional"
+                        extra={this.state.users.birthday}
                         value={this.state.users.birthday}
                         onChange={this.birthdayChange}
                         >

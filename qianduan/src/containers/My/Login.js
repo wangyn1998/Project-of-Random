@@ -61,15 +61,28 @@ export default class Login extends Component {
                 <div style={{width:'80px',height:'80px',borderRadius:'50%',border:'1px #708090  solid',display:'block' ,margin:'0 auto',marginTop:'80px'}}>
                     <image src=""/>
                 </div>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
                 <List>
-                    <InputItem onChange={value => this.handleChange('phone', value)} type='phone' name='phone' id='phone'>手机号</InputItem>
+                    <InputItem onChange={value => this.handleChange('phone', value)} type='text' name='phone' id='phone'>手机号</InputItem>
                     <InputItem onChange={value => this.handleChange('password', value) }type='password' name="password" id="password">密码</InputItem>
                 </List>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
                 <WingBlank>
                     <Button type="primary" onClick={this.submit.bind(this)}>下一步</Button>
                     {/* <con.Provider value={this.state.phone}/> */}
                 </WingBlank>
-                <div onClick={this.register.bind(this)} type="primary">注册</div>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <WingBlank>
+                    <Button type="primary" onClick={this.register.bind(this)}>去注册</Button>
+                    {/* <con.Provider value={this.state.phone}/> */}
+                </WingBlank>
+                {/* <div onClick={this.register.bind(this)} type="primary">注册</div> */}
+                
             </div>
         )
     }

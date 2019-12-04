@@ -35,7 +35,7 @@ class Register extends Component {
         // window.alert(this.state.password)
     }
     getConnect(){ //api请求函数
-        let text = {phone:this.state.phone,password:this.state.password,repwd:this.state.repwd} //获取数据
+        let text = {phone:this.state.phone,password:this.state.password,repwd:this.state.repwd,Uday:new Date()} //获取数据
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
         fetch(`http://127.0.0.1:8001/register`,{   //Fetch方法y
             method: 'POST',
@@ -46,7 +46,6 @@ class Register extends Component {
         .then(
             data => {
                 if(data.success){
-                    window.alert('验证')
                     his.push('/login');
                     window.location.reload();
                 }
@@ -69,7 +68,7 @@ class Register extends Component {
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <List>
-                    <InputItem onChange={value => this.handleChange('phone', value)} type='phone' name='phone' id='phone'>手机号</InputItem>
+                    <InputItem onChange={value => this.handleChange('phone', value)} type='text' name='phone' id='phone'>手机号</InputItem>
                     <InputItem onChange={value => this.handleChange('password', value) }type='password' name="password" id="password">密码</InputItem>
                     <InputItem onChange={value => this.handleChange('repwd', value)} type='password' name='repwd' id='repwd'>确认</InputItem>
                 </List>

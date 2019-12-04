@@ -36,7 +36,7 @@ export default class App extends Component {
             username:''
         };
     }
-    componentDidMount(){
+    componentDidUpdate(){
         fetch('http://localhost:8001/my')
         .then((res)=>res.json())
         .then((res)=>{
@@ -66,6 +66,18 @@ export default class App extends Component {
   }
   a=()=>{
     his.push('/a');
+    window.location.reload();
+  }
+  score=()=>{
+    his.push('/getscore');
+    window.location.reload();
+  }
+  all=()=>{
+    his.push('/updateuser');
+    window.location.reload();
+  }
+  login=()=>{
+    his.push('/login');
     window.location.reload();
   }
   render() {
@@ -136,10 +148,12 @@ export default class App extends Component {
                     </div>
                     <div style={{float:'left',width:'30%'}}>
                         <div style={{height:'20px',width:'50%',border:'1px blue solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            <Link to='/login' >去登录</Link>
+                            {/* <Link to='/login' >去登录</Link> */}
+                            <div style={{lineHeight:'20px'}} onClick={this.login}>去登录</div>
                         </div>
                         <div style={{height:'20px',width:'100%',border:'1px black solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            <Link to='/updateuser' >点此完善资料></Link>
+                            {/* <Link to='/updateuser' >点此完善资料></Link> */}
+                            <div style={{lineHeight:'20px'}} onClick={this.all}>点此完善资料</div>
                         </div>
                     </div>                 
                     <div style={{width:'50%',float:'left'}}>
@@ -164,8 +178,9 @@ export default class App extends Component {
                         </div>
                     )}
                 />
-                <div style={{width:'25%',height:'25%',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
-                    <Link to='/getscore' style={{lineHeight:'25%'}}>签到领积分</Link>
+                <div style={{width:'25%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
+                    {/* <Link to='/getscore' onClick={this.score}>签到领积分></Link> */}
+                    <div style={{lineHeight:'20px'}} onClick={this.score}>签到领积分</div>
                 </div>   
                 <div style={{fontSize:'15px',marginTop:'10%'}}>积分排行榜</div>       
             </div>
