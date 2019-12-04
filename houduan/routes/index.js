@@ -598,7 +598,7 @@ router.post("/searchspot",function (req,res,next) {
 //添加景点
 router.post('/material/spot', function(req, res, next) {
   var spotCity = req.body.spotCity;
-  var spotContent = req.body.fileString;
+  var spotContent = req.body.spotContent;
   var spotImage = req.body.spotImage;
   var spotTitle = req.body.spotTitle;
   var spotType = req.body.spotType;
@@ -610,17 +610,8 @@ router.post('/material/spot', function(req, res, next) {
     }
     else{
       res.end("success");
-      con.query("select * from spot",function(err,result){
-        if(err){
-          console.log(err);
-        }
-        else{
-          res.render('Material/spot', { spotList:result });
-        }
-      });
     }
   });
-  
 });
 //编辑景点
 var spotId = 0;
