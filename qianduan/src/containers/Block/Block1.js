@@ -75,10 +75,19 @@ export default class Block1 extends Component {
     }
     
     render() {
-        let data2=this.state.topic.map((item,idx)=>({
-            item:item,
-            idx:idx
-        }))
+        let data4=[];
+        let data2=this.state.topic.map((item,idx)=>{
+            if(idx<4){
+                var obj={item:item,idx:idx};
+                data4.push(obj);
+            }
+            return 0;
+        })
+        // var data3=[0,1,2,3].map((it,idx)=>({
+        //     item:this.state.topic[idx],
+        //     idx:idx
+        // }))
+        // console.log(data3[0].item);
         return (
             <div>
                 <NavBar
@@ -92,11 +101,11 @@ export default class Block1 extends Component {
                     ]}
                     >论坛</NavBar>
                 <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'0.3%',position:'relative'}}>
-                    <img src='/images/1.jpg' style={{width:'100%',height:'50px',borderRadius:'5px'}}/>
+                    <img src='/images/block4.jpg' style={{width:'100%',height:'50px',borderRadius:'5px'}}/>
                     <NoticeBar marqueeProps={{ loop: true,style: { padding: '0 7.5px'} }} style={{background:'rgba(255,255,255,0)'}}>
                         热门话题：网红打卡地 最后悔去的地方 十一最值得看的风景 
                     </NoticeBar>
-                     <Grid data={data2} 
+                     <Grid data={data4} 
                      hasLine={false} 
                      columnNum={2}
                      className='blockGrid'
@@ -104,6 +113,7 @@ export default class Block1 extends Component {
                      style={{width:'50%'}}
                      itemStyle={{textAlign:'left'}}
                      renderItem={dataItem=>{
+                         console.log(dataItem);
                             if(dataItem.idx<3){
                                 return <li style={{color:'black',fontSize:'80%'}}>{dataItem.item.topicContent}</li>
                             }
@@ -135,11 +145,11 @@ export default class Block1 extends Component {
                 {
                     this.state.post.map((item)=>(
                         <Link to='/blockmessage' onClick={this.clicknum.bind(this,item.postId)}>
-                        <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'1%',backgroundColor:'#ffffff',padding:'4%',position:'relative',paddingBottom:'0'}} >
+                        <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'1%',backgroundColor:'#ffffff',padding:'4%',position:'relative',paddingBottom:'0',color:'black'}} >
                             <img src={item.Uimage} style={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}/>
                             <span style={{marginLeft:'5%',position:'absolute',top:'10%'}}>{item.userName}</span>
                             <div>
-                                <p style={{color:'blue',margin:'5% 0'}}>#网红打卡圣地#</p>
+                    <p style={{color:'blue',margin:'5% 0'}}>{item.postTopic}</p>
                                 <div style={{width:'100%'}}><p style={{wordWrap:'break-word'}}>{item.postContent}</p><img src='/images/1.jpg' style={{width:'40%'}}/></div>
                             </div>
                             <div style={{width:'100%',border: '1px solid #d0d0d0'}}></div>

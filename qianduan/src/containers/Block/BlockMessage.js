@@ -52,7 +52,7 @@ export default class BlockMessage extends Component {
                     <Card.Body>
                         <div>
                             <p style={{color:'blue',margin:'5% 0'}}>#网红打卡圣地#</p>
-                <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src='/images/1.jpg' style={{width:'40%'}}/></div>
+                            <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src='/images/1.jpg' style={{width:'40%'}}/></div>
                         </div>
                     </Card.Body>
                     <Card.Footer content="230人赞过" extra={<div>4小时前发布 浏览2000</div>} />
@@ -85,7 +85,7 @@ export default class BlockMessage extends Component {
                             this.state.reply.map((item,idx)=>{
                                 if(idx==0){
                                     return <Card.Header
-                                        title={item.userName}
+                                        title={<span>{item.userName}<br/><span style={{fontSize:'10px',marginLeft:'7px'}}>{item.replyContent}</span></span>}
                                         thumbStyle={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}
                                         thumb={item.Uimage}
                                         extra={<i className='iconfont icon-dianzan'>200</i>}
@@ -102,7 +102,7 @@ export default class BlockMessage extends Component {
                                     }
                                 })
                             }
-                            <Accordion defaultActiveKey="0" className="my-accordion">
+                            <Accordion className="my-accordion">
                                 <Accordion.Panel header="查看更多回复"  className='block1panel'>
                                     <List className="my-list">
                                     {

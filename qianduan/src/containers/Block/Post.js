@@ -44,7 +44,7 @@ export default class Post extends Component {
                     ref={(inp)=>{this.inp=inp}}
                 />
                 </List>
-                <div className='post1Grid' style={{width:'100%',position:'absolute',bottom:'0px'}}>
+                <div className='post1Grid' style={{width:'100%',position:'absolute',bottom:'100px'}}>
                     <Grid data={data1}
                     columnNum={4}
                     hasLine={false}

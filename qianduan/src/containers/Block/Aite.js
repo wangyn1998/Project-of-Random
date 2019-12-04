@@ -3,6 +3,13 @@ import { NavBar, Icon,SearchBar ,Card} from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export default class Aite extends Component {
+    aitepost=(e)=>{
+        var cache = [];
+
+        
+        // var arr=obj.split('<|>');
+        // console.log(arr);
+    }
     render() {
         return (
             <div>
@@ -14,7 +21,7 @@ export default class Aite extends Component {
                     ]}
                     >选择好友</NavBar>
                 <SearchBar placeholder="搜索好友" ref={ref => this.autoFocusInst = ref} />
-                <Card style={{minHeight:'0'}} className='aite1'>
+                <Card style={{minHeight:'0'}} className='aite1' onClick={this.aitepost.bind(this)}>
                     <Card.Header
                         title="This is title"
                         thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
