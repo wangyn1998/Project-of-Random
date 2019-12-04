@@ -583,10 +583,10 @@ router.get('/material/spot', function(req, res, next) {
 });
 //搜索景点
 router.post("/searchspot",function (req,res,next) {
-  var spotId=req.body.spotId;
+  var city=req.body.city;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("select * from spot where spotId=?",[spotId],function(err,result){
+  con.query("select * from spot where spotCity=?",[city],function(err,result){
     if(err){
       console.log(err);
     }
