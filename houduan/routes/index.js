@@ -501,7 +501,7 @@ router.post("/searchmethod",function (req,res,next) {
       res.render("Material/searchmethod",{methodList:result});
     }
   })
-})
+});
 //添加攻略
 router.post('/material/method', function(req, res, next) {
   var cityName = req.body.cityName;
@@ -525,6 +525,7 @@ router.post('/material/method', function(req, res, next) {
 var methodId = 0;
 router.post('/method', function(req, res, next) {
   methodId = req.body.method;
+  console.log(methodId);
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from method",function(err,result){
@@ -542,7 +543,6 @@ router.post('/upmethod', function(req, res, next) {
   var cityContent = req.body.cityContent;
   var cityImage = req.body.cityImage;
   var methodContent = req.body.methodContent;
-  console.log(cityName);
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("update method set cityName=?,methodDay=?,cityContent=?,cityImage=?,methodContent=? where methodId=?",[cityName,methodDay,cityContent,cityImage,methodContent,methodId],function(err,result){
@@ -550,9 +550,12 @@ router.post('/upmethod', function(req, res, next) {
       console.log(err);
     }
     else{
-      res.render('Material/methodsuc', { title: 'upsuccess' });
+      res.end("success");
     }
   });
+});
+router.get('/material/methodsuc',function(req,res,next){
+  res.render('Material/methodsuc', { title:'methodsuc' });
 });
 //删除攻略
 router.get('/material/delmethod', function(req, res, next) {
