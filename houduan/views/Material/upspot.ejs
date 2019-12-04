@@ -102,29 +102,27 @@
                 <div id="cover-tier1" class="popPosition1"></div>
                 <div id="pop-tier1" class="popPosition1">
                     <i id="close-pop1">&#10006;</i>
-                    <form action="/upspot" method="POST" style="height:300px;margin-top:40px;">
                         <div class='text'>
                             <h4>城市名：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotCity"/>
+                            <input class="first" type="text" id="spotCity" placeholder="1232" name="spotCity"/>
                         </div>
                         <div class='text'>
                             <h4>景点名：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotTitle"/>
+                            <input class="first" type="text" id="spotTitle"placeholder="1232" name="spotTitle"/>
                         </div>
                         <div class='text'>
                             <h4>景点介绍：</h4>
-                            <input class="second" type="file" name="spotContent"/>
+                            <input class="second" type="file" id = "fileId"" name="spotContent" />
                         </div>
                         <div class='text'>
                             <h4>景点照片：</h4>
-                            <input class="second" type="file" name="spotImage"/>
+                            <input class="second" type="file" id="spotImage" name="spotImage"/>
                         </div>
                         <div class='text'>
                             <h4>类别：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotType"/>
+                            <input class="first" type="text" placeholder="1232" id="spotType" name="spotType"/>
                         </div>
-                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
-                    </form>  
+                        <button type="submit" onclick="check()" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button>
                 </div>
             </div>
         </div>
@@ -140,6 +138,40 @@
     temp('close-pop1').onclick = function() {
         temp('pop-container1').style.display = 'none';
         window.location.href="/material/spot";
+    }
+    function check() {
+        var objFile = document.getElementById("fileId");
+        if(objFile.value == "") {
+            alert("不能空")
+        }
+        var files = $('#fileId').prop('files');//获取到文件列表
+        if(files.length == 0){
+            alert('请选择文件');
+        }else{
+            var reader = new FileReader();//新建一个FileReader
+            reader.readAsText(files[0], "gb2312");//读取文件 
+            reader.onload = function(evt){ //读取完文件之后会回来这里
+                var spotContent = evt.target.result; // 读取文件内
+                $.ajax({
+                    url: "/upspot",
+                    method: "POST",
+                    data:{ 
+                        spotContent: spotContent,
+                        spotCity:temp('spotCity').value,
+                        spotImage:temp('spotImage').value,
+                        spotTitle:temp('spotTitle').value,
+                        spotType:temp('spotType').value
+                    },
+                    success:function(data){
+                        console.log(data);
+                    if(data=="success"){
+                        window.location.href="/material/spotsuc";
+                    }
+                }
+                })
+            }
+        }
+        
     }
     function getzz() {
         var a = $("ul#all li");
@@ -202,5 +234,6 @@
         var  pageall =parseInt(zz.length/pagesize)+1;
     }   //一共多少页
     change(1);
+
 </script>
 </html>
