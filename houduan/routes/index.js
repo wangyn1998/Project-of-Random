@@ -45,7 +45,35 @@ router.post('/home', function(req,res,next) {
   });
 });
 router.get('/home',function(req,res,next){
-  res.render('home',{title: 'home'});
+  var con=mysql.createConnection(dbconfig);
+  con.connect();
+  let now='';
+  var time=new Date();
+  var year = time.getFullYear();
+  var month = time.getMonth() + 1;
+  var date = time.getDate();
+  now = year + '-' + conver(month) + "-" + conver(date);
+  function conver(s) {
+      return s < 10 ? '0' + s : s;
+  }
+  console.log(now);
+  let beginTime=new Date(now);
+
+  var endTime=new Date(beginTime.getTime()+24*60*60*1000);
+  console.log(beginTime);
+  console.log(endTime)
+  con.query("select * from user;select * from user where Uday between ? and ?;select * from post",[beginTime,endTime],function(err,result){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log();
+        console.log(result[1])
+        res.render('home',{userListall:result[0],userListnew:result[1],postList:result[2]});
+      }
+    })
+   
+
 });
 
 router.get('/user', function(req, res, next) {
