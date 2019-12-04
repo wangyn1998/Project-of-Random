@@ -20,6 +20,31 @@ app.all('*', function(req, res, next) {
 var phonenum='';
 console.log(phonenum);
 app.use(express.static('public'));
+/**score */
+app.post('/getscore', function (req, res) {  //接收POST请求
+    /**获取请求体数据 */
+    let data = req.body;   //解析body中的信息
+    console.log(data);
+    let message1 = {success:true}
+    let message2 = {success:false}
+    /**连接数据库 */
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query("update score set sum=?,updateTime=? where userName = ?",[data.sum,data.updateTime,data.userName],function(err,result){
+      phonenum=data.phone;
+      if(err){
+          console.log(err);
+      }
+      else{
+          if(result == false){
+              res.send(message2);
+          }
+          else{           
+              res.send(message1);
+          }
+      }
+    })
+  })
 /**登录 */
 app.post('/login', function (req, res) {  //接收POST请求
   /**获取请求体数据 */
@@ -62,7 +87,7 @@ app.post('/register',(req,res)=>{
   else{
       var con = mysql.createConnection(dbconfig);
       con.connect();
-      con.query("insert into user(Uphone,Upasswd) values(?,?)",[data.phone,data.password],(err,result)=>{
+      con.query("insert into user(Uphone,Upasswd,Uday) values(?,?,?)",[data.phone,data.password,data.Uday],(err,result)=>{
           if(err){
               throw err;
           }
@@ -83,7 +108,7 @@ app.post('/updateuser',(req,res)=>{
     console.log('bbb')
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    con.query("update user set UserName=?,Uimage=?,Usex=?,Ubirthday=?,Uaddress=?,Usign=? where Uphone = ?",[data.name,data.img,data.sex,data.birthday,data.place,data.sign,phonenum],(err,result)=>{
+    con.query("update user set UserName=?,Uimage=?,Usex=?,Ubirthday=?,Uaddress=?,Usign=?,Upercent=? where Uphone = ?",[data.name,data.img,data.sex,data.birthday,data.place,data.sign,data.percent,phonenum],(err,result)=>{
         if(err){
             throw err;
         }
@@ -94,6 +119,18 @@ app.post('/updateuser',(req,res)=>{
                 res.send(message1);
             }
             
+        }
+    })
+})
+app.get('/updateuser',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from user where Uphone=?',[phonenum],(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
         }
     })
 })
