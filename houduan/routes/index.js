@@ -496,10 +496,10 @@ router.get('/material/method', function(req, res, next) {
 });
 //搜索攻略
 router.post("/searchmethod",function (req,res,next) {
-  var methodId=req.body.methodId;
+  var city=req.body.city;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("select * from method where methodId=?",[methodId],function(err,result){
+  con.query("select * from method where cityName=?",[city],function(err,result){
     if(err){
       console.log(err);
     }
