@@ -74,7 +74,7 @@ export default class Make extends Component {
                 </div>
                 {
                     this.state.method.map((item)=>(
-                        <div style={{height:'280px',width:'98%',marginLeft:'1%',borderRadius:'10px',marginTop:'48px',background:'url(' + item.cityImage +')'}}>
+                        <div style={{height:'280px',width:'98%',marginLeft:'1%',borderRadius:'10px',marginTop:'48px',background:'url(./images/method/' + item.cityImage +')'}}>
                             <div style={{float:'left',width:'10px',fontSize:'48px',color:'white',marginTop:'15%',marginLeft:'18%',marginRight:'20%'}}>{item.cityName}</div>
                             <div style={{float:'left',width:'55%',height:'80%',fontSize:'20px',color:'white',marginTop:'2%',lineHeight:'28px'}}>{item.methodContent} </div>
                         </div>

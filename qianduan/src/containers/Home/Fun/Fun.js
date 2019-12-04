@@ -47,7 +47,7 @@ export default class Fun extends Component {
                         <div>
                             <div style={{height:'500px',borderRadius:'5px',marginTop:'20px',width:'94%',marginLeft:'3%',background:'white'}}>
                                 <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}>
-                                    <img src={item.spotImage} style={{height:'160px',borderRadius:'5px',width:'100%'}}/>
+                                    <img src={'./images/spot/'+item.spotImage} style={{height:'160px',borderRadius:'5px',width:'100%'}}/>
                                 </div>
                                 <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
                                     <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>{item.spotTitle}</p>
