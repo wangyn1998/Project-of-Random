@@ -2,7 +2,7 @@ const http = require('http');
 var express = require('express');
 var app = express();
 var mysql = require("mysql");
-var dbconfig = require("../DBconfig/dbconfig.json");
+var dbconfig = require("./dbconfig.json");
 var bodyParser = require('body-parser');//引入body parser用于解析post的body
 
 app.use(bodyParser.json());//使用body parser用于解析post的body
