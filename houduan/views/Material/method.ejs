@@ -73,9 +73,9 @@
                             <p class='Materialbody'><%= methodList[i].methodId %></p>  
                             <p class='Materialbody'><%= methodList[i].cityName %></p>
                             <p class='Materialbody'><%= methodList[i].methodDay %></p>
-                            <p class='Materialbody'><%= methodList[i].cityContent %></p>  
-                            <p class='Materialbody'><%= methodList[i].cityImage %></p>
-                            <p class='Materialbody'><%= methodList[i].methodContent %></p>
+                            <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].cityContent %></p>  
+                            <p class='Materialbody' style="height:50px;overflow:hidden;"><%= methodList[i].cityImage %></p>
+                            <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].methodContent %></p>
                             <div class='Materialbody'>
                                 <div class='Materialoperation'>
                                     <form method="post" action="/method" class="operation1">
@@ -107,7 +107,7 @@
                 <div id="cover-tier" class="popPosition"></div>
                 <div id="pop-tier" class="popPosition">
                     <i id="close-pop">&#10006;</i>
-                    <form action="/material/method" method="POST" style="height:300px;margin-top:40px;">
+                    <div style="height:300px;margin-top:40px;">
                         <div class='text'>
                             <h4>城市名：</h4>
                             <input class="first" type="text" id="cityName"/>
@@ -129,7 +129,7 @@
                             <input class="second" type="file" id="methodContent" onchange="upload2(this)"/>
                         </div>
                         <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

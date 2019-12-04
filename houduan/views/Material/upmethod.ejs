@@ -68,9 +68,9 @@
                                 <p class='Materialbody'><%= methodList[i].methodId %></p>  
                                 <p class='Materialbody'><%= methodList[i].cityName %></p>
                                 <p class='Materialbody'><%= methodList[i].methodDay %></p>
-                                <p class='Materialbody'><%= methodList[i].cityContent %></p>  
-                                <p class='Materialbody'><%= methodList[i].cityImage %></p>
-                                <p class='Materialbody'><%= methodList[i].methodContent %></p>
+                                <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].cityContent %></p>  
+                                <p class='Materialbody' style="height:50px;overflow:hidden;"><%= methodList[i].cityImage %></p>
+                                <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].methodContent %></p>
                                 <div class='Materialbody'>
                                     <div class='Materialoperation'>
                                         <form class="operation1">
@@ -101,29 +101,29 @@
                 <div id="cover-tier1" class="popPosition1"></div>
                 <div id="pop-tier1" class="popPosition1">
                     <i id="close-pop1">&#10006;</i>
-                    <form action="/upmethod" method="POST" style="height:300px;margin-top:40px;">
+                    <div style="height:300px;margin-top:40px;">
                         <div class='text'>
                             <h4>城市名：</h4>
-                            <input class="first" type="text" name="cityName"/>
+                            <input class="first" type="text" id="cityName"/>
                         </div>
                         <div class='text'>
                             <h4>天数：</h4>
-                            <input class="first" type="text" name="methodDay"/>
+                            <input class="first" type="text" id="methodDay"/>
                         </div>
                         <div class='text'>
                             <h4>城市介绍：</h4>
-                            <input class="second" type="file" name="cityContent"/>
+                            <input class="second" type="file" id="cityContent" onchange="upload1(this)"/>
                         </div>
                         <div class='text'>
                             <h4>城市照片：</h4>
-                            <input class="second" type="file" name="cityImage"/>
+                            <input class="second" type="file" id="cityImage"/>
                         </div>
                         <div class='text'>
                             <h4>攻略：</h4>
-                            <input class="second" type="file" name="methodContent"/>
+                            <input class="second" type="file" id="methodContent" onchange="upload2(this)"/>
                         </div>
                         <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
-                    </form>
+                    </div>
                     
             </div>
         </div>
@@ -200,5 +200,52 @@
         var  pageall =parseInt(zz.length/pagesize)+1;
     }   //一共多少页
     change(1);
+
+    //读取文件内容
+    var cityContent = "";
+    function upload1(input) {  
+        //支持chrome IE10  
+        if (window.FileReader) {  
+            var file = input.files[0];  
+            filename = file.name.split(".")[0];  
+            var reader = new FileReader();  
+            reader.onload = function() {    
+                cityContent = this.result;
+            }  
+            reader.readAsText(file);  
+        }  
+    }
+    var methodContent = "";
+    function upload2(input) {  
+        //支持chrome IE10  
+        if (window.FileReader) {  
+            var file = input.files[0];  
+            filename = file.name.split(".")[0];  
+            var reader = new FileReader();  
+            reader.onload = function() {    
+                methodContent = this.result;
+            }  
+            reader.readAsText(file);  
+        }  
+    }
+    //数据添加
+    $("#save").click(function(){
+        $.ajax({
+            url: '/upmethod',
+            method: 'post',
+            data:{
+                cityName: $("#cityName").val(),
+                methodDay: $("#methodDay").val(),
+                cityContent: cityContent,
+                cityImage: $("#cityImage").val(),
+                methodContent: methodContent
+            },
+            success: function(data){
+                if(data == "success"){
+                    window.location.href="/material/methodsuc";
+                }
+            }
+        })
+    });
 </script>
 </html>
