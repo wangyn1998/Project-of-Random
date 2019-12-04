@@ -34,7 +34,7 @@ export default class Celebrity extends Component {
                                     <img src={item.celebrityImage} style={{height:'100%',width:'100%',background:'blue'}}/>
                                 </div>
                                 <div style={{height:'15%',width:'100%',marginTop:'5%',marginBottom:'100px'}}>
-                                    <div style={{float:'left',fontSize:'22px',color:'black',width:'100%'}}>{item.Title}
+                                    <div style={{float:'left',fontSize:'22px',color:'black',width:'100%'}}>{item.celebrityTitle}
                                         <span className="iconfont icon-xin" style={{marginRight:'5%'}}></span>
                                     </div>
                                 </div>
