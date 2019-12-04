@@ -51,8 +51,8 @@ export default class BlockMessage extends Component {
                     />
                     <Card.Body>
                         <div>
-                            <p style={{color:'blue',margin:'5% 0'}}>#网红打卡圣地#</p>
-                            <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src='/images/1.jpg' style={{width:'40%'}}/></div>
+                <p style={{color:'blue',margin:'5% 0'}}>{this.state.post.postTopic}</p>
+                            <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src={this.state.post.postImage} style={{width:'40%'}}/></div>
                         </div>
                     </Card.Body>
                     <Card.Footer content="230人赞过" extra={<div>4小时前发布 浏览2000</div>} />
