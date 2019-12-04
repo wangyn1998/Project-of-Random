@@ -2,5 +2,7 @@
     "host":"localhost",
     "database":"aiyou",
     "user":"root",
-    "password":""
+    "password":"",
+    "multipleStatements": true
+
 }
