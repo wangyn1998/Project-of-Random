@@ -520,6 +520,7 @@ router.post('/material/method', function(req, res, next) {
       res.end("success");
     }
   });
+ });
 //编辑攻略
 var methodId = 0;
 router.post('/method', function(req, res, next) {
