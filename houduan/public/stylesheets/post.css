@@ -38,11 +38,11 @@ ul,li{
     margin-right: 25px;
 }
 .Postbox2{
-    width: 600px;
+    width: 500px;
     height: 40px;
-    float: right;
+    float: left;
     margin-top:10px;
-    margin-right: -55px;
+    margin-left:500px;
 }
 .Postdate{
     width: 400px;
