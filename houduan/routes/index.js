@@ -44,6 +44,7 @@ router.post('/home', function(req,res,next) {
     }
   });
 });
+//展示首页
 router.get('/home',function(req,res,next){
   var con=mysql.createConnection(dbconfig);
   con.connect();
@@ -69,7 +70,7 @@ router.get('/home',function(req,res,next){
     })
 });
 
-
+//展示用户管理页
 router.get('/user', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
   con.connect();
@@ -82,6 +83,7 @@ router.get('/user', function(req, res, next) {
     }
   })
 });
+//删除用户
 router.get("/deleteuser",function(req,res,next){
   var userName=req.query.userName;
   var con=mysql.createConnection(dbconfig);
@@ -111,6 +113,7 @@ router.get("/deleteuser",function(req,res,next){
         }
       })
 })
+//搜索用户
 router.post("/searchuser",function (req,res,next) {
   var userName=req.body.userName;
   var con=mysql.createConnection(dbconfig);
