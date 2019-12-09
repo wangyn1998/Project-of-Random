@@ -44,33 +44,20 @@ export default class Make extends Component {
                 mode="dark"
                 icon={<Link to="/"><Icon type="left" style={{color:'white'}}/></Link>}
                 >纯享定制</NavBar>
-                <div>
-                    <div className="make-dropdown" style={{float:'left'}}>
-                        <div style={{position:'absolute',left:'0',color:'black'}}></div>
-                        <span style={{marginLeft:"5px"}}>全部</span>
-                        <div className="make-dropdown-content">
-
-                        </div>
+                <div style={{width:'100%',height:'40px'}}>
+                    <div style={{width:'20%',height:'40px',marginLeft:'4%',float:'left'}}>
+                        <button style={{width:'100%',height:'100%',border:'solid grey 1px',borderRadius:'5px',background:"white",color:'black'}}>全部</button>
                     </div>
-                    <div className="make-dropdown" style={{float:'left',marginLeft:'5px'}}>
-                        <div style={{position:'absolute',left:'0',color:'black'}}></div>
-                        <span style={{marginLeft:"5px"}}>时长</span>
-                        <div className="make-dropdown-content">
-                            <p>1day</p>
-                            <p>2day</p>
-                            <p>3day</p>
-                        </div>
+                    <div className="method-search">
+                        <input style={{width:'100%',height:'100%',border:'solid grey 1px',borderRadius:'5px',background:"white",color:'black'}} placeholder="时长(天)"/>
                     </div>
-                    <div className="make-dropdown" style={{float:'left'}}>
-                        <div style={{position:'absolute',left:'0',color:'black'}}></div>
-                        <span style={{marginLeft:"5px"}}>地点</span>
-                        <div className="make-dropdown-content">
-                            <p>北京</p>
-                            <p>上海</p>
-                            <p>广州</p>
-                        </div>
+                    <div className="method-search">
+                        <input style={{width:'100%',height:'100%',border:'solid grey 1px',borderRadius:'5px',background:"white"}} placeholder="地点"/>
                     </div>
-                    <input className="make-search" style={{marginLeft:"5px",float:'left'}} placeholder="点击搜索"/>
+                    <div style={{width:'30%',height:'40px',marginLeft:'1%',float:'left'}}>
+                    <button style={{bordre:'none',width:'100%',height:'100%',border:'solid grey 1px',borderRadius:'5px',background:"white"}}>点击搜索</button>
+                    </div>
+                    
                 </div>
                 {
                     this.state.method.map((item)=>(

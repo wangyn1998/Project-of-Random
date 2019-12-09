@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Carousel,Grid} from 'antd-mobile';
+import {Carousel,SearchBar} from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 import Historic from './Historic/Historic';
 
@@ -60,16 +60,7 @@ export default class First extends Component {
     }
     render() {
         return (
-            <div>
-                <div style={{zIndex:999,position:'absolute',width:'100%'}}>
-                    <div className="dropdown">
-                        <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}>
-                            <span style={{marginLeft:"5px"}}>{this.state.pot.name}</span>
-                        </div>
-                    </div>
-                    <input placeholder="请输入目的地" className="search"  onKeyDown={this.changeCity} />
-                    <button style={{width:'50px',float:'right',background:'white',marginRight:'7%',marginTop:'3%',border:'none',borderRadius:'5px'}}>搜索</button>
-                </div>
+            <div style={{position:'relative'}}>
                 <Carousel
                     autoplay={true}
                     infinite
@@ -95,6 +86,20 @@ export default class First extends Component {
                         </a>
                     ))}
                 </Carousel>
+                {/* 位置定位及搜索 */}
+                <div className="dropdown">
+                    <div style={{width:'20%',height:'60%',marginLeft:"20%",background:'white',borderRadius:'5px'}}>
+                        <div className='iconfont icon-location' style={{width:'6%',height:'70%',float:'left',marginTop:'4%'}}></div>
+                        <div className="location">
+                            {this.state.pot.name}
+                        </div>
+                    </div>
+                    <SearchBar 
+                        style={{width:'35%',height:'60%',position:'absolute',top:'0',right:'18%',background:'white',borderRadius:'5px' }}
+                        placeholder="输入目的地" 
+                        maxLength={8} 
+                    />    
+                </div>
                 <div style={{height:'50px'}}>
                     <Link to={'/spot?city=' + encodeURI(this.state.pot.name)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
