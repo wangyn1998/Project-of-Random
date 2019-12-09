@@ -36,17 +36,20 @@
         </div>
         <div class="right">
             <div style="width:1000px;height:400px;margin:20px auto;background:#b4dcf8;font-size:17px;">
-                <div style="height:150px;">
-                    <p style="text-align:center;color:#4177ca;">当前管理员信息</p>
-                    <img src="./images/logo.png" style="width:80px;height:80px;float:left;margin-left:40px;margin-right:20px;"/>
-                    <p style="margin-top:15px">
-                        用户名：
-                        <span><%= user.adminUsername %></span>
-                    </p>
-                    <p style="margin-top:10px">
-                        真实姓名：
-                        <span><%= user.adminName %></span>
-                    </p>
+                <p style="text-align:center;color:#4177ca;">当前管理员信息</p>
+                <div style="width:400px;height:150px;">
+                    <div style="width:300px;height:150px;float:left;">
+                        <img src="./images/logo.png" style="width:80px;height:80px;float:left;margin-left:40px;margin-right:20px;"/>
+                        <p style="margin-top:15px">
+                            用户名：
+                            <span><%= user.adminUsername %></span>
+                        </p>
+                        <p style="margin-top:10px">
+                            真实姓名：
+                            <span><%= user.adminName %></span>
+                        </p>
+                    </div>
+                    <button id="out" style="width:100px;height:40px;float:right;background:#70bdf1;border:none;color:#6882da;margin-top:20px;font-size:18px;">退出登录</button>
                 </div>
                 <div style="width:600px;height:210px;margin:20px auto;text-align:center;line-height:40px;">
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
@@ -115,6 +118,9 @@
     // 点击右上角X弹出层隐藏
     temp('close-pop').onclick = function() {
         temp('pop-container').style.display = 'none';
+    }
+    temp('out').onclick = function(){
+        window.location.href= "/";
     }
 </script>
 </html>
