@@ -325,7 +325,7 @@ router.get('/score/list', function(req, res, next) {
    //连接
    con.connect();
    //进行操作(sql语句变化)
-   con.query("select * from score",function(err,result){
+   con.query("select * from score order by sum DESC",function(err,result){
      if(err){
        console.log(err);
      }
