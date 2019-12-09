@@ -79,9 +79,8 @@
                             <div class='Materialbody'>
                                 <div class='Materialoperation'>
                                     <form method="post" action="/method" class="operation1">
-                                        <button style="color: white;border:1px solid white;width: 50px;
-                                        height: 30px;">编辑
-                                            <input type='submit' style="float: right;border:1px solid #61b3ed" id='bianji' name="method" value='<%=methodList[i].methodId%>'/>
+                                        <button type='submit' id='bianji' name="method" value='<%=methodList[i].methodId%>' style="color: white;border:1px solid white;width: 50px;height: 30px;">
+                                            编辑   
                                         </button>
                                     </form>
                                     <a href='/material/delmethod?methodId=<%= methodList[i].methodId %>'>
