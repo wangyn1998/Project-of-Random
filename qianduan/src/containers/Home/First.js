@@ -42,21 +42,16 @@ export default class First extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             this.setState({
-                pot:res
+                pot:res.name
             })
-        })
-        fetch('https://elm.cangdu.org/v1/cities?type=group')
-        .then((res)=>res.json())
-        .then((res)=>{
-            console.log(res.E[0].name);
-            this.setState({
-                allpot:res.E
-            })
-            console.log(this.state.allpot)
+            console.log(res.name)
         })
     }
     changeCity = (e) => {
-        console.log(e.target.value);
+        console.log(e);
+        this.setState({
+            pot:e
+        })
     }
     render() {
         return (
@@ -88,32 +83,33 @@ export default class First extends Component {
                 </Carousel>
                 {/* 位置定位及搜索 */}
                 <div className="dropdown">
-                    <div style={{width:'20%',height:'60%',marginLeft:"20%",background:'white',borderRadius:'5px'}}>
+                    <div style={{width:'20%',height:'60%',marginLeft:"15%",background:'white',borderRadius:'5px'}}>
                         <div className='iconfont icon-location' style={{width:'6%',height:'70%',float:'left',marginTop:'4%'}}></div>
                         <div className="location">
-                            {this.state.pot.name}
+                            {this.state.pot}
                         </div>
                     </div>
                     <SearchBar 
-                        style={{width:'35%',height:'60%',position:'absolute',top:'0',right:'18%',background:'white',borderRadius:'5px' }}
+                        style={{width:'45%',height:'60%',position:'absolute',top:'0',right:'15%',background:'white',borderRadius:'5px' }}
                         placeholder="输入目的地" 
+                        onSubmit={this.changeCity}
                         maxLength={8} 
                     />    
                 </div>
                 <div style={{height:'50px'}}>
-                    <Link to={'/spot?city=' + encodeURI(this.state.pot.name)}>
+                    <Link to={'/spot?city=' + encodeURI(this.state.pot)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-foot' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>周边景点</p>
                         </div>
                     </Link>
-                    <Link to={'/fun?city=' + encodeURI(this.state.pot.name)}>
+                    <Link to={'/fun?city=' + encodeURI(this.state.pot)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-zihangche' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>当地玩乐</p>
                         </div>
                     </Link>
-                    <Link to={'/method?city=' + encodeURI(this.state.pot.name)}>
+                    <Link to={'/method?city=' + encodeURI(this.state.pot)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
                             <div className='iconfont icon-wendang' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>纯享定制</p>

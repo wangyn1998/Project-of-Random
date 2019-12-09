@@ -19,8 +19,7 @@ export default class Spot extends Component {
                 var city = str.split("=")[1];
                 city = decodeURI(city);
                 console.log(city);
-            } 
-            console.log(res[0].spotCity);
+            }
             var data = [];
             for (var i = 0;i<res.length;i++){
                 if(res[i].spotCity == city){

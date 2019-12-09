@@ -9,6 +9,9 @@ import Hot from './Hot/Hot';
 import Historic from './Historic/Historic';
 import Celebrity from './Celebrity/Celebrity';
 import First from './First';
+import HotDetail from './Hot/Detail';
+import HistoricDetail from './Historic/Detail';
+import CelebrityDetail from './Celebrity/Detail';
 
 export default class Home extends Component {
     state = {
@@ -31,8 +34,11 @@ export default class Home extends Component {
                 <Route path='/fun' component={Fun}/>
                 <Route path='/method' component={Method}/>
                 <Route path='/hot' component={Hot}/>
+                <Route path='/hot:id' component={HotDetail}/>
                 <Route path='/historic' component={Historic}/>
+                <Route path='/historic:id' component={HistoricDetail}/>
                 <Route path='/celebrity' component={Celebrity}/>
+                <Route path='/celebrity:id' component={CelebrityDetail}/>
             </Router>
         )
     }
