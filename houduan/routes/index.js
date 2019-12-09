@@ -97,7 +97,23 @@ router.get("/deleteuser",function(req,res,next){
     else{
       res.render("User/shanchu",{ title: 'Express' })
       }
+  })
+  con.query("delete from score where userName=?",[userName],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log('success')
+      }
     })
+    con.query("delete from slist where userName=?",[userName],function(err,result){
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log('success')
+        }
+      })
 })
 router.post("/searchuser",function (req,res,next) {
   var userName=req.body.userName;
