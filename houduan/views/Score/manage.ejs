@@ -34,7 +34,7 @@
                 <div class='search'>
                     <form method="post" action="/searchtask" style="line-height: 2.5em;">
                         <input class='Bar' placeholder="请输入要查找的任务编号" name='taskId'/>
-                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;"><input  type="submit" value="搜索"style="margin-left:5px;border:0px solid #eee;
+                        <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;"><input  type="submit" value="搜索"style="margin-left:3px;border:0px solid #eee;
                             background: #eee;"></div>
                     </form>
                 </div>
@@ -69,9 +69,9 @@
                             <div class='Managebody'>
                                     <div class='Topicoperation'>
                                         <form method="post" action="/task" class="operation1">
-                                            <button style="color: white;border:1px solid white;width: 50px;
-                                            height: 30px;">编辑
-                                                <input type='submit' style="float: right;border:1px solid #61b3ed" id='bianji' name="task" value='<%= taskList[i]["taskId"] %>'></button>
+                                            <button type='submit' id='bianji' name="task" value='<%=taskList[i]["taskId"]%>'  style="color: white;border:1px solid white;width: 50px;height: 30px;">
+                                                编辑   
+                                            </button>
                                         
                                         </form>
                                         <a href='/score/deletemanage?taskId=<%= taskList[i]["taskId"]%>'><button  style=" width: 50px;
