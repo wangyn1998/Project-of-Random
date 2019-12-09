@@ -505,8 +505,9 @@ router.get('/material/method', function(req, res, next) {
   
 });
 //搜索攻略
+var city = "";
 router.post("/searchmethod",function (req,res,next) {
-  var city=req.body.city;
+  city=req.body.city;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
   con.query("select * from method where cityName=?",[city],function(err,result){
@@ -541,7 +542,6 @@ router.post('/material/method', function(req, res, next) {
 var methodId = 0;
 router.post('/method', function(req, res, next) {
   methodId = req.body.method;
-  console.log(methodId);
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from method",function(err,result){
@@ -569,6 +569,19 @@ router.post('/upmethod', function(req, res, next) {
       res.end("success");
     }
   });
+});
+router.post('/method1', function(req, res, next) {
+  methodId = req.body.method;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from method where cityName=?",[city],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/upmethod1', { methodList:result });
+    }
+  });    
 });
 router.get('/material/methodsuc',function(req,res,next){
   res.render('Material/methodsuc', { title:'methodsuc' });
@@ -601,11 +614,12 @@ router.get('/material/spot', function(req, res, next) {
   });
 });
 //搜索景点
+var spotcity="";
 router.post("/searchspot",function (req,res,next) {
-  var city=req.body.city;
+  spotcity=req.body.spotcity;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("select * from spot where spotCity=?",[city],function(err,result){
+  con.query("select * from spot where spotCity=?",[spotcity],function(err,result){
     if(err){
       console.log(err);
     }
@@ -660,10 +674,22 @@ router.post('/upspot', function(req, res, next) {
       console.log(err);
     }
     else{
-      res.end("success");
-      // res.render('Material/spotsuc', { title: 'upsuccess' });   
+      res.end("success");  
     }
   });
+});
+router.post('/spot1', function(req, res, next) {
+  spotId = req.body.spot;
+  var con = mysql.createConnection(dbconfig);
+  con.connect();
+  con.query("select * from spot where spotCity=?",[spotcity],function(err,result){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render('Material/upspot', { spotList:result });
+    }
+  });    
 });
 router.get('/material/spotsuc', function(req, res, next) {
   var con = mysql.createConnection(dbconfig);
