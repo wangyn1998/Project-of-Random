@@ -331,9 +331,11 @@ router.post("/searchtopic",function (req,res,next) {
     }
   })
 });
+//积分管理页
 router.get('/score', function(req, res, next) {
   res.render('Score/score', { title: 'Express' });
 });
+//积分表页
 router.get('/score/list', function(req, res, next) {
    var con=mysql.createConnection(dbconfig);
    con.connect();
@@ -346,6 +348,7 @@ router.get('/score/list', function(req, res, next) {
      }
    })
 });
+//积分表详情管理页
 router.get('/score/slist', function(req, res, next) {
   sum=[];
   var sum0=0;
@@ -370,6 +373,7 @@ router.get('/score/slist', function(req, res, next) {
   })
   
 });
+//积分对照表管理页
 router.get('/score/manage', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
   con.connect();
@@ -383,6 +387,7 @@ router.get('/score/manage', function(req, res, next) {
   })
 });
 
+//删除任务
 router.get("/score/deletemanage",function(req,res,next){
   var taskId=req.query.taskId;
   var con=mysql.createConnection(dbconfig);
@@ -396,6 +401,7 @@ router.get("/score/deletemanage",function(req,res,next){
       }
     })
 })
+//找到ID
 let taskId=0;
 router.post("/task",function (req,res,next) {
   taskId=req.body.task;
@@ -424,6 +430,7 @@ router.post("/task1",function (req,res,next) {
     }
   });
 })
+//添加任务
 router.post('/addtask',function (req,res,next) {
   var score=req.body.score;
   var content=req.body.content;
@@ -439,6 +446,7 @@ router.post('/addtask',function (req,res,next) {
   }
 });
 });
+//编辑任务
 router.post("/updatetask",function (req,res,next) {
   var taskContent=req.body.content1;
   var taskScore=req.body.score1;
@@ -452,6 +460,7 @@ router.post("/updatetask",function (req,res,next) {
     }
   });
 })
+//搜索任务
 router.post("/searchtask",function (req,res,next) {
   var taskId=req.body.taskId;
   var con=mysql.createConnection(dbconfig);
