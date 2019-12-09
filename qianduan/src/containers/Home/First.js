@@ -52,21 +52,23 @@ export default class First extends Component {
             this.setState({
                 allpot:res.E
             })
-            console.log(this.state.allpot[0].name)
+            console.log(this.state.allpot)
         })
+    }
+    changeCity = (e) => {
+        console.log(e.target.value);
     }
     render() {
         return (
             <div>
                 <div style={{zIndex:999,position:'absolute',width:'100%'}}>
                     <div className="dropdown">
-                                    <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}></div>
-                                        <span style={{marginLeft:"10px",lineHeight:'20px'}}>{this.state.pot.name}</span>
-                                    <div className="dropdown-content">
-                                        {/* <p>{this.state.allpot[0].name}</p> */}
-                                    </div>
-                                </div>
-                    <input placeholder="请输入目的地" className="search"/>
+                        <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}>
+                            <span style={{marginLeft:"5px"}}>{this.state.pot.name}</span>
+                        </div>
+                    </div>
+                    <input placeholder="请输入目的地" className="search"  onKeyDown={this.changeCity} />
+                    <button style={{width:'50px',float:'right',background:'white',marginRight:'7%',marginTop:'3%',border:'none',borderRadius:'5px'}}>搜索</button>
                 </div>
                 <Carousel
                     autoplay={true}
@@ -79,14 +81,6 @@ export default class First extends Component {
                             href="#"
                             style={{ display: 'inline-block', width: '100%', height: '100%' }}
                         >
-                            {/* <div className="dropdown">
-                                <div className="iconfont icon-location" style={{position:'absolute',left:'0',color:'black'}}></div>
-                                    <span style={{marginLeft:"5px",marginTop:'5px'}}>{this.state.pot.name}</span>
-                                <div className="dropdown-content">
-                  
-                                </div>
-                            </div>
-                            <input placeholder="请输入目的地" className="search"/> */}
                             <img
                                 src={'./images/Carousel'+val+'.jpg'}
                                 alt=""
@@ -101,20 +95,6 @@ export default class First extends Component {
                         </a>
                     ))}
                 </Carousel>
-                {/* <Grid data={data}
-                style={{height:'50px'}}
-                hasLine={false}
-                square={false}
-                columnNum={3}
-                renderItem={dataItem => (
-                    <div style={{ padding: '12.5px',width:'100%',height:'60px' }}>
-                        <Link to={dataItem.link}>
-                            <div className={dataItem.data} style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div>
-                            <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>{dataItem.text}</p>
-                        </Link>
-                    </div>
-                )}
-                /> */}
                 <div style={{height:'50px'}}>
                     <Link to={'/spot?city=' + encodeURI(this.state.pot.name)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
