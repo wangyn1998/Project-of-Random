@@ -77,26 +77,26 @@
     var zz =new Array(a.length);
     for(var i=0;i <a.length;i++){
         zz[i]=a[i].innerHTML;
-    } //div的字符串数组付给zz
+    }
     return zz;
 }
 function change(e){
     pageno=e;
     if(e<1){
-        e=1;pageno=1;//就等于第1页 ， 当前页为1
+        e=1;pageno=1;
     }
-    if(e>pageall){  //如果输入页大于最大页
-        e=pageall;pageno=pageall; //输入页和当前页都=最大页
+    if(e>pageall){  
+        e=pageall;pageno=pageall; 
     }
-    $("#all").html("");//全部清空
+    $("#all").html("");
     if(pageno==1){
         var html="";
     }
     else{
         var html="<li><div style='text-align: left;line-height:3rem;'><h1>用户:<%= userName%></h1></div> </li> <li ><div class='Userhead'><h2 class='Userhead1'>完成任务内容</h2><h2 class='Userhead1'>积分变换</h2><h2 class='Userhead1'>总积分</h2></div></li> ";
     }    for(var i=0;i<pagesize;i++){
-        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
-        if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
+        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+        if(zz[(e-1)*pagesize+i+1]==null) break;
     }
     $("ul#all").html(html);//给ul列表写入html
     var ye="";
@@ -116,13 +116,13 @@ function change(e){
         $("#page").html(pageContent);
 }
     var zz=getzz()
-    var pageno=1 ; //当前页
-    var pagesize=6; //每页多少条信息
+    var pageno=1 ; 
+    var pagesize=6; 
     if(zz.length%pagesize==0){
         var  pageall =zz.length/pagesize ;
     }else{
         var  pageall =parseInt(zz.length/pagesize)+1;
-    }   //一共多少页
+    }  
     change(1);
 </script>
 </html>
