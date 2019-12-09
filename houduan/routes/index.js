@@ -71,17 +71,13 @@ router.get('/home',function(req,res,next){
 
 
 router.get('/user', function(req, res, next) {
-  //数据库的连接
   var con=mysql.createConnection(dbconfig);
-  //连接
   con.connect();
-  //进行操作(sql语句变化)
   con.query("select * from user",function(err,result){
     if(err){
       console.log(err);
     }
     else{
-      //显示到页面--渲染方法--render,
       res.render("User/user",{userList:result});
     }
   })
@@ -336,17 +332,13 @@ router.get('/score', function(req, res, next) {
   res.render('Score/score', { title: 'Express' });
 });
 router.get('/score/list', function(req, res, next) {
-   //数据库的连接
    var con=mysql.createConnection(dbconfig);
-   //连接
    con.connect();
-   //进行操作(sql语句变化)
    con.query("select * from score order by sum DESC",function(err,result){
      if(err){
        console.log(err);
      }
      else{
-       //显示到页面--渲染方法--render,
        res.render("Score/list",{scoreList:result});
      }
    })
@@ -357,7 +349,6 @@ router.get('/score/slist', function(req, res, next) {
   var userName=req.query.userName;
   var con=mysql.createConnection(dbconfig);
   con.connect();
-  //进行操作(sql语句变化)
   con.query("select * from slist where userName=?",[userName],function(err,result){
     if(err){
       console.log(err);
@@ -377,17 +368,13 @@ router.get('/score/slist', function(req, res, next) {
   
 });
 router.get('/score/manage', function(req, res, next) {
-  //数据库的连接
   var con=mysql.createConnection(dbconfig);
-  //连接
   con.connect();
-  //进行操作(sql语句变化)
   con.query("select * from task",function(err,result){
     if(err){
       console.log(err);
     }
     else{
-      //显示到页面--渲染方法--render,
       res.render("Score/manage",{taskList:result});
     }
   })
@@ -402,17 +389,6 @@ router.get("/score/deletemanage",function(req,res,next){
       console.log(err);
     }
     else{
-      //显示到页面--渲染方法--render,
-      //进行操作(sql语句变化)
-      // con.query("select * from user",function(err,result){
-      //   if(err){
-      //     console.log(err);
-      //   }
-      //   else{
-      //     //显示到页面--渲染方法--render,
-      //     res.render("User/user",{userList:result});
-      //   }
-      //   })
       res.render("Score/shanchu",{ title: 'Express' })
       }
     })
@@ -450,7 +426,6 @@ router.post('/addtask',function (req,res,next) {
   var content=req.body.content;
   console.log(score);
   console.log(content);
-
   var con=mysql.createConnection(dbconfig);
   con.connect();
   con.query("insert into task(taskContent,taskScore) values(?,?)",[content,score],function (err,result) {
