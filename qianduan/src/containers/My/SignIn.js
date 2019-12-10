@@ -9,7 +9,10 @@ export default class SignIn extends Component {
         this.state = {
             score:0,
             isClick:true,
-            username:''
+            username:'',
+            taskId:'',
+            taskContent:'',
+            phone:''
         }
     }
     successToast=()=> {       
@@ -18,9 +21,11 @@ export default class SignIn extends Component {
         if (isClick == true) {   //如果为true 开始执行
             Toast.success('签到成功，积分+10', 1);
             let s = this.state.score;
-                s=s+10;
-                this.setState({
-                    score:s            
+            s=s+10;
+            this.setState({
+                score:s,
+                taskId:1,
+                taskContent:'签到'    
             })
             console.log(this.state.isClick)
             this.setState({ isClick: false })   //将isClick 变成false，将不会执行处理事件
@@ -35,7 +40,7 @@ export default class SignIn extends Component {
             const time = hour+minutes+seconds;
             console.log(that.state.isClick)
             localStorage.setItem('click',that.state.isClick);
-            let text = {userName:this.state.username,sum:s,updateTime:new Date()} //获取数据
+            let text = {userName:this.state.username,updateTime:new Date(),taskId:1,taskContent:'签到',taskScore:10,phone:this.state.phone} //获取数据
             let send = JSON.stringify(text);   //重要！将对象转换成json字符串
             fetch(`http://127.0.0.1:8001/getscore`,{   //Fetch方法y
                 method: 'POST',
@@ -73,7 +78,9 @@ export default class SignIn extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             this.setState({
-                username:res[0].userName
+                username:res[0].userName,
+                score:res[0].sum,
+                phone:res[0].Uphone
             })
         })
     }
@@ -89,8 +96,7 @@ export default class SignIn extends Component {
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <div style={{float:'left',width:'20%',marginLeft:'10%'}}>
-                    <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto'}}>
-                        <img src='https://img2.woyaogexing.com/2019/12/02/0f799dade52e4717a238670a5851e6a4!400x400.jpeg' style={{width:'100%',height:'100%',borderRadius:'50%'}}/>                       
+                    <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}>                       
                     </div>
                     <p style={{textAlign:'center'}}>{this.state.username}</p>
                 </div>  

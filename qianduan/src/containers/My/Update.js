@@ -9,13 +9,14 @@ export default class Update extends Component {
             percent: 0,
             disabled: false,
             users:
-                {name:'',
-                img:'',
-                sex:'',
-                birthday:'',
-                place:'',
-                sign:'',
-                phone:''
+                {userName:'',
+                Uimage:'',
+                Usex:'',
+                Ubirthday:'',
+                Uaddress:'',
+                Usign:'',
+                Uphone:'',
+                Upercent:0
             },
             multiple: false,
             files: []
@@ -31,63 +32,60 @@ export default class Update extends Component {
         fetch('http://localhost:8001/updateuser')
         .then((res)=>res.json())
         .then((res)=>{
+            var data={};
             console.log(res);
-            console.log(res[0].Ubirthday)
-            console.log(typeof(res[0].Ubirthday))
-            let data={name:res[0].userName,
-                img:res[0].Uimage,
-                sex:res[0].Usex,
-                birthday:'',
-                place:res[0].Uaddress,
-                sign:res[0].Usign,
-                phone:res[0].Uphone
+            console.log(res[0])
+            for(var key in res[0]){
+                if(res[0][key]=='-'){
+                    data[key]=''
+                }else{
+                    data[key]=res[0][key];
+                }
             }
+            console.log(data);
             this.setState({
-                users:data
+                users:{
+                    userName:data.userName,
+                    Uimage:data.Uimage,
+                    Usex:data.Usex,
+                    Ubirthday:'',
+                    Uaddress:data.Uaddress,
+                    Usign:data.Usign,
+                    Uphone:data.Uphone,
+                    Upercent:data.Upercent
+                }
             })
         })
     }
     nameChange(e){
-        let data=Object.assign({},this.state.users,{name:e})
+        let data=Object.assign({},this.state.users,{userName:e})
         this.setState({
             users:data
         })
     }
     sexChange(e){
-        let data=Object.assign({},this.state.users,{sex:e})
+        let data=Object.assign({},this.state.users,{Usex:e})
         this.setState({
             users:data
         })
     }
     birthdayChange(e){
-        let data=Object.assign({},this.state.users,{birthday:e})
+        let data=Object.assign({},this.state.users,{Ubirthday:e})
         this.setState({
             users:data
         })
     }
     placeChange(e){
-        let data=Object.assign({},this.state.users,{place:e})
+        let data=Object.assign({},this.state.users,{Uaddress:e})
         this.setState({
             users:data
         })
     }
     signChange(e){
-        let data=Object.assign({},this.state.users,{sign:e})
+        let data=Object.assign({},this.state.users,{Usign:e})
         this.setState({
             users:data
         })
-    }
-    add = () => {
-        let p = 0
-        for(let key in this.state.users){
-            console.log(key)
-            console.log(this.state.users[key])
-            if(this.state.users[key] !== ''){
-                p ++;
-            }
-        }
-        let pp = Math.round(p*15) 
-        this.setState({ percent: pp });
     }
     //图片选择
     onChange = (files, type, index) => {
@@ -103,7 +101,8 @@ export default class Update extends Component {
     });
     }
     getConnect=()=>{  //api请求函数
-        let p = -1
+        let yuanming = this.state.users.userName
+        let p = -2
         for(let key in this.state.users){
             console.log(key)
             console.log(this.state.users[key])
@@ -112,19 +111,34 @@ export default class Update extends Component {
             }
         }
         let pp = Math.round(p*15) 
-        this.setState({ percent: pp });
-        let text = this.state.users //获取数据
+        let data=Object.assign({},this.state.users,{Upercent:pp})
+        this.setState({
+            users:data
+        })
+        let text = {
+            yuanming:yuanming,
+            userName:this.state.users.userName,
+            Uimage:this.state.users.Uimage,
+            Usex:this.state.users.Usex,
+            Ubirthday:this.state.users.Ubirthday,
+            Uaddress:this.state.users.Uaddress,
+            Usign:this.state.users.Usign,
+            Uphone:this.state.users.Uphone,
+            Upercent:pp
+        }
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+        console.log(text);
         fetch(`http://127.0.0.1:8001/updateuser`,{   //Fetch方法y
             method: 'POST',
             headers: {'Content-Type': 'application/json; charset=utf-8'},
             body: send
+            
         })
         .then(res => res.json())
         .then(
             data => {
                 if(data.success){
-                    // window.alert('修改成功');
+                    window.alert('修改成功');
                     // his.push('/my')
                     // window.location.reload();
                 }
@@ -135,7 +149,6 @@ export default class Update extends Component {
         )
     }
     render() {
-        const { percent } = this.state;
         const { files } = this.state;
         return (
             <div>
@@ -147,8 +160,8 @@ export default class Update extends Component {
                 </NavBar>  
                 <div className="progress-container">
                     <div className="show-info">
-                        <div className="progress"><Progress percent={percent} position="normal" /></div>
-                        <div aria-hidden="true">{percent}%</div>
+                        <div className="progress"><Progress percent={this.state.users.Upercent} position="normal"/></div>
+                        <div aria-hidden="true">{this.state.users.Upercent}%</div>
                     </div>
                 </div>
                 <WingBlank>
@@ -172,7 +185,7 @@ export default class Update extends Component {
                         title="昵称"
                         placeholder="用户名"
                         clear
-                        value={this.state.users.name}
+                        value={this.state.users.userName}
                         onChange={this.nameChange}
                     >昵称</InputItem>
                     <InputItem
@@ -181,14 +194,14 @@ export default class Update extends Component {
                         title="性别"
                         placeholder="女"
                         clear
-                        value={this.state.users.sex}
+                        value={this.state.users.Usex}
                         onChange={this.sexChange}
                     >性别</InputItem>
                     <DatePicker
                         mode="date"
                         title="Select Date"
-                        extra={this.state.users.birthday}
-                        value={this.state.users.birthday}
+                        extra={this.state.users.Ubirthday}
+                        value={this.state.users.Ubirthday}
                         onChange={this.birthdayChange}
                         >
                         <List.Item arrow="horizontal" name='Ubirthday' id='Ubirthday'>生日</List.Item>
@@ -198,7 +211,7 @@ export default class Update extends Component {
                         id='Uaddress'
                         title="所在地"
                         placeholder="你来自哪里"
-                        value={this.state.users.place}
+                        value={this.state.users.Uaddress}
                         clear
                         onChange={this.placeChange}
                     >所在地</InputItem>
@@ -209,7 +222,7 @@ export default class Update extends Component {
                         autoHeight
                         clear
                         placeholder="介绍下自己吧"
-                        value={this.state.users.sign}
+                        value={this.state.users.Usign}
                         onChange={this.signChange}
                     >签名</InputItem>
                 </List>

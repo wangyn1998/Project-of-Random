@@ -39,7 +39,7 @@ export default class Login extends Component {
         .then(
             data => {
                 if(data.success){
-                    window.alert('验证成功！！！');
+                    window.alert('验证');
                     his.push('/my')
                     window.location.reload();
                 }
