@@ -21,9 +21,9 @@ export default class App extends Component {
             ],
             // 积分排名
             data2:[
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'',score:100,color:'#A0522D '},
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'',score:100,color:'#C0C0C0'},
-                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'',score:100,color:'#F4A460'}
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名1',img:'',score:0,color:'#A0522D '},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名2',img:'',score:0,color:'#C0C0C0'},
+                {class:'iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-',tit:'用户名3',img:'',score:0,color:'#F4A460'}
             ],
             //我的收藏等
             data3:[
@@ -33,7 +33,11 @@ export default class App extends Component {
             ],
             //抽屉
             open: true,
-            username:''
+            username:'',
+            first:{},
+            second:{},
+            third:{},
+            touxiang:''
         };
     }
     componentDidMount(){
@@ -41,8 +45,15 @@ export default class App extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res);
+            let d1 = Object.assign({},this.state.data2[0],{tit:res[1].userName},{score:res[1].sum},{img:res[1].Uimage})
+            let d2 = Object.assign({},this.state.data2[1],{tit:res[2].userName},{score:res[2].sum},{img:res[2].Uimage})
+            let d3 = Object.assign({},this.state.data2[2],{tit:res[3].userName},{score:res[3].sum},{img:res[3].Uimage})
+            let d0 = [d1,d2,d3]
+            console.log(d0)
             this.setState({
-                username:res[0].userName
+                username:res[0].userName,
+                data2:d0,
+                touxiang:res[0].Uimage
             })
         })
     }
@@ -140,7 +151,9 @@ export default class App extends Component {
                 <div style={{width:'100%'}}>
                     <div>
                         <div style={{float:'left',width:'20%'}}>
-                            <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}></div>
+                            <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto',overflow:'hidden'}}>
+                                <img src={this.state.touxiang}/>
+                            </div>
                             {/* <con.Consumer>
                                 {value=><p style={{textAlign:'center'}}>{value}</p>}
                             </con.Consumer> */}
@@ -192,15 +205,15 @@ export default class App extends Component {
                     itemStyle={{height:'50px'}}
                     renderItem={dataItem => (
                         <div>
-                            <div style={{marginTop:'3%',float:'left',color:`${dataItem.color}`}}>
+                            <div style={{marginTop:'3%',float:'left',color:`${dataItem.color}`,height:'30px',width:'30px'}}>
                             {
-                                <i className={dataItem.class} style={{height:'20px',width:'20px',float:'left'}}></i>
+                                <i className={dataItem.class} style={{height:'30px',width:'30px',float:'left'}}></i>
                             }
                             </div>
-                            <div style={{height:'20px',width:'20px',marginTop:'3%',borderRadius:'50%',backgroundColor:'red',float:"left",marginLeft:'3%'}}>
-                                <image src={dataItem.img}/>
+                            <div style={{height:'30px',width:'30px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%',overflow:'hidden',marginLeft:'5%',marginTop:'7px'}}>
+                                <img src={dataItem.img} style={{height:'30px',width:'30px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%',overflow:'hidden'}}/>
                             </div>
-                            <p style={{float:'left',marginLeft:'5%'}}>{dataItem.tit}</p>
+                            <p style={{float:'left',marginLeft:'10%'}}>{dataItem.tit}</p>
                             <p style={{float:'right',marginRight:'15%'}}>{dataItem.score}分</p>
                         </div>
                     )}

@@ -12,7 +12,8 @@ export default class SignIn extends Component {
             username:'',
             taskId:'',
             taskContent:'',
-            phone:''
+            phone:'',
+            img:''
         }
     }
     successToast=()=> {       
@@ -74,13 +75,14 @@ export default class SignIn extends Component {
         window.location.reload();
     }
     componentDidMount(){
-        fetch('http://localhost:8001/my')
+        fetch('http://localhost:8001/getscore')
         .then((res)=>res.json())
         .then((res)=>{
             this.setState({
                 username:res[0].userName,
                 score:res[0].sum,
-                phone:res[0].Uphone
+                phone:res[0].Uphone,
+                img:res[0].Uimage
             })
         })
     }
@@ -96,7 +98,8 @@ export default class SignIn extends Component {
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <div style={{float:'left',width:'20%',marginLeft:'10%'}}>
-                    <div style={{width:'60px',height:'60px',borderRadius:'50%',backgroundColor:'red',marginLeft:'auto',marginRight:'auto'}}>                       
+                    <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto'}}>
+                        <img src={this.state.img} style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto',overflow:'hidden'}}/>                       
                     </div>
                     <p style={{textAlign:'center'}}>{this.state.username}</p>
                 </div>  

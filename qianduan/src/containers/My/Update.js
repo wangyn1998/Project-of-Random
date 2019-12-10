@@ -89,10 +89,13 @@ export default class Update extends Component {
     }
     //图片选择
     onChange = (files, type, index) => {
-        console.log(files, type, index);
+        console.log(files);
+        let data=Object.assign({},this.state.users,{Uimage:files[0].url})
+        console.log(data);
         this.setState({
-          files,
-        });
+            users:data,
+            files,
+        })
       }
     onSegChange = (e) => {
     const index = e.nativeEvent.selectedSegmentIndex;
@@ -101,7 +104,6 @@ export default class Update extends Component {
     });
     }
     getConnect=()=>{  //api请求函数
-        let yuanming = this.state.users.userName
         let p = -2
         for(let key in this.state.users){
             console.log(key)
@@ -115,15 +117,31 @@ export default class Update extends Component {
         this.setState({
             users:data
         })
+        var data1={};
+            // console.log(res);
+            // console.log(res[0])
+            // for(var key in res[0]){
+            //     if(res[0][key]=='-'){
+            //         data[key]=''
+            //     }else{
+            //         data[key]=res[0][key];
+            //     }
+            // }
+        for(var key in this.state.users){
+            if(this.state.users[key]==''){
+                data1[key]='-'
+            }else{
+                data1[key]=this.state.users[key];
+            }
+        }
         let text = {
-            yuanming:yuanming,
-            userName:this.state.users.userName,
-            Uimage:this.state.users.Uimage,
-            Usex:this.state.users.Usex,
-            Ubirthday:this.state.users.Ubirthday,
-            Uaddress:this.state.users.Uaddress,
-            Usign:this.state.users.Usign,
-            Uphone:this.state.users.Uphone,
+            userName:data1.userName,
+            Uimage:data1.Uimage,
+            Usex:data1.Usex,
+            Ubirthday:data1.Ubirthday,
+            Uaddress:data1.Uaddress,
+            Usign:data1.Usign,
+            Uphone:data1.Uphone,
             Upercent:pp
         }
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
