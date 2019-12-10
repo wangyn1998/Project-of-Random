@@ -12,19 +12,19 @@
 * 王予诺（项目经理、UI设计师、开发工程师、测试工程师）
   * Email：928069834@qq.com
   * Github：https://github.com/wangyn1998
-* 杨迪（开发工程师）
+* 杨迪（技术总监、UI设计师、开发工程师、测试工程师）
   * Email：736208296@qq.com
   * Github：https://github.com/YangDiaa
-* 郑尚姿（开发工程师）
+* 郑尚姿（技术总监、UI设计师、开发工程师、测试工程师）
   * Email：1643613240@qq.com
   * Github：https://github.com/zhengshangzi
-* 范钰敏（开发工程师）
+* 范钰敏（技术总监、、UI设计师、开发工程师、测试工程师）
   * Email：1668576168@qq.com
   * Github：https://github.com/fym1
-* 杜瑜萌（开发工程师）
+* 杜瑜萌（产品经理、UI设计师、开发工程师、测试工程师）
   * Email：272780382@qq.com
   * Github：https://github.com/duyumengdym
-* 张宇娟（开发工程师）
+* 张宇娟（市场总监、、UI设计师、开发工程师、测试工程师）
   * Email：1123243305@qq.com
   * Github：https://github.com/zhangyujuan123
 
