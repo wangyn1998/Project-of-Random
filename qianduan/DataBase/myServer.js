@@ -215,7 +215,7 @@ app.post('/postmessage',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
     console.log(req.body.postContent);
-    con.query('insert into post(postContent) values(?)',[req.body.postContent],function(err,result){
+    con.query('insert into post(postContent,postImage) values(?,?)',[req.body.postContent,req.body.postImage],function(err,result){
         if(err){
             console.log(err);
         }
