@@ -26,7 +26,6 @@ export default class First extends Component {
         super();
         this.state={
             pot:['北京'],
-            allpot:[],
             data:['1','2','3'],
             imgHeight:180,
         }
@@ -99,7 +98,7 @@ export default class First extends Component {
                 <div style={{height:'50px'}}>
                     <Link to={'/spot?city=' + encodeURI(this.state.pot)}>
                         <div style={{float:'left',width:'25%',padding:'4%'}}>
-                            <div className='iconfont icon-foot' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
+                            <div className='iconfont icon-jiaoya' style={{color:'#2278c9',textAlign:'center',margin:'0 auto'}}></div> 
                             <p style={{color:'#2278c9',fontSize:'16px',textAlign:'center'}}>周边景点</p>
                         </div>
                     </Link>
@@ -118,7 +117,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/hot'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'12%'}}>热门推荐》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',color:'black',marginTop:'12%'}}>热门推荐<span className="iconfont icon-more" style={{marginLeft:'5px'}}></span></p>
                     </Link>
                     <div>
                         <div>
@@ -136,7 +135,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center'}}>
                     <Link to='/historic'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'12%',color:'black'}}>名胜古迹》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'12%',color:'black'}}>名胜古迹<span className="iconfont icon-more" style={{marginLeft:'5px'}}></span></p>
                     </Link>
                     <div>
                         <div>
@@ -154,7 +153,7 @@ export default class First extends Component {
                 </div>
                 <div style={{width:'90',height:'180px',textAlign:'center',marginBottom:'140px'}}>
                     <Link to='/celebrity'>
-                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'11%',color:'black'}}>网红打卡》</p>
+                        <p style={{position:'absolute',left:'5%',fontSize:'20px',marginTop:'11%',color:'black'}}>网红打卡<span className="iconfont icon-more" style={{marginLeft:'5px'}}></span></p>
                     </Link>
                     <div>
                         <div>
