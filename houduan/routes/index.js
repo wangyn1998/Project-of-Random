@@ -70,7 +70,7 @@ router.get('/home',function(req,res,next){
     })
 });
 
-//展示用户管理页
+//展示用户列表页
 router.get('/user', function(req, res, next) {
   var con=mysql.createConnection(dbconfig);
   con.connect();
