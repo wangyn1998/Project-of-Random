@@ -16,6 +16,8 @@ import Personal from '../containers/My/Set/Personal'
 import Contact from '../containers/My/About/Contact'
 import Introduction from '../containers/My/About/Introduction'
 import Post from '../containers/Block/Post'
+import More from '../containers/My/More'
+import Rank from '../containers/My/Rank'
 export default class Bottom extends Component {
   render() {
     return (
@@ -62,6 +64,8 @@ export default class Bottom extends Component {
         <Route exact path='/contact' component={Contact}/>
         <Route exact path='/introduction' component={Introduction}/>
         <Route exact path='/post' component={Post}/>
+        <Route exact path='/more' component={More}/>
+        <Route exact path='/rank' component={Rank}/>
       </Router>
     )
   }
