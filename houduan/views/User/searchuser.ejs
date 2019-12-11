@@ -45,7 +45,7 @@
             </div>
            <div class='Userbox3' style="height:260px">
                 <ul id="all" >
-                        <li >
+                        <!-- <li >
                             <div class="Userhead">
                             <h3 class='Userhead1'>头像</h3>
                             <h3 class='Userhead1'>用户名</h3>
@@ -55,7 +55,7 @@
                             <h3 class='Userhead1'>所在地</h3>
                             <h3 class='Userhead1'>操作</h3>
                             </div>
-                        </li> 
+                        </li>  -->
                    <% for(var i = 0 ; i < userList.length; i++) {%>
                     <li>
                         <div class='Userbody'>
@@ -105,14 +105,22 @@ function change(e){
         e=pageall;pageno=pageall; 
     }
     $("#all").html("");
-    if(pageno==1){
-        var html="";
-    }
-    else{
-        var html=" <li><div class='Userhead'><h3 class='Userhead1'>头像</h3><h3 class='Userhead1'>用户名</h3><h3 class='Userhead1'>手机号</h3><h3 class='Userhead1'>性别</h3><h3 class='Userhead1'>生日</h3><h3 class='Userhead1'>所在地</h3><h3 class='Userhead1'>操作</h3></div></li> ";
-    }
-    for(var i=0;i<pagesize;i++){
-        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+    // if(pageno==1){
+    //     var html="";
+    //     pagesize=6;
+    // }
+    // else{
+    //     var html=" <li><div class='Userhead'><h3 class='Userhead1'>头像</h3><h3 class='Userhead1'>用户名</h3><h3 class='Userhead1'>手机号</h3><h3 class='Userhead1'>性别</h3><h3 class='Userhead1'>生日</h3><h3 class='Userhead1'>所在地</h3><h3 class='Userhead1'>操作</h3></div></li> ";
+    //     pagesize=5;
+    // }
+            var html=" <li><div class='Userhead'><h3 class='Userhead1'>头像</h3><h3 class='Userhead1'>用户名</h3><h3 class='Userhead1'>手机号</h3><h3 class='Userhead1'>性别</h3><h3 class='Userhead1'>生日</h3><h3 class='Userhead1'>所在地</h3><h3 class='Userhead1'>操作</h3></div></li> ";
+
+            for(var i=0;i<pagesize;i++){
+        if(zz[(e-1)*pagesize+i]){
+            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+
+
+        }
         if(zz[(e-1)*pagesize+i+1]==null) break;
     }
     $("ul#all").html(html);//给ul列表写入html
@@ -134,7 +142,7 @@ function change(e){
 }
     var zz=getzz()
     var pageno=1 ; 
-    var pagesize=6; 
+    var pagesize=5; 
     if(zz.length%pagesize==0){
         var  pageall =zz.length/pagesize ;
     }else{
