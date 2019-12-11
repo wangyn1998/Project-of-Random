@@ -92,6 +92,7 @@ app.post('/getscore', function (req, res) {  //接收POST请求
       })
   })
 /**登录 */
+var phone1='';
 app.post('/login', function (req, res) {  //接收POST请求
   /**获取请求体数据 */
   let data = req.body;   //解析body中的信息
@@ -99,6 +100,7 @@ app.post('/login', function (req, res) {  //接收POST请求
   let message1 = {success:true}
   let message2 = {success:false}
   /**连接数据库 */
+  phone1=data.phone;
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from user where Uphone = ? and Upasswd = ?",[data.phone,data.password],function(err,result){
@@ -293,6 +295,7 @@ app.get('/Getnum',(req,res)=>{
   params, smsSign, "", "", callback);
   res.send(message1);
 })
+
 /**张 */
 app.get('/topic',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
