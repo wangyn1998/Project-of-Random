@@ -48,7 +48,7 @@
             <div class='Managebox3'>
                 <ul class='ManageList' style="padding-inline-start: 0px;margin-block-start: 0;
                 margin-block-end: 0"s id="all">
-                    <li>
+                    <!-- <li>
                         <div class='Managehead'>
                         <h3 class='Managehead1' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>任务编号</b></h3>
@@ -59,7 +59,7 @@
                          <h3 class='Managehead1' style="margin-block-start:0.5em;
                          margin-block-end: 0;"><b>操作</b></h3>
                          </div>
-                    </li>
+                    </li> -->
                     
                     <% for(var i = 0 ; i < taskList.length; i++) {%>
                         <li>
@@ -142,14 +142,22 @@ function change(e){
         e=pageall;pageno=pageall;
     }
     $("#all").html("");
-    if(pageno==1){
-        var html="";
-    }
-    else{
-        var html=" <li><div class='Managehead'><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;''><b>任务编号</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>任务内容</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>分数</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div> </li> ";
-    }
-    for(var i=0;i<pagesize;i++){
-        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+    // if(pageno==1){
+    //     var html="";
+    //     pagesize=6;
+    // }
+    // else{
+    //     var html=" <li><div class='Managehead'><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;''><b>任务编号</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>任务内容</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>分数</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div> </li> ";
+    //     pagesize=5;
+    // }
+            var html=" <li><div class='Managehead'><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;''><b>任务编号</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>任务内容</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>分数</b></h3><h3 class='Managehead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div> </li> ";
+
+            for(var i=0;i<pagesize;i++){
+        if(zz[(e-1)*pagesize+i]){
+            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+
+
+        }
         if(zz[(e-1)*pagesize+i+1]==null) break;
     }
     $("ul#all").html(html);
@@ -171,7 +179,7 @@ function change(e){
 }
     var zz=getzz()
     var pageno=1 ; 
-    var pagesize=6; 
+    var pagesize=5; 
     if(zz.length%pagesize==0){
         var  pageall =zz.length/pagesize ;
     }else{

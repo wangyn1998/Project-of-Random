@@ -32,7 +32,7 @@
         <div class="right">
             <div class='Userbox3' style="height:310px">
                 <ul id="all"style="height:310px" >
-                     <li >
+                     <!-- <li >
                          <div style='text-align: left;line-height:3rem;'>
                                 <%if(userName!=[]){%>
                                     <h1>用户名:<%= userName%></h1>
@@ -40,16 +40,16 @@
                                     <h1>用户名:手机号<%= Uphone%></h1>
                                     <%}%>
                            </div> 
-                         </li> 
+                         </li>  -->
                 
-                    <li >
+                    <!-- <li >
                         <div class='Userhead'>
                         <h2 class='Userhead1'>完成任务内容</h2>
                         <h2 class='Userhead1'>积分变换</h2>
                         <h2 class='Userhead1'>总积分</h2>
                         </div>
                        
-                    </li> 
+                    </li>  -->
                         <% for(var i = 0 ; i < slistList.length; i++) {%>
                             <li>
                                 <p class='Userbody'><%= slistList[i]["taskContent"] %></p>
@@ -93,13 +93,22 @@ function change(e){
         e=pageall;pageno=pageall; 
     }
     $("#all").html("");
-    if(pageno==1){
-        var html="";
-    }
-    else{
-        var html="<li><div style='text-align: left;line-height:3rem;'><h1>用户:<%= userName%></h1></div> </li> <li ><div class='Userhead'><h2 class='Userhead1'>完成任务内容</h2><h2 class='Userhead1'>积分变换</h2><h2 class='Userhead1'>总积分</h2></div></li> ";
-    }    for(var i=0;i<pagesize;i++){
-        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+    // if(pageno==1){
+    //     var html="";
+    //     pagesize=6;
+    // }
+    // else{
+    //     var html="<li><div style='text-align: left;line-height:3rem;'><h1>用户:<%= userName%></h1></div> </li> <li ><div class='Userhead'><h2 class='Userhead1'>完成任务内容</h2><h2 class='Userhead1'>积分变换</h2><h2 class='Userhead1'>总积分</h2></div></li> ";
+    //     pagesize=5;
+    // }    
+    var html="<li><div style='text-align: left;line-height:3rem;'> <%if(userName!=[]){%><h1>用户名:<%= userName%></h1><%}else{%><h1>用户名:手机号<%= Uphone%></h1><%}%></div> </li> <li ><div class='Userhead'><h2 class='Userhead1'>完成任务内容</h2><h2 class='Userhead1'>积分变换</h2><h2 class='Userhead1'>总积分</h2></div></li> ";
+
+    for(var i=0;i<pagesize;i++){
+        if(zz[(e-1)*pagesize+i]){
+            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';
+
+
+        }
         if(zz[(e-1)*pagesize+i+1]==null) break;
     }
     $("ul#all").html(html);//给ul列表写入html
@@ -121,7 +130,7 @@ function change(e){
 }
     var zz=getzz()
     var pageno=1 ; 
-    var pagesize=6; 
+    var pagesize=5; 
     if(zz.length%pagesize==0){
         var  pageall =zz.length/pagesize ;
     }else{
