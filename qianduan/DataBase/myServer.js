@@ -306,10 +306,10 @@ app.get('/topic',function(req,res,next){
         }
     })
 })
-app.get('/post',function(req,res,next){
+app.get('/topicHot',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    con.query('select * from post',function(err,result){
+    con.query('select * from topic where topicSign=?',['hot'],(err,result)=>{
         if(err){
             console.log(err);
         }
@@ -318,15 +318,89 @@ app.get('/post',function(req,res,next){
         }
     })
 })
-app.post('/postmessage',function(req,res,next){
+app.get('/topicNew',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    console.log(req.body.postContent);
-    con.query('insert into post(postContent,postImage) values(?,?)',[req.body.postContent,req.body.postImage],function(err,result){
+    con.query('select * from topic where topicSign=?',['new'],(err,result)=>{
         if(err){
             console.log(err);
         }
+        else{
+            res.send(result);
+        }
     })
+})
+app.get('/post',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from post order by postId desc',function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    })
+})
+app.get('/usermessage',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    var user1;
+    con.query('select * from user where Uphone=?',[phone1],function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            user1=result[0].userName;
+            img1=result[0].Uimage;
+            if(user1==''){
+                user1='未命名';
+            }
+            var user={username:user1};
+            res.send(user);
+        }
+    })
+    
+})
+app.post('/postmessage',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    function getDate(){
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        now = year + '-' + conver(month) + "-" + conver(date);
+        return now;
+    }
+    function conver(s) {
+        return s < 10 ? '0' + s : s;
+    }
+    var time=getDate();
+    var user1='',img1='';
+    con.query('select * from user where Uphone=?',[phone1],function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            user1=result[0].userName;
+            img1=result[0].Uimage;
+            if(user1==''){
+                user1='未命名';
+            }
+            con.query('insert into post(postTime,postContent,userName,Uimage) values(?,?,?,?)',[time,req.body.postContent,user1,img1],function(err,result){
+                if(err){
+                    console.log(err);
+                }
+            });
+
+        }
+    });
+    // con.query('insert into post(postTime,postContent,userName,Uimage) values(?,?,?,?)',[time,req.body.postContent,user1,img1],function(err,result){
+    //     if(err){
+    //         console.log(err);
+    //     }
+    // });
 })
 app.post('/zhuanfa',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
@@ -376,6 +450,19 @@ app.get('/clickpost',function(req,res,next){
         }
     })
 })
+app.get('/usermessage2',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from user',function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(result);
+        }
+    })
+    
+})
 app.get('/reply',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
@@ -387,6 +474,63 @@ app.get('/reply',function(req,res,next){
             res.send(result);
         }
     })
+})
+app.post('/replypost',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    var user1,img1;
+    con.query('select * from user where Uphone=?',[phone1],function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            user1=result[0].userName;
+            img1=result[0].Uimage;
+            if(user1==''){
+                user1='未命名';
+            }
+            con.query('insert into reply(replyContent,userName,postId,Uimage) values(?,?,?,?)',[req.body.replyContent,user1,req.body.postId,img1],function(err,result){
+                if(err){
+                    console.log(err);
+                }
+            })
+        }
+        
+    })
+    
+})
+app.get('/put',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    if(phone1==''){
+        res.send('[]');
+    }
+    else{
+    con.query('select * from user where Uphone=?',[phone1],function(err,result){
+        if(err){
+            console.log(err);
+        }
+        else{
+            user1=result[0].userName;
+            img1=result[0].Uimage;
+            if(user1==''){
+                user1='未命名';
+            }
+                con.query('select * from post where userName=? order by postTime desc',[user1],function(err,result){
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        res.send(result);
+                        console.log(result);
+                    } 
+                })
+            
+       
+        }
+    })
+}
+    
 })
 /**王 */
 app.get('/spot',function(req,res,next){
