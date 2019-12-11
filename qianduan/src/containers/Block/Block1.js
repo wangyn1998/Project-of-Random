@@ -5,20 +5,22 @@ import Post from './Post';
 import PostMessage from './PostMessage';
 import BlockMessage from './BlockMessage';
 import {Link} from 'react-router-dom';
+import NumberInput from 'antd-mobile/lib/input-item/CustomInput';
 
 const data1= Array.from(new Array(3)).map((_val, i) => ({
     idx: i
   }));
+  var num1=0;
 export default class Block1 extends Component {
     constructor(){
         super();
         this.state={
             topic:[],
             post:[],
-            number:0
+            count:[]
         }
     }
-    componentDidMount(){
+    componentWillMount(){
         // 发起请求
         fetch('http://localhost:8001/topic')
         .then((res)=>res.json())
@@ -32,30 +34,68 @@ export default class Block1 extends Component {
         .then((res)=>{
             this.setState({
                 post:res
+            },()=>{
+                var it=[];
+                for(var i=0;i<this.state.post.length;i++){
+                    it[i]=0
+                }
+                this.setState({
+                    count:it
+                })
             })
         })
-    }
-    addNum(num,path,id){
-        if(num==null)
-            num=1;
-        else{
-            num++;
+        var it=[];
+        for(var i=0;i<this.state.post.length;i++){
+            it[i]=0
         }
-        console.log(num);
-        let text = {number:num,postId:id} //获取数据
-        let send = JSON.stringify(text);   //重要！将对象转换成json字符串
-        fetch(`http://localhost:8001/`+path,{   //Fetch方法y
-            method: 'POST',
-            headers: {'Content-Type': 'application/json; charset=utf-8'},
-            body: send
+        this.setState({
+            count:it
         })
-        .then(res => res.json())
-        .then(
-            data => {
-                
+    }
+    addNum(num,path,id,index,event){
+        // if(num==null)
+        //     num=1;
+        // else{
+        //     num++;
+        // }
+        var con=this.state.count[index]+1;
+        var con2=this.state.count;
+        con2[index]=con;
+        var e=event.target;
+        this.setState({
+            count:con2
+        },()=>{
+            console.log(this.state.count);
+            if(con%2==0){
+                num--;
+                e.style.color='black';
             }
-        )
-        this.setState({number:num});
+            else{
+                num++;
+                e.style.color='#ff9900';
+            }
+            let text = {number:num,postId:id} //获取数据
+            let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+            fetch(`http://localhost:8001/`+path,{   //Fetch方法y
+                method: 'POST',
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                body: send
+            })
+            .then(res => res.json())
+            .then(
+                data => {
+                    
+                }
+            )        
+            this.setState({number:num});
+            var item1=this.state.post;
+            item1[index].postPointNumber=num;
+            this.setState({
+                post:item1
+            })
+
+        });
+
     }
     clicknum(id){
         console.log(id);
@@ -113,7 +153,6 @@ export default class Block1 extends Component {
                      style={{width:'50%'}}
                      itemStyle={{textAlign:'left'}}
                      renderItem={dataItem=>{
-                         console.log(dataItem);
                             if(dataItem.idx<3){
                                 return <li style={{color:'black',fontSize:'14px'}}>{dataItem.item.topicContent}</li>
                             }
@@ -143,15 +182,17 @@ export default class Block1 extends Component {
                 </WingBlank>
                 </Link> */}
                 {
-                    this.state.post.map((item)=>(
-                        <Link to='/blockmessage' onClick={this.clicknum.bind(this,item.postId)}>
+                    this.state.post.map((item,index)=>(
+                        
                         <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'1%',backgroundColor:'#ffffff',padding:'4%',position:'relative',paddingBottom:'0',color:'black'}} >
+                        <Link to='/blockmessage' onClick={this.clicknum.bind(this,item.postId)}>
                             <img src={item.Uimage} style={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}/>
                             <span style={{marginLeft:'5%',position:'absolute',top:'10%'}}>{item.userName}</span>
                             <div>
-                    <p style={{color:'blue',margin:'5% 0'}}>{item.postTopic}</p>
+                                <p style={{color:'blue',margin:'5% 0'}}>{item.postTopic}</p>
                                 <div style={{width:'100%'}}><p style={{wordWrap:'break-word'}}>{item.postContent}</p><img src={item.postImage} style={{width:'40%'}}/></div>
                             </div>
+                        </Link>
                             <div style={{width:'100%',border: '1px solid #d0d0d0'}}></div>
                             <div className='blockGrid1'>
                             <Grid data={data1} columnNum={3} square={false}
@@ -171,12 +212,19 @@ export default class Block1 extends Component {
                                 else{
                                     var num1=item.postPointNumber;
                                     var id=item.postId;
-                                    return <i className='iconfont icon-dianzan' onClick={this.addNum.bind(this,num1,'dianzan',id)}><span style={{marginLeft:'4%'}}>{item.postPointNumber}</span></i>
+                                    // var pointNum;
+                                    // if(this.state.point==''){
+                                    //     pointNum=item.postPointNumber;
+                                    // }
+                                    // else{
+                                    //     pointNum=this.state.point;
+                                    // }
+                                    
+                                return <i className='iconfont icon-dianzan' style={{color:'black'}} onClick={this.addNum.bind(this,num1,'dianzan',id,index)} ><span style={{marginLeft:'4%'}}>{item.postPointNumber}</span></i>
                                 }
                             }}/>
                             </div>
                         </WingBlank>
-                        </Link>
                     ))
                 }
                 {/* <Post/> */}

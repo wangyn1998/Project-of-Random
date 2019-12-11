@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
-import { NavBar, Icon,Card,List, Accordion } from 'antd-mobile';
+import { NavBar, Icon,Card,List, Accordion,InputItem } from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import { createForm } from 'rc-form';
 
 
 const Item = List.Item;
 export default class BlockMessage extends Component {
     constructor(){
         super();
+        this.handleInput=this.handleInput.bind(this);
+        this.handleChange=this.handleChange.bind(this);
         this.state={
             post:[],
-            reply:[]
+            reply:[],
+            username:'',
+            v:''
         }
     }
     componentWillMount(){
@@ -25,9 +30,53 @@ export default class BlockMessage extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res);
+            console.log('222222222');
             this.setState({
                 reply:res
             })
+        })
+    }
+    getConnect1=(e)=>{  //api请求函数
+        let text = {replyContent:this.state.v,postId:this.state.post.postId,userName:this.state.username} //获取数据
+        console.log(this.inp.state.value);
+        let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+        
+        fetch('http://localhost:8001/usermessage')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+            this.setState({
+                username:res.username
+            },()=>{
+                var text2=text;
+                text2.userName=this.state.username;
+                console.log(text2);
+                this.setState({
+                    reply:[...this.state.reply,text2]
+                })
+            })
+        })
+        fetch(`http://localhost:8001/replypost`,{   //Fetch方法y
+            method: 'POST',
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            body: send
+        })
+        .then(res => res.json())
+        .then(
+            data => {
+            }
+        );
+    }
+    handleInput = (e)=>{
+        //绑定this，事件处理函数写成箭头函数，或者bind
+        if(e.keyCode===13){
+            this.props.add(e.target.value);
+        }
+    }
+    handleChange=(e)=>{
+        console.log(e.target.value);
+        this.setState({
+            v:e.target.value
         })
     }
     render() {
@@ -55,7 +104,7 @@ export default class BlockMessage extends Component {
                             <div style={{width:'100%',color:'white'}}><p style={{wordWrap:'break-word'}}>{this.state.post.postContent}</p><img src={this.state.post.postImage} style={{width:'40%'}}/></div>
                         </div>
                     </Card.Body>
-                    <Card.Footer content="230人赞过" extra={<div>4小时前发布 浏览2000</div>} />
+                    <Card.Footer content={this.state.post.postPointNumber+'人赞过'} extra={<div>4小时前发布 浏览2000</div>} />
                     </Card>
                     </div>
                     <Card style={{borderRadius:'20px',minHeight:'250px'}}>
@@ -118,6 +167,18 @@ export default class BlockMessage extends Component {
                         </List>
                         </Card.Body>
                     </Card>
+                        <div style={{width:'100%',height:'30px'}}>
+                     <input className='input1'
+                            placeholder="说点......"
+                            value={this.state.v}
+                            type='text'
+                            onKeyDown={this.handleInput}
+                            maxLength='10px'
+                            onChange={this.handleChange}
+                            style={{width:'78%',height:'100%',border:'1px solid black'}}
+                        /><button style={{width:'50px',backgroundColor:'blue',borderRadius:'5px',paddingTop:'0px',height:'35px',marginLeft:'4px'}} onClick={this.getConnect1}>发送</button>
+                        </div>
+
             </div>
         )
     }
