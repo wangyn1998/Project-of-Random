@@ -674,7 +674,7 @@ router.post('/spot1', function(req, res, next) {
       console.log(err);
     }
     else{
-      res.render('Material/upspot', { spotList:result });
+      res.render('Material/upspot1', { spotList:result });
     }
   });    
 });
