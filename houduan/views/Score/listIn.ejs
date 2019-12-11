@@ -34,7 +34,11 @@
                 <ul id="all"style="height:310px" >
                      <li >
                          <div style='text-align: left;line-height:3rem;'>
-                         <h1>用户名:<%= userName%></h1>
+                                <%if(userName!=[]){%>
+                                    <h1>用户名:<%= userName%></h1>
+                                    <%}else{%>
+                                    <h1>用户名:手机号<%= Uphone%></h1>
+                                    <%}%>
                            </div> 
                          </li> 
                 
