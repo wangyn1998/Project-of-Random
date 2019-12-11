@@ -63,7 +63,11 @@
                    <% for(var i = 0 ; i < userList.length; i++) {%>
                     <li>
                         <div class='Userbody'>
-                        <img class="Userimg" src='<%= userList[i]["Uimage"] %>'/>
+                        <%if(userList[i]["Uimage"]!="-"){%>
+                            <img class="Userimg" src='<%= userList[i]["Uimage"] %>'/>
+                            <%}else{%>
+                            <img class="Userimg" src='http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png'/>
+                            <%}%>
                         </div>
                         <p class='Userbody'><%= userList[i]["userName"]%></p>
                         <p class='Userbody'><%= userList[i]["Uphone"] %></p>
