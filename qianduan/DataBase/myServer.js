@@ -20,6 +20,35 @@ app.all('*', function(req, res, next) {
 var phonenum='';
 console.log(phonenum);
 app.use(express.static('public'));
+/**rank */
+app.get('/rank',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from score order by sum DESC',[phonenum],(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log("111111111")
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
+/**more */
+app.get('/more',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from sList where Uphone=? order by updateTime DESC',[phonenum],(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(result);
+            res.send(result);
+        }
+    })
+})
 /**score */
 app.post('/getscore', function (req, res) {  //接收POST请求
     /**获取请求体数据 */
@@ -30,7 +59,7 @@ app.post('/getscore', function (req, res) {  //接收POST请求
     /**连接数据库 */
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    con.query("update score set sum=?,updateTime=? where userName = ?",[data.sum,data.updateTime,data.userName],function(err,result){
+    con.query("insert into sList(taskScore,updateTime,taskId,taskContent,userName,Uphone) values(?,?,?,?,?,?)",[data.taskScore,data.updateTime,data.taskId,data.taskContent,data.userName,data.phone],function(err,result){
       phonenum=data.phone;
       if(err){
           console.log(err);
@@ -44,6 +73,23 @@ app.post('/getscore', function (req, res) {  //接收POST请求
           }
       }
     })
+    con.query("select SUM(taskScore) sumsum,userName from slist where username=?",[data.userName],function(err,result){
+        if(err){
+          console.log(err);
+        }
+        else{
+          //显示到页面--渲染方法--render,
+          console.log(result);
+            con.query("update score set sum=?,updateTime=? where userName=?",[result[0].sumsum,new Date(),data.userName],function(err,result){
+            if(err){
+              console.log(err);
+            }
+            else{
+              console.log("success");
+            }
+          });      
+        }
+      })
   })
 /**登录 */
 app.post('/login', function (req, res) {  //接收POST请求
@@ -87,12 +133,35 @@ app.post('/register',(req,res)=>{
   else{
       var con = mysql.createConnection(dbconfig);
       con.connect();
-      con.query("insert into user(Uphone,Upasswd,Uday) values(?,?,?)",[data.phone,data.password,data.Uday],(err,result)=>{
+      con.query("select * from user where Uphone=?",[data.phone],function(err,result){
           if(err){
               throw err;
-          }
-          else{
-              res.send(message1);
+          }else{
+              console.log(result);
+              if(result==''){
+                console.log('该用户不存在');
+                con.query("insert into user(Uphone,Upasswd,Uday) values(?,?,?)",[data.phone,data.password,new Date()],(err,result)=>{
+                    if(err){
+                        throw err;
+                    }
+                    else{
+                        res.send(message1);
+                    }
+                })
+                con.query("insert into score(Uphone) values(?)",[data.phone],(err,result)=>{
+                    if(err){
+                        throw err;
+                    }
+                    else{
+                        console.log(result);
+                        
+                    }
+                })
+              }
+              else{
+                console.log('该用户已存在');
+                res.send(message2);
+              }
           }
       })
   }
@@ -103,12 +172,9 @@ app.post('/updateuser',(req,res)=>{
     let data = req.body;
     let message1 = {success:true};
     let message2 = {success:false};
-    console.log('aaa')
-    console.log(data);
-    console.log('bbb')
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    con.query("update user set UserName=?,Uimage=?,Usex=?,Ubirthday=?,Uaddress=?,Usign=?,Upercent=? where Uphone = ?",[data.name,data.img,data.sex,data.birthday,data.place,data.sign,data.percent,phonenum],(err,result)=>{
+    con.query("update user set userName=?,Uimage=?,Usex=?,Ubirthday=?,Uaddress=?,Usign=?,Upercent=? where Uphone = ?",[data.userName,data.Uimage,data.Usex,data.Ubirthday,data.Uaddress,data.Usign,data.Upercent,phonenum],(err,result)=>{
         if(err){
             throw err;
         }
@@ -117,6 +183,19 @@ app.post('/updateuser',(req,res)=>{
                 res.send(message2);
             }else{
                 res.send(message1);
+            }
+            
+        }
+    })
+    con.query("update score set userName=?,Uimage=? where Uphone = ?",[data.userName,data.Uimage,phonenum],(err,result)=>{
+        if(err){
+            throw err;
+        }
+        else{
+            if(result == false){
+                console.log(message2);
+            }else{
+                console.log(message1);
             }
             
         }
@@ -138,11 +217,40 @@ app.get('/updateuser',function(req,res,next){
 app.get('/my',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
+    var aa = [];
     con.query('select * from user where Uphone=?',[phonenum],(err,result)=>{
         if(err){
             console.log(err);
         }
         else{
+            console.log('user');
+            console.log(result);
+            aa = result;
+            // res.send(result);
+        }
+    })
+    con.query('select * from score order by sum DESC',(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log('score');
+            console.log(result);
+            var r = aa.concat(result);
+            console.log(r);
+            res.send(r);
+        }
+    })
+})
+app.get('/getscore',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('select * from score where Uphone=?',[phonenum],(err,result)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(result);
             res.send(result);
         }
     })
@@ -185,7 +293,6 @@ app.get('/Getnum',(req,res)=>{
   params, smsSign, "", "", callback);
   res.send(message1);
 })
-
 /**张 */
 app.get('/topic',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
