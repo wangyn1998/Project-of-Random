@@ -351,10 +351,11 @@ router.get('/score/list', function(req, res, next) {
 router.get('/score/slist', function(req, res, next) {
   sum=[];
   var sum0=0;
+  var Uphone=req.query.Uphone;
   var userName=req.query.userName;
   var con=mysql.createConnection(dbconfig);
   con.connect();
-  con.query("select * from slist where userName=?",[userName],function(err,result){
+  con.query("select * from slist where Uphone=?",[Uphone],function(err,result){
     if(err){
       console.log(err);
     }
@@ -367,7 +368,7 @@ router.get('/score/slist', function(req, res, next) {
           sum[i]=parseInt(result[i].taskScore)+sum[i-1]
         }
       }
-      res.render("Score/listIn",{slistList:result,userName:userName,sum:sum});
+      res.render("Score/listIn",{slistList:result,userName:userName,Uphone:Uphone,sum:sum});
     }
   })
   
