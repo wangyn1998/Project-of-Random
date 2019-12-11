@@ -7,7 +7,7 @@ import Jinghao from './Jinghao';
 import BlockMessage from './BlockMessage';
 import PostMessage from './PostMessage';
 import Put from './Put';
-
+import PostImg from './PostImg'
 export default class Block extends Component {
     render() {
         return (
@@ -17,6 +17,7 @@ export default class Block extends Component {
                         <Route path="/post" component={Post}/>
                         <Route path='/aite' component={Aite}/>
                         <Route path='/jinghao' component={Jinghao}/>
+                        <Route path='/postImg' component={PostImg}/>
                         <Route path="/blockmessage" component={BlockMessage}/>
                         <Route path='/postmessage' component={PostMessage}/>
                         <Route path='/put' component={Put}/>
