@@ -48,23 +48,25 @@
             <div class='Topicbox3'>
                     <ul id="all" class='TopicList' style="padding-inline-start: 0px;margin-block-start: 0;
                     margin-block-end: 0">
-                        <li class='Topichead'>
+                        <!-- <li class='Topichead'>
                             <h3 class='Topichead1' style="margin-block-start:0.5em;
                             margin-block-end: 0;"><b>话题内容</b></h3>
+                            <h3 class='Topichead4' style="margin-block-start:0.5em;
+                            margin-block-end: 0;"><b>分类</b></h3>
                             <h3 class='Topichead2' style="margin-block-start:0.5em;
                             margin-block-end: 0;"><b>操作</b></h3>
-                            <h3 class='Topichead2' style="margin-block-start:0.5em;
+                            <h3 class='Topichead3' style="margin-block-start:0.5em;
                             margin-block-end: 0;"><b>操作人</b></h3>
-                            <h3 class='Topichead2' style="margin-block-start:0.5em;
+                            <h3 class='Topichead3' style="margin-block-start:0.5em;
                             margin-block-end: 0;"><b>操作时间</b></h3>
-                        </li>
+                        </li> -->
                         <% for(var i=0;i<topicList.length;i++){%>
                             <li>
                                 <p class='TopicContent'><%=topicList[i]["topicContent"]%></p>
+                                <p class="TopicType"><%=topicList[i]["topicType"]%></p>
                                 <div class='Topicoperation'>
                                     <form method="post" action="/topic" class="operation1">
-                                        <button style="float: left;">编辑
-                                            <input type='submit' id='bianji' style="color: white;"name="topic" value='<%=topicList[i]["topicId"]%>'>
+                                        <button style="float: left;color: white;" name="topic" type='submit' id='bianji' value='<%=topicList[i]["topicId"]%>'>编辑
                                         </button>
                                     </form>
                                     <button type='button' id='remove'><a href="/deltopic?id=<%=topicList[i]["topicId"]%>">移除</a></button>
@@ -87,15 +89,22 @@
                     <div id="pop-tier" class="popPosition">
                         <i id="close-pop">&#10006;</i>
                         <form action="/addtopic" method="post">
+                            <div>
                                 <h2 style="float:left;margin-left:20px;margin-top:27px;">创建人:</h2>
                                 <input type='text' name="name"id="create" style="width:200px;height:30px;margin-top:27px;"/>
-                                <div style="width:380px;height:280px;float:left;">
-                                    <h2 style="float:left;margin-left:20px">话题内容:</h2>
-                                    <input type='text' name="content" id="content" style="width:340px;height:200px;"/>
-                                </div>
-                            <input value="保存" id="save" type="submit" style="float:right;border:'1px soild #61b3ed';margin-right:20px;width:50px;height:20px;background-color:#61b3ed;color:'#ffffff';"/>
+                            </div>
+                            <div>
+                                <h2 style="float:left;margin-left:20px;margin-top:17px;">分类:</h2>
+                                <input type='text' name="type"id="create" style="margin-left:20px;width:200px;height:30px;margin-top:17px;"/>
+                            </div>
+                            <div style="width:380px;height:200px;float:left;">
+                                <h2 style="float:left;margin:6px 0 0 20px">话题内容:</h2>
+                                <input type='text' name="content" id="content" style="width:340px;height:180px;margin-top: 6px;"/>
+                            </div>
+                            <div>
+                                <input value="保存" id="save"type="submit" name="topicId"style="margin-top:35px;float:right;border:'1px soild #61b3ed';margin-right:20px;width:50px;height:20px;background-color:#61b3ed;color:'#ffffff';"/>
+                            </div>  
                         </form>
-                       
                         </div>
                     </div>
             </div>
@@ -146,14 +155,11 @@ function change(e){
         e=pageall;pageno=pageall; //输入页和当前页都=最大页
     }
     $("#all").html("");//全部清空
-    if(pageno==1){
-        var html="";
-    }else{
-        var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>话题内容</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作时间</b></h3></li>";
-    }
-    
+    var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>话题内容</b></h3><h3 class='Topichead4' style='margin-block-start:0.5em;margin-block-end: 0;''><b>分类</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作时间</b></h3></li>";
     for(var i=0;i<pagesize;i++){
-        html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+        if(zz[(e-1)*pagesize+i]){
+            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+        }
         if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
     }
     $("ul#all").html(html);//给ul列表写入html
@@ -175,32 +181,12 @@ function change(e){
 }
     var zz=getzz()
     var pageno=1 ; //当前页
-    var pagesize=5; //每页多少条信息
+    var pagesize=4; //每页多少条信息
     if(zz.length%pagesize==0){
         var  pageall =zz.length/pagesize ;
     }else{
         var  pageall =parseInt(zz.length/pagesize)+1;
     }   //一共多少页
     change(1);
-    $(function(){
-			var date=new Date();
-			var year=date.getFullYear();
-			var day=date.getDate();
-			var month=date.getMonth();
-		// 格式化日，如果小于9，前面补0
-			if(day<10){
-				 day = "0" + day;
-			}
-		// 	格式化月，如果小于9，前面补0
-			if(month<10){
-				 month = (month + 1);
-			}
-		// 	拼装完整日期格式
-			var today = date.getFullYear()+"-"+(month)+"-"+(day);
-	});
-    $('#bianji').onclick = function() {
-        console.log("ok");
-        $('#time').innerHTML=myDay;
-    }
     </script>
 </html>

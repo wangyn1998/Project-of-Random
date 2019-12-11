@@ -40,9 +40,12 @@
                                     <div style="margin-top: 20px;width: 105px;height: 103px;margin-left:135px;border: 2px dashed  #61b3ed;">
                                         <img class="Postimg" style="width: 100px;height: 100px;"src="<%=postList[i]["Uimage"]%>">
                                     </div>
-                                    <h3 style="margin-block-start:0px;margin-block-end: 0;float: left;margin-left: 170px;"><%=postList[i]["userName"]%></h3>
-                                    <div style="margin:30px 0 0 40px;width: 300px;height: 180px;border: 2px groove     #61b3ed;">
-                                        <%=postList[i]["postContent"]%>
+                                    <h3 style="margin-block-start:0px;margin-block-end: 0;float: left;margin-left: 150px;"><%=postList[i]["userName"]%></h3>
+                                    <div style="margin:30px 0 0 40px;width: 300px;height: 180px;border: 2px groove     #61b3ed;text-align: center;">
+                                        <div style="float: left;"><%=postList[i]["postContent"]%></div>
+                                        <div style="width:300px;height:100px;float: left;overflow: hidden;text-align: center;">
+                                            <img style="width:300px;height:100px;float: left;"src="<%=postList[i]["postImage"]%>">
+                                        </div>
                                     </div>
                                     <h5 style="color:#2085ce;float: left;margin-left: 140px;">点赞</h5>
                                     <h5 style="color:#2085ce;float: left;margin-left: 10px;"><a href="/postreply?id=<%=postList[i]["postId"]%>">回复</a></h5>

@@ -48,16 +48,19 @@
                     <li class='Topichead'>
                         <h3 class='Topichead1' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>话题内容</b></h3>
+                        <h3 class='Topichead4' style="margin-block-start:0.5em;
+                        margin-block-end: 0;"><b>分类</b></h3>
                         <h3 class='Topichead2' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>操作</b></h3>
-                        <h3 class='Topichead2' style="margin-block-start:0.5em;
+                        <h3 class='Topichead3' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>操作人</b></h3>
-                        <h3 class='Topichead2' style="margin-block-start:0.5em;
+                        <h3 class='Topichead3' style="margin-block-start:0.5em;
                         margin-block-end: 0;"><b>操作时间</b></h3>
                     </li>
                     <% for(var i=0;i<topicList.length;i++){%>
                         <li>
                             <p class='TopicContent'><%=topicList[i]["topicContent"]%></p>
+                            <p class="TopicType"><%=topicList[i]["topicType"]%></p>
                             <div class='Topicoperation'>
                                 <form method="post" action="/topic" class="operation1">
                                     <button style="float: left;">编辑
@@ -84,13 +87,21 @@
                     <div id="pop-tier1" class="popPosition1">
                         <i id="close-pop1">&#10006;</i>
                         <form action="/update" method="post">
-                            <h2 style="float:left;margin-left:20px;margin-top:27px;">创建人:</h2>
-                            <input type='text' name="name1"id="create" style="width:200px;height:30px;margin-top:27px;"/>
-                            <div style="width:380px;height:280px;float:left;">
-                                <h2 style="float:left;margin-left:20px">话题内容:</h2>
-                                <input type='text' name="content1" id="content" style="width:340px;height:200px;"/>
+                            <div>
+                                <h2 style="float:left;margin-left:20px;margin-top:27px;">创建人:</h2>
+                                <input type='text' name="name1"id="create" style="width:200px;height:30px;margin-top:27px;"/>
                             </div>
-                            <input value="保存" id="save"type="submit" name="topicId"style="float:right;border:'1px soild #61b3ed';margin-right:20px;width:50px;height:20px;background-color:#61b3ed;color:'#ffffff';"/>
+                            <div>
+                                <h2 style="float:left;margin-left:20px;margin-top:17px;">分类:</h2>
+                                <input type='text' name="type1"id="create" style="margin-left:20px;width:200px;height:30px;margin-top:17px;"/>
+                            </div>
+                            <div style="width:380px;height:200px;float:left;">
+                                <h2 style="float:left;margin:6px 0 0 20px;">话题内容:</h2>
+                                <input type='text' name="content1" id="content" style="width:340px;height:180px;"/>
+                            </div>
+                            <div>
+                                <input value="保存" id="save"type="submit" name="topicId"style="margin-top:35px;float:right;border:'1px soild #61b3ed';margin-right:20px;width:50px;height:20px;background-color:#61b3ed;color:'#ffffff';"/>
+                            </div>  
                         </form>
                         </div>
                     </div>
@@ -129,8 +140,10 @@
         $("#all").html("");//全部清空
         if(pageno==1){
             var html="";
+            pagesize=5;
         }else{
-            var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>话题内容</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作时间</b></h3></li>";
+            var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>话题内容</b></h3><h3 class='Topichead4' style='margin-block-start:0.5em;margin-block-end: 0;''><b>分类</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作时间</b></h3></li>";
+            pagesize=4;
         }
         for(var i=0;i<pagesize;i++){
             html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
