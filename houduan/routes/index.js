@@ -84,10 +84,10 @@ router.get('/user', function(req, res, next) {
 });
 //删除用户
 router.get("/deleteuser",function(req,res,next){
-  var userName=req.query.userName;
+  var Uphone=req.query.Uphone;
   var con=mysql.createConnection(dbconfig);
   con.connect();
-  con.query("delete from user where userName=?",[userName],function(err,result){
+  con.query("delete from user where Uphone=?",[Uphone],function(err,result){
     if(err){
       console.log(err);
     }
@@ -95,7 +95,7 @@ router.get("/deleteuser",function(req,res,next){
       res.render("User/shanchu",{ title: 'Express' })
       }
   })
-  con.query("delete from score where userName=?",[userName],function(err,result){
+  con.query("delete from score where Uphone=?",[Uphone],function(err,result){
     if(err){
       console.log(err);
     }
@@ -103,7 +103,7 @@ router.get("/deleteuser",function(req,res,next){
       console.log('success')
       }
     })
-    con.query("delete from slist where userName=?",[userName],function(err,result){
+    con.query("delete from slist where Uphone=?",[Uphone],function(err,result){
       if(err){
         console.log(err);
       }
@@ -114,15 +114,15 @@ router.get("/deleteuser",function(req,res,next){
 })
 //搜索用户
 router.post("/searchuser",function (req,res,next) {
-  var userName=req.body.userName;
+  var Uphone=req.body.Uphone;
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("select * from user where userName=?",[userName],function(err,result){
+  con.query("select * from user where Uphone=?",[Uphone],function(err,result){
     if(err){
       console.log(err);
     }
     else{
-      res.render("User/searchuser",{userList:result,userName:userName});
+      res.render("User/searchuser",{userList:result,Uphone:Uphone});
     }
   })
 })
