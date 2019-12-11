@@ -43,6 +43,8 @@ export default class Update extends Component {
                 }
             }
             console.log(data);
+            let tupian = '';
+            (data.Uimage=='-')?tupian="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png":tupian=data.Uimage
             this.setState({
                 users:{
                     userName:data.userName,
@@ -173,7 +175,7 @@ export default class Update extends Component {
                 <NavBar
                     mode="dark"
                     leftContent="&lt;"
-                    onLeftClick={()=>window.location.href='/my'}
+                    onLeftClick={()=>this.props.history.push('/my')}
                     >编辑资料
                 </NavBar>  
                 <div className="progress-container">

@@ -13,7 +13,8 @@ export default class SignIn extends Component {
             taskId:'',
             taskContent:'',
             phone:'',
-            img:''
+            img:'',
+            logif:true
         }
     }
     successToast=()=> {       
@@ -130,11 +131,13 @@ export default class SignIn extends Component {
         fetch('http://localhost:8001/getscore')
         .then((res)=>res.json())
         .then((res)=>{
+            let tupian = '';
+            (res[0].Uimage=='-')?tupian="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png":tupian=res[0].Uimage
             this.setState({
                 username:res[0].userName,
                 score:res[0].sum,
                 phone:res[0].Uphone,
-                img:res[0].Uimage
+                img:tupian
             })
         })
     }
@@ -144,7 +147,7 @@ export default class SignIn extends Component {
                 <NavBar
                     mode="dark"
                     leftContent="&lt;"
-                    onLeftClick={()=>window.location.href='/my'}
+                    onLeftClick={()=>this.props.history.goBack()}
                     >签到积分
                 </NavBar>
                 <WhiteSpace></WhiteSpace>

@@ -87,3 +87,57 @@ body{
 .my-accordion .pad .am-accordion-content-box {
     padding: 15px;
   }
+.page-register{
+    width: 100%;
+    height: 600px;
+    background-image: url('./images/bi.jpg');
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+}
+.deng0{
+    height:20px;
+    width:50%;
+    border:1px blue solid;
+    margin-top: 5px;
+    text-align:center;
+    border-radius:2px;
+    line-height:20px
+  }
+  .personal1{
+    width: 50%;
+    float: left;
+    margin-bottom: 10px;
+  }
+  .personal2{
+    display: none;
+  }
+  .personal0{
+    width: 50%;
+    float: left;
+  }
+  .touxiang0{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:hidden;
+    float:left
+  }
+  .touxiang00{
+    display: none;
+  }
+  .qiandao{
+    width:'20%';
+    height:'20px';
+    border-radius:'10%';
+    border:'1px gray solid';
+    float:'right';
+    margin-right:'5%';
+    text-align:'center';
+    margin-top:'3%'
+  }
+  .qiandaop{
+    line-height: 20px;
+  }
+  

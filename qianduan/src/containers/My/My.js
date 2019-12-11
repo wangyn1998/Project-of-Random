@@ -11,6 +11,8 @@ const Item1 = List.Item;
 export default class App extends Component {
     constructor(props){
         super(props);
+        console.log("初始化")
+        const logif =  sessionStorage.getItem("logif") == 'true';
         this.state = {
             visible: false,
             selected: '',
@@ -38,10 +40,14 @@ export default class App extends Component {
             second:{},
             third:{},
             touxiang:'',
-            logif:true
+            logif:logif,
+            sign:''
         };
+        console.log(this.state.logif)
     }
     componentDidMount(){
+       
+        console.log(this.state.logif);
         fetch('http://localhost:8001/my')
         .then((res)=>res.json())
         .then((res)=>{
@@ -55,16 +61,19 @@ export default class App extends Component {
                 }
             }else{
                 for(var i = 1;i<4;i++){
-                    d0[i-1] = Object.assign({},this.state.data2[0],{tit:res[i].userName},{score:res[i].sum},{img:res[i].Uimage})
+                    var tupian = '';
+                    (res[i].Uimage=='-')?tupian="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png":tupian=res[i].Uimage
+                    d0[i-1] = Object.assign({},this.state.data2[0],{tit:res[i].userName},{score:res[i].sum},{img:tupian})
                 }
             }
             console.log(d0);
             var tu = '';
-            (res[0].Uimage=='-')?tu="https://p1.ssl.qhimgs1.com/sdr/400__/t012bcbbf0eee98ad27.png":tu=res[0].Uimage
+            (res[0].Uimage=='-')?tu="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png":tu=res[0].Uimage
             this.setState({
                 username:res[0].userName,
                 data2:d0,
-                touxiang:tu
+                touxiang:tu,
+                sign:res[0].Usign
             })
         })
     }
@@ -90,7 +99,10 @@ export default class App extends Component {
   logout(){
     this.setState({logif:false})
     sessionStorage.removeItem('user');
-    this.props.history.push('/my');
+    sessionStorage.setItem("logif",false);
+    // his.push('/my')
+    // window.location.reload();
+    // this.props.history.push('/my');
   }
   render() {
     const sidebar = (<List>
@@ -150,35 +162,53 @@ export default class App extends Component {
                 <div style={{width:'100%'}}>
                     <div>
                         <div style={{float:'left',width:'20%'}}>
-                            <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto',overflow:'hidden'}}>
-                                <img src={this.state.touxiang}/>
+                            <div style={{width:'60px',height:'60px',borderRadius:'50%',marginLeft:'auto',marginRight:'auto',overflow:'hidden',float:'left'}}>
+                        <div>{this.state.logif}</div>
+                                <img src={this.state.touxiang} className={this.state.logif?"touxiang0":"touxiang00"}/>
+                                <img src="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png" className={this.state.logif?"touxiang00":"touxiang0"}/>
                             </div>
-                            {/* <con.Consumer>
-                                {value=><p style={{textAlign:'center'}}>{value}</p>}
-                            </con.Consumer> */}
-                            <p style={{textAlign:'center'}}>{this.state.username}</p>
+                            {/* <p style={{float:'left',marginLeft:'10%'}}>{this.state.username}</p> */}
                         </div>  
+                        <div className={this.state.logif?'personal1':'personal2'}>
+                            <div style={{marginTop:'5px'}}>{this.state.username}</div>
+                            <div style={{marginTop:'10px'}}>{this.state.sign}</div>
+                            <div style={{height:'20px',width:'50%',border:'1px blue solid',marginTop:'10px'}}>
+                                <div style={{lineHeight:'20px'}} onClick={() => this.jump('/updateuser')}>点此完善资料</div>
+                            </div>
+                        </div>
+                        <div className={this.state.logif?'personal2':'personal0'}>
+                            <div className='deng0'>
+                                <div style={{lineHeight:'20px'}} onClick={() => this.jump('/login')}>点击登录</div>
+                            </div>
+                            <div className='deng0'>
+                                <div style={{lineHeight:'20px'}} onClick={() => this.jump('/register')}>点击注册</div>
+                            </div>
+                        </div>
+                        {/* <div className={this.state.logif?"qiandao":"touxiang00"}>
+                            <div onClick={() => this.jump('/getscore')} className={this.state.logif?"qiandaop":"touxiang00"}>签到领积分</div>
+                        </div> */}
+                        <div style={{width:'20%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
+                            <div style={{lineHeight:'20px'}} onClick={() => this.jump('/getscore')}>签到领积分</div>
+                        </div>
                     </div>
-                    <div style={{float:'left',width:'30%'}}>
-                        <div style={{height:'20px',width:'50%',border:'1px blue solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            {/* <Link to='/login' >去登录</Link> */}
+                    {/* <div style={{float:'left',width:'30%'}}>
+                        <div className={this.state.logif?'deng1':'deng0'}>
                             <div style={{lineHeight:'20px'}} onClick={() => this.jump('/login')}>去登录</div>
                         </div>
-                        <div style={{height:'20px',width:'100%',border:'1px black solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
-                            {/* <Link to='/updateuser' >点此完善资料></Link> */}
+                        <div style={{height:'20px',width:'100%',border:'1px black solid',textAlign:'center',borderRadius:'2px',lineHeight:'20px',marginTop:'10px'}}>
                             <div style={{lineHeight:'20px'}} onClick={() => this.jump('/updateuser')}>点此完善资料</div>
                         </div>
                     </div>                 
                     <div style={{width:'50%',float:'left'}}>
-                        <p>读万卷书不如行万里路</p>
-                    </div>
+                        <p>{this.state.sign}</p>
+                    </div> */}
                 </div>     
             </div>
             <div className='block'>
                 <Grid data={this.state.data1}
                     columnNum={3}
                     hasLine={false}
-                    itemStyle={{height:'40px'}}
+                    itemStyle={{height:'30px'}}
                     renderItem={dataItem => (
                         <div >
                             <div style={{marginTop:'10%',float:'left'}}>
@@ -191,15 +221,10 @@ export default class App extends Component {
                         </div>
                     )}
                 />
-                <div style={{width:'25%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
-                    {/* <Link to='/getscore' onClick={this.score}>签到领积分></Link> */}
+                {/* <div style={{width:'25%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
                     <div style={{lineHeight:'20px'}} onClick={() => this.jump('/getscore')}>签到领积分</div>
-                </div>   
-                {/* <List className="my-list">
-                    <Item1 extra="查看更多" arrow="horizontal" onClick={() => {}}>积分排行榜</Item1>
-                </List>   
-                                 */}
-                <List className="my-list" style={{marginTop:'50px'}}>
+                </div>    */}
+                <List className="my-list" style={{marginTop:'15px'}}>
                     <Item1 extra="查看更多" arrow="horizontal" onClick={() => this.jump('/rank')}>积分排行榜</Item1>
                 </List> 
             {/* </div>

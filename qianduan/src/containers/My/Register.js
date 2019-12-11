@@ -72,21 +72,27 @@ class Register extends Component {
                     onLeftClick={()=>window.location.href='/login'}
                     >注册
                 </NavBar>
-                <p style={{fontSize:'20px',marginLeft:'15px'}}>手机号码注册</p>
+                {/* <p style={{fontSize:'20px',marginLeft:'15px',color:'#fff',textAlign:'center'}}>手机号码注册</p> */}
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
-                <List>
-                    <InputItem onChange={value => this.handleChange('phone', value)} type='text' name='phone' id='phone'>手机号</InputItem>
-                    <InputItem onChange={value => this.handleChange('password', value) }type='password' name="password" id="password">密码</InputItem>
-                    <InputItem onChange={value => this.handleChange('repwd', value)} type='password' name='repwd' id='repwd'>确认</InputItem>
-                </List>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <WhiteSpace></WhiteSpace>
+                <div style={{backgroundColor:"#3399ff",opacity:'0.9',width:'90%',margin:'0 auto',color:'#000'}}>
+                    <List style={{backgroundColor:"#3399ff",opacity:'0.5',width:'100%',margin:'0 auto'}}>
+                        <InputItem onChange={value => this.handleChange('phone', value)} type='text' name='phone' id='phone'>手机号</InputItem>
+                        <InputItem onChange={value => this.handleChange('password', value) }type='password' name="password" id="password">密码</InputItem>
+                        <InputItem onChange={value => this.handleChange('repwd', value)} type='password' name='repwd' id='repwd'>确认</InputItem>
+                    </List>
+                </div>
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
                 <WingBlank>
-                    <Button type="primary" onClick={this.submit.bind(this)}>下一步</Button>
+                    <Button type="primary" onClick={this.submit.bind(this)} style={{backgroundColor:"#3399ff",opacity:'0.5',color:'#000'}}>下一步</Button>
                     <WhiteSpace></WhiteSpace>
-                    <Button onClick={this.handleGoLogin.bind(this)} type="primary">已有账号，去登录</Button>
+                    <Button onClick={this.handleGoLogin.bind(this)} type="primary" style={{backgroundColor:"#3399ff",opacity:'0.5',color:'#000'}}>已有账号，去登录</Button>
                 </WingBlank>
             </div>
         )

@@ -39,7 +39,8 @@ export default class Login extends Component {
         .then(
             data => {
                 if(data.success){
-                    sessionStorage.setItem("user",text.phone)
+                    sessionStorage.setItem("user",text.phone);
+                    sessionStorage.setItem("logif",true);
                     Toast.success('登录成功，即将跳转到我的页面', 1);
                     his.push('/my')
                     window.location.reload();
@@ -50,9 +51,12 @@ export default class Login extends Component {
             }
         )
     }
+    componentDidMount(){
+        sessionStorage.setItem("logif",false);
+    }
     render() {
         return (
-            <div >
+            <div>
                 <NavBar
                     mode="dark"
                     leftContent="&lt;"
