@@ -70,9 +70,61 @@ export default class SignIn extends Component {
             // Toast.success('今日已签到，明日再来叭', 1);
         }
     }
-    aaa=()=>{
-        his.push('/post');
-        window.location.reload();
+    // aaa=()=>{
+    //     his.push('/post');
+    //     window.location.reload();
+    // }
+    jump1(value){
+        this.props.history.push(value);
+        let s = this.state.score;
+        s=s+10;
+        this.setState({
+            score:s 
+        })
+        let text = {userName:this.state.username,updateTime:new Date(),taskId:1,taskContent:'发帖',taskScore:10,phone:this.state.phone} //获取数据
+        let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+        fetch(`http://127.0.0.1:8001/getscore`,{   //Fetch方法y
+                method: 'POST',
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                body: send
+            })
+            .then(res => res.json())
+            .then(
+                data => {
+                    if(data.success){
+                        console.log('aaa')
+                    }
+                    else{
+                        window.alert('失败')
+                    }
+                }
+            )
+    }
+    jump2(value){
+        this.props.history.push(value);
+        let s = this.state.score;
+        s=s+10;
+        this.setState({
+            score:s 
+        })
+        let text = {userName:this.state.username,updateTime:new Date(),taskId:1,taskContent:'搜索攻略',taskScore:10,phone:this.state.phone} //获取数据
+        let send = JSON.stringify(text);   //重要！将对象转换成json字符串
+        fetch(`http://127.0.0.1:8001/getscore`,{   //Fetch方法y
+                method: 'POST',
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                body: send
+            })
+            .then(res => res.json())
+            .then(
+                data => {
+                    if(data.success){
+                        console.log('aaa')
+                    }
+                    else{
+                        window.alert('失败')
+                    }
+                }
+            )
     }
     componentDidMount(){
         fetch('http://localhost:8001/getscore')
@@ -105,7 +157,7 @@ export default class SignIn extends Component {
                 </div>  
                 <div style={{marginLeft:'40%',marginTop:'20px'}}>
                     <div style={{fontSize:'20px'}}>{this.state.score}分</div>
-                    <button style={{fontSize:'8px',color:'#708090',border:'none'}} onClick={()=>window.location.href='my/more'}>积分></button>
+                    <button style={{fontSize:'8px',color:'#708090',border:'none'}} onClick={()=>window.location.href='/more'}>积分></button>
                 </div>
                 <WhiteSpace></WhiteSpace>
                 <WhiteSpace></WhiteSpace>
@@ -116,8 +168,9 @@ export default class SignIn extends Component {
                     <div onClick={this.successToast}>
                         <Item >每日签到</Item>
                     </div>                    
-                    <Item extra="去发帖" arrow="horizontal" onClick={this.aaa}>发帖</Item>
-                    <Item extra="去发攻略" arrow="horizontal" onClick={this.aaa}>发攻略</Item>
+                    <Item extra="去发帖" arrow="horizontal" onClick={() => this.jump1('/post')}>发帖</Item>
+                    {/* <Item extra="去完善资料" arrow="horizontal" onClick={() => this.jump('/updateuser')}>资料完善度超过60%</Item> */}
+                    <Item extra="去搜索攻略" arrow="horizontal" onClick={() => this.jump2('/')}>搜索攻略</Item>
                 </List>
             </div>
         )

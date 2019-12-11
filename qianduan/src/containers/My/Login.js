@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, InputItem, WingBlank, WhiteSpace, Button, Radio,NavBar } from 'antd-mobile';
+import { List, InputItem, WingBlank, WhiteSpace, Button, Toast,NavBar } from 'antd-mobile';
 import {createBrowserHistory} from 'history'
 import './my.css'
 import {con} from './context'
@@ -39,12 +39,13 @@ export default class Login extends Component {
         .then(
             data => {
                 if(data.success){
-                    window.alert('验证');
+                    sessionStorage.setItem("user",text.phone)
+                    Toast.success('登录成功，即将跳转到我的页面', 1);
                     his.push('/my')
                     window.location.reload();
                 }
                 else{
-                    window.alert('验证失败，用户名或密码错误')
+                    Toast.fail('手机号或密码错误，请重新登录', 1);
                 }
             }
         )

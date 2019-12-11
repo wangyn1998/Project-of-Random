@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {List, InputItem, WingBlank, WhiteSpace, Button, Radio,NavBar} from 'antd-mobile'
+import {List, InputItem, WingBlank, WhiteSpace, Button, Toast,NavBar} from 'antd-mobile'
 import {createBrowserHistory} from 'history';
 const his = createBrowserHistory();
 class Register extends Component {
@@ -34,8 +34,15 @@ class Register extends Component {
         // window.alert(this.state.phone)
         // window.alert(this.state.password)
     }
+    componentDidMount(){
+        var myDate = new Date();
+        console.log(myDate);
+    }
     getConnect(){ //api请求函数
-        let text = {phone:this.state.phone,password:this.state.password,repwd:this.state.repwd,Uday:new Date()} //获取数据
+        var myDate = new Date();
+        console.log(myDate);
+        
+        let text = {phone:this.state.phone,password:this.state.password,repwd:this.state.repwd,Uday:myDate} //获取数据
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
         fetch(`http://127.0.0.1:8001/register`,{   //Fetch方法y
             method: 'POST',
@@ -45,12 +52,13 @@ class Register extends Component {
         .then(res => res.json())
         .then(
             data => {
-                if(data.success){
+                if(data.success==true){                    
+                    Toast.success('注册成功，即将跳转到登录页面', 1);
                     his.push('/login');
                     window.location.reload();
                 }
-                else{
-                    window.alert('注册失败，两次输入密码不一致')
+                else if(data.success==false){
+                    Toast.fail('两次输入密码不一致或该用户已存在', 1);
                 }
             }
         )

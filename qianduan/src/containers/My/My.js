@@ -37,7 +37,8 @@ export default class App extends Component {
             first:{},
             second:{},
             third:{},
-            touxiang:''
+            touxiang:'',
+            logif:true
         };
     }
     componentDidMount(){
@@ -45,15 +46,25 @@ export default class App extends Component {
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res);
-            let d1 = Object.assign({},this.state.data2[0],{tit:res[1].userName},{score:res[1].sum},{img:res[1].Uimage})
-            let d2 = Object.assign({},this.state.data2[1],{tit:res[2].userName},{score:res[2].sum},{img:res[2].Uimage})
-            let d3 = Object.assign({},this.state.data2[2],{tit:res[3].userName},{score:res[3].sum},{img:res[3].Uimage})
-            let d0 = [d1,d2,d3]
-            console.log(d0)
+            var d0=[];
+            if(res.length<=4){
+                for(var i = 1;i<res.length;i++){
+                    var tupian = '';
+                    (res[i].Uimage=='-')?tupian="http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png":tupian=res[i].Uimage
+                    d0[i-1] = Object.assign({},this.state.data2[0],{tit:res[i].userName},{score:res[i].sum},{img:tupian})
+                }
+            }else{
+                for(var i = 1;i<4;i++){
+                    d0[i-1] = Object.assign({},this.state.data2[0],{tit:res[i].userName},{score:res[i].sum},{img:res[i].Uimage})
+                }
+            }
+            console.log(d0);
+            var tu = '';
+            (res[0].Uimage=='-')?tu="https://p1.ssl.qhimgs1.com/sdr/400__/t012bcbbf0eee98ad27.png":tu=res[0].Uimage
             this.setState({
                 username:res[0].userName,
                 data2:d0,
-                touxiang:res[0].Uimage
+                touxiang:tu
             })
         })
     }
@@ -76,21 +87,10 @@ export default class App extends Component {
   jump(value){
     this.props.history.push(value)
   }
-  a=()=>{
-    his.push('/a');
-    window.location.reload();
-  }
-  score=()=>{
-    his.push('/getscore');
-    window.location.reload();
-  }
-  all=()=>{
-    his.push('/updateuser');
-    window.location.reload();
-  }
-  login=()=>{
-    his.push('/login');
-    window.location.reload();
+  logout(){
+    this.setState({logif:false})
+    sessionStorage.removeItem('user');
+    this.props.history.push('/my');
   }
   render() {
     const sidebar = (<List>
@@ -107,12 +107,11 @@ export default class App extends Component {
         })}
     </List>);
     return (
-        <div>
+        <div style={{backgroundColor:'#fff'}}>
             <NavBar
                 mode="dark"
                 leftContent="&lt;"
                 onLeftClick={()=>window.location.href='/'}
-                // onLeftClick={this.onOpenChange}
                 rightContent={
                 <Popover mask="true"
                     overlayClassName="fortest"
@@ -163,11 +162,11 @@ export default class App extends Component {
                     <div style={{float:'left',width:'30%'}}>
                         <div style={{height:'20px',width:'50%',border:'1px blue solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
                             {/* <Link to='/login' >去登录</Link> */}
-                            <div style={{lineHeight:'20px'}} onClick={this.login}>去登录</div>
+                            <div style={{lineHeight:'20px'}} onClick={() => this.jump('/login')}>去登录</div>
                         </div>
                         <div style={{height:'20px',width:'100%',border:'1px black solid',margin:'10px 0 0 10px',textAlign:'center',borderRadius:'2px',lineHeight:'20px'}}>
                             {/* <Link to='/updateuser' >点此完善资料></Link> */}
-                            <div style={{lineHeight:'20px'}} onClick={this.all}>点此完善资料</div>
+                            <div style={{lineHeight:'20px'}} onClick={() => this.jump('/updateuser')}>点此完善资料</div>
                         </div>
                     </div>                 
                     <div style={{width:'50%',float:'left'}}>
@@ -194,11 +193,17 @@ export default class App extends Component {
                 />
                 <div style={{width:'25%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
                     {/* <Link to='/getscore' onClick={this.score}>签到领积分></Link> */}
-                    <div style={{lineHeight:'20px'}} onClick={this.score}>签到领积分</div>
+                    <div style={{lineHeight:'20px'}} onClick={() => this.jump('/getscore')}>签到领积分</div>
                 </div>   
-                <div style={{fontSize:'15px',marginTop:'10%'}}>积分排行榜</div>       
-            </div>
-            <div className='block'>
+                {/* <List className="my-list">
+                    <Item1 extra="查看更多" arrow="horizontal" onClick={() => {}}>积分排行榜</Item1>
+                </List>   
+                                 */}
+                <List className="my-list" style={{marginTop:'50px'}}>
+                    <Item1 extra="查看更多" arrow="horizontal" onClick={() => this.jump('/rank')}>积分排行榜</Item1>
+                </List> 
+            {/* </div>
+            <div className='block'> */}
                 <Grid data={this.state.data2}
                     columnNum={1}
                     hasLine={false}
@@ -211,7 +216,7 @@ export default class App extends Component {
                             }
                             </div>
                             <div style={{height:'30px',width:'30px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%',overflow:'hidden',marginLeft:'5%',marginTop:'7px'}}>
-                                <img src={dataItem.img} style={{height:'30px',width:'30px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%',overflow:'hidden'}}/>
+                                <img src={dataItem.img} alt="暂无" style={{height:'30px',width:'30px',marginTop:'3%',borderRadius:'50%',float:"left",marginLeft:'3%',overflow:'hidden'}}/>
                             </div>
                             <p style={{float:'left',marginLeft:'10%'}}>{dataItem.tit}</p>
                             <p style={{float:'right',marginRight:'15%'}}>{dataItem.score}分</p>
@@ -238,7 +243,7 @@ export default class App extends Component {
             </div>
             <div className='block1' style={{marginBottom:'100px'}}>
                 <List>
-                    <Item1 onClick={() => this.jump('/my')}>退出登录</Item1>
+                    <Item1 onClick={this.logout.bind(this)}>退出登录</Item1>
                     <Item1  arrow="horizontal" onClick={() => this.jump('/setup')}>设置</Item1>
                     <Item1  arrow="horizontal" onClick={() => this.jump('/help')}>帮助反馈</Item1>
                     <Item1  arrow="horizontal" onClick={() => this.jump('/about')}>关于我们</Item1>

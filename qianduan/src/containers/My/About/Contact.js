@@ -16,7 +16,7 @@ export default class Contact extends Component {
                 <Accordion  className="my-accordion" onChange={this.onChange}>
                     <Accordion.Panel header="王予诺（开发工程师）" className="pad">
                         Email：928069834@qq.com
-                        Github：https://github.com/wangyn1998
+                        Github：https://github.com/wangyn1998s
                     </Accordion.Panel>
                     <Accordion.Panel header="杨迪（开发工程师）" className="pad">
                         Email：736208296@qq.com
