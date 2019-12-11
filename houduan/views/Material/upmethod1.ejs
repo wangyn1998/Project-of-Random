@@ -31,62 +31,36 @@
         </div>
         <div class="right">
             <div class="box1">
-                <div class='search'>
-                    <input class='Bar' placeholder="请输入要查找的"/>
-                    <div class="iconfont icon-sousuo da" style="margin-top:5px;margin-right:15px;float:right"></div>
-                </div>
-            </div>
-            <div class="box2">
-                <p style="font-size:22px;font-weight:bold">爱游不错游攻略管理
-                    <span style="margin-left:30px" class="iconfont icon-wuuiconxiangjifangda" id="btn"></span>
-                    <span style="font-size:20px;margin-left:5px;font-weight:lighter">添加</span>
-                </p>
+                <h2>您搜索的结果是:</h2>
+                <br/>
             </div>
             <div class='Materialbox3'>
                 <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
                 margin-block-end: 0" id="all">
-                    <li>
-                        <div class='Materialhead'>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>编号</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>城市名</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>天数</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>城市介绍</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>城市照片</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>攻略</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>操作</b></h3>
-                        </div>
-                    </li>
                     <% for(var i=0;i<methodList.length;i++){ %>
-                            <li>
-                                <p class='Materialbody'><%= methodList[i].methodId %></p>  
-                                <p class='Materialbody'><%= methodList[i].cityName %></p>
-                                <p class='Materialbody'><%= methodList[i].methodDay %></p>
-                                <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].cityContent %></p>  
-                                <p class='Materialbody' style="height:50px;overflow:hidden;"><%= methodList[i].cityImage %></p>
-                                <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].methodContent %></p>
-                                <div class='Materialbody'>
-                                    <div class='Materialoperation'>
-                                        <form class="operation1">
-                                            <button type='submit' id='bianji' name="method" value='<%=methodList[i].methodId%>' style="color: white;border:1px solid white;width: 50px;height: 30px;">
-                                                编辑   
-                                            </button>
-                                        </form>
-                                        <a href='/material/delmethod?methodId=<%= methodList[i].methodId %>'>
-                                            <button  style=" width: 50px;height: 30px;background-color: #fff;border:1px solid #888;color: #4177CA;">
-                                            移除
-                                            </button>
-                                        </a>
-                                    </div> 
-                            </div>                               
+                        <li>
+                            <p class='Materialbody'><%= methodList[i].methodId %></p>  
+                            <p class='Materialbody'><%= methodList[i].cityName %></p>
+                            <p class='Materialbody'><%= methodList[i].methodDay %></p>
+                            <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].cityContent %></p>  
+                            <p class='Materialbody' style="height:50px;overflow:hidden;"><%= methodList[i].cityImage %></p>
+                            <p class='Materialbody' style="height:50px;overflow:hidden;font-size:10px"><%= methodList[i].methodContent %></p>
+                            <div class='Materialbody'>
+                                <div class='Materialoperation'>
+                                    <form method="post" action="/method1" class="operation1">
+                                        <button type='submit' id='bianji' name="method" value='<%=methodList[i].methodId%>' style="color: white;border:1px solid white;width: 50px;height: 30px;">
+                                            编辑   
+                                        </button>
+                                    </form>
+                                    <a href='/material/delmethod?methodId=<%= methodList[i].methodId %>'>
+                                        <button style=" width: 50px;height: 30px;background-color: #fff;border:1px solid #888;color: #4177CA;">
+                                        移除
+                                        </button>
+                                    </a>
+                                </div> 
+                            </div>   
                         </li>
-                    <%}%>      
+                    <% } %>      
                 </ul>
             </div>
             <div style=" width: 945px;height:30px;text-align: center;margin:10px auto;"> 
@@ -140,6 +114,8 @@
         temp('pop-container1').style.display = 'none';
         window.location.href="/material/method";
     }
+    
+    //分页
     function getzz() {
         var a = $("ul#all li");
         var zz =new Array(a.length);
@@ -157,21 +133,19 @@
             e=pageall;pageno=pageall; //输入页和当前页都=最大页
         }
         $("#all").html("");//全部清空
-        if(pageno==1){
-            var html="";
-        }
-        else{
-            var html="<li><div class='Materialhead'>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>天数</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市介绍</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市照片</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>攻略</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div></li>";
-        }
+        var html="<li><div class='Materialhead'>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>天数</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市介绍</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市照片</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>攻略</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3></div></li>"
+        ;
         for(var i=0;i<pagesize;i++){
-            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            if(zz[(e-1)*pagesize+i]){
+                html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            }
             if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
         }
         $("ul#all").html(html);//给ul列表写入html

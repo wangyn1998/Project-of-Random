@@ -50,24 +50,6 @@
             <div class='Materialbox3'>
                 <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
                 margin-block-end: 0" id="all">
-                    <li>
-                        <div class='Materialhead'>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>编号</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>城市名</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>景点名</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>景点介绍</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>景点照片</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>类别</b></h3>
-                            <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                            margin-block-end: 0;"><b>操作</b></h3>
-                        </div>
-                    </li>
                     <% for(var i=0;i<spotList.length;i++){ %>
                         <li>
                             <p class='Materialbody'><%= spotList[i].spotId %></p>  
@@ -180,9 +162,9 @@
                 }
                 })
             }
-        }
-        
+        }  
     }
+    //分页
     function getzz() {
         var a = $("ul#all li");
         var zz =new Array(a.length);
@@ -200,22 +182,19 @@
             e=pageall;pageno=pageall; //输入页和当前页都=最大页
         }
         $("#all").html("");//全部清空
-        if(pageno==1){
-            var html="";
-        }
-        else{
-            var html="<li><div class='Materialhead'>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点名</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点介绍</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点照片</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>类别</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3>"
-                +"</div></li>";
-        }
+        var html="<li><div class='Materialhead'>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点名</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点介绍</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点照片</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>类别</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3>"
+            +"</div></li>";
         for(var i=0;i<pagesize;i++){
-            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            if(zz[(e-1)*pagesize+i]){
+                html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            }
             if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
         }
         $("ul#all").html(html);//给ul列表写入html

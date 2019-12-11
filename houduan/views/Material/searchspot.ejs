@@ -30,31 +30,13 @@
             </div>
         </div>
         <div class="right">
-                <div class="box1">
-                    <h2>您搜索的结果是:</h2>
-                    <br/>
-                </div>
+            <div class="box1">
+                <h2>您搜索的结果是:</h2>
+                <br/>
+            </div>
             <div class='Materialbox3'>
                     <ul class='MaterialList' style="padding-inline-start: 0px;margin-block-start: 0;
                     margin-block-end: 0" id="all">
-                        <li>
-                            <div class='Materialhead'>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>编号</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>城市名</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>景点名</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>景点介绍</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>景点照片</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>类别</b></h3>
-                                <h3 class='Materialhead1' style="margin-block-start:0.5em;
-                                margin-block-end: 0;"><b>操作</b></h3>
-                            </div>
-                        </li>
                         <% for(var i=0;i<spotList.length;i++){ %>
                             <li>
                                 <p class='Materialbody'><%= spotList[i].spotId %></p>  
@@ -88,42 +70,11 @@
                     </div>
             </div>
         </div>
-        <div>
-            <div id="pop-container">
-                <div id="cover-tier" class="popPosition"></div>
-                <div id="pop-tier" class="popPosition">
-                    <i id="close-pop">&#10006;</i>
-                    <form action="/material/spot" method="POST" style="height:300px;margin-top:40px;">
-                        <div class='text'>
-                            <h4>城市名：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotCity"/>
-                        </div>
-                        <div class='text'>
-                            <h4>景点名：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotTitle"/>
-                        </div>
-                        <div class='text'>
-                            <h4>景点介绍：</h4>
-                            <input class="second" type="file" name="spotContent"/>
-                        </div>
-                        <div class='text'>
-                            <h4>景点照片：</h4>
-                            <input class="second" type="file" name="spotImage"/>
-                        </div>
-                        <div class='text'>
-                            <h4>类别：</h4>
-                            <input class="first" type="text" placeholder="1232" name="spotType"/>
-                        </div>
-                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
-                    </form>  
-                </div>
-            </div>
-        </div>
     </div>
-
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
+    //分页
     function getzz() {
         var a = $("ul#all li");
         var zz =new Array(a.length);
@@ -141,22 +92,19 @@
             e=pageall;pageno=pageall; //输入页和当前页都=最大页
         }
         $("#all").html("");//全部清空
-        if(pageno==1){
-            var html="";
-        }
-        else{
-            var html="<li><div class='Materialhead'>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点名</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点介绍</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点照片</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>类别</b></h3>"
-                +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3>"
-                +"</div></li>";
-        }
+        var html="<li><div class='Materialhead'>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>编号</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>城市名</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点名</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点介绍</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>景点照片</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>类别</b></h3>"
+            +"<h3 class='Materialhead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3>"
+            +"</div></li>";
         for(var i=0;i<pagesize;i++){
-            html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            if(zz[(e-1)*pagesize+i]){
+                html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表
+            }
             if(zz[(e-1)*pagesize+i+1]==null) break;//超出最后的范围跳出
         }
         $("ul#all").html(html);//给ul列表写入html
