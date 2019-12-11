@@ -265,9 +265,10 @@ router.post('/addtopic',function (req,res,next) {
     getDate();
     var name=req.body.name;
     var content=req.body.content;
+    var type=req.body.type;
     var con=mysql.createConnection(dbconfig);
     con.connect();
-    con.query("insert into topic(topicContent,adminUsername,topicTime) values(?,?,?)",[content,name,now],function (err,result) {
+    con.query("insert into topic(topicContent,adminUsername,topicTime,topicType) values(?,?,?,?)",[content,name,now,type],function (err,result) {
     if(err){
       console.log(err);
     }else{
@@ -294,6 +295,7 @@ router.post("/topic",function (req,res,next) {
 router.post("/update",function (req,res,next) {
   var adminUsername=req.body.name1;
   var topicContent=req.body.content1;
+  var topicType=req.body.type1;
   let now='';
     function getDate(){
         var myDate = new Date();
@@ -308,7 +310,7 @@ router.post("/update",function (req,res,next) {
     getDate();
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("update topic set topicContent=?,adminUsername=?,topicTime=? where topicId=?",[topicContent,adminUsername,now,topicId],function (err,result) {
+  con.query("update topic set topicContent=?,adminUsername=?,topicTime=?,topicType=? where topicId=?",[topicContent,adminUsername,now,topicType,topicId],function (err,result) {
     if(err){
       console.log(err);
     }else{
