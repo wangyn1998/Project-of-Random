@@ -559,7 +559,8 @@ router.post('/upmethod', function(req, res, next) {
     }
   });
 });
-router.post('/method1', function(req, res, next) {
+router.post('/method1', function(req, res, next) { 
+  methodId = req.body.method;
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from method where cityName=?",[city],function(err,result){
@@ -667,6 +668,7 @@ router.post('/upspot', function(req, res, next) {
   });
 });
 router.post('/spot1', function(req, res, next) {
+  spotId = req.body.spot;
   var con = mysql.createConnection(dbconfig);
   con.connect();
   con.query("select * from spot where spotCity=?",[spotcity],function(err,result){
