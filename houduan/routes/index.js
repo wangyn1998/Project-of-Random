@@ -57,14 +57,13 @@ router.get('/home',function(req,res,next){
   function conver(s) {
       return s < 10 ? '0' + s : s;
   }
-  let beginTime=new Date(now);
-  var endTime=new Date(beginTime.getTime()+24*60*60*1000);
-  con.query("select * from user;select * from user where Uday between ? and ?;select * from post",[beginTime,endTime],function(err,result){
+ 
+  con.query("select * from user;select * from user where Uday =?;select * from post",[now],function(err,result){
       if(err){
         console.log(err);
       }
       else{
-        console.log();
+        console.log(result[1]);
         res.render('home',{userListall:result[0],userListnew:result[1],postList:result[2]});
       }
     })
