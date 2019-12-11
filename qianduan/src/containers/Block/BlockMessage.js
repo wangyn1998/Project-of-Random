@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavBar, Icon,Card,List, Accordion,InputItem } from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-import { createForm } from 'rc-form';
 
 
 const Item = List.Item;
