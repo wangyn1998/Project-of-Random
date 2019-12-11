@@ -5,6 +5,22 @@ let str="";
 let arr="";
 let path={};
 export default class Aite extends Component {
+    constructor(){
+        super();
+        this.state={
+            user:[]
+        }
+    }
+    componentWillMount(){
+        fetch('http://localhost:8001/usermessage2')
+        .then((res)=>res.json())
+        .then((res)=>{
+            console.log(res);
+            this.setState({
+                user:res
+            })
+        })
+    }
     post=(e)=>{
         str=e.target.innerHTML;
         arr=str.split('>');
@@ -25,7 +41,7 @@ export default class Aite extends Component {
                     ]}
                     >选择好友</NavBar>
                 <SearchBar placeholder="搜索好友" ref={ref => this.autoFocusInst = ref} />
-                <Card style={{minHeight:'0'}} className='aite1'>
+                {/* <Card style={{minHeight:'0'}} className='aite1'>
                     <Card.Header
                         title="This is title"
                         ref='1'
@@ -39,7 +55,20 @@ export default class Aite extends Component {
                         thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
                         onClick={this.post.bind(this)}
                     />
-                </Card>
+                </Card> */}
+                <div>
+                {
+                    this.state.user.map((item)=>(
+                        <Card style={{minHeight:'0'}} className='aite1'>
+                            <Card.Header
+                                title={item.userName}
+                                thumb={item.Uimage}
+                                onClick={this.post.bind(this)}
+                            />
+                        </Card>
+                    ))
+                }
+                </div>
             </div>
         )
     }

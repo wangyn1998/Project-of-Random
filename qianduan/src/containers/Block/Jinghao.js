@@ -5,6 +5,22 @@ let str="";
 let arr="";
 let path={};
 export default class Jinghao extends Component {
+    constructor(){
+        super();
+        this.state={
+            topic:[]
+        }
+    }
+    componentWillMount(){
+        // 发起请求
+        fetch('http://localhost:8001/topic')
+        .then((res)=>res.json())
+        .then((res)=>{
+            this.setState({
+                topic:res
+            })
+        })
+    }
     post=(e)=>{
         str=e.target.innerHTML;
         arr=str.split('>');
@@ -14,6 +30,7 @@ export default class Jinghao extends Component {
         };
         window.localStorage.setItem('topic', JSON.stringify(arr[1]));
     }
+    
     render() {
         return (
             <div>
@@ -25,20 +42,18 @@ export default class Jinghao extends Component {
                     ]}
                     >选择话题</NavBar>
                 <SearchBar placeholder="#话题" ref={ref => this.autoFocusInst = ref} />
-                <Card style={{minHeight:'0'}}>
-                    <Card.Header
-                        title="话题"
-                        thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                        onClick={this.post.bind(this)}
-                    />
-                </Card>
-                <Card style={{minHeight:'0'}}>
-                    <Card.Header
-                        title="话题"
-                        thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                        onClick={this.post.bind(this)}
-                    />
-                </Card>
+                <div>
+                {
+                    this.state.topic.map((item)=>(
+                        <Card style={{minHeight:'0'}} className='aite1'>
+                            <Card.Header
+                                title={item.topicContent}
+                                onClick={this.post.bind(this)}
+                            />
+                        </Card>
+                    ))
+                }
+                </div>
             </div>
         )
     }

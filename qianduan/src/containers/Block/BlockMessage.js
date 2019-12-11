@@ -37,7 +37,7 @@ export default class BlockMessage extends Component {
     }
     getConnect1=(e)=>{  //api请求函数
         let text = {replyContent:this.state.v,postId:this.state.post.postId,userName:this.state.username} //获取数据
-        console.log(this.inp.state.value);
+        
         let send = JSON.stringify(text);   //重要！将对象转换成json字符串
         
         fetch('http://localhost:8001/usermessage')
@@ -65,6 +65,9 @@ export default class BlockMessage extends Component {
             data => {
             }
         );
+        this.setState({
+            v:''
+        })
     }
     handleInput = (e)=>{
         //绑定this，事件处理函数写成箭头函数，或者bind
@@ -174,10 +177,9 @@ export default class BlockMessage extends Component {
                             onKeyDown={this.handleInput}
                             maxLength='10px'
                             onChange={this.handleChange}
-                            style={{width:'78%',height:'100%',border:'1px solid black'}}
+                            style={{width:'78%',height:'95%',border:'1px solid #888888',borderRadius:'5px'}}
                         /><button style={{width:'50px',backgroundColor:'blue',borderRadius:'5px',paddingTop:'0px',height:'35px',marginLeft:'4px'}} onClick={this.getConnect1}>发送</button>
                         </div>
-
             </div>
         )
     }
