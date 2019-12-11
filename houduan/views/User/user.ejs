@@ -41,7 +41,7 @@
             <div class="box1">
                 <div class='search'>
                     <form method="post" action="/searchuser" style="line-height: 2.5em;">
-                        <input class='Bar' placeholder="请输入要搜索用户的用户名" name='userName'/>
+                        <input class='Bar' placeholder="请输入要搜索用户的手机号" name='Uphone'/>
                         <div class="iconfont icon-sousuo da" style="float:right;margin-right: 3px;"><input  type="submit" value="搜索"style="margin-left:5px;border:0px solid #eee;
                             background: #eee;"></div>
                     </form>
@@ -65,12 +65,12 @@
                         <div class='Userbody'>
                         <img class="Userimg" src='<%= userList[i]["Uimage"] %>'/>
                         </div>
-                        <p class='Userbody'><%= userList[i]["userName"] %></p>
+                        <p class='Userbody'><%= userList[i]["userName"]%></p>
                         <p class='Userbody'><%= userList[i]["Uphone"] %></p>
                         <p class='Userbody'><%= userList[i]["Usex"] %></p>
                         <p class='Userbody' style="height:50px;overflow:hidden;font-size:10px"><%= userList[i]["Ubirthday"] %></p>
                         <p class='Userbody' style="height:50px;overflow:hidden;font-size:10px"><%= userList[i]["Uaddress"] %></p>
-                        <p class='Userbody'><a href='/deleteuser?userName=<%= userList[i]["userName"]%>'><button class='Userdel' >移除</button></a></p>
+                        <p class='Userbody'><a href='/deleteuser?Uphone=<%= userList[i]["Uphone"]%>'><button class='Userdel' >移除</button></a></p>
                     </li>
                 <%}%>
                </ul>
