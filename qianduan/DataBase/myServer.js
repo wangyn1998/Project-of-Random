@@ -4,6 +4,8 @@ var app = express();
 var mysql = require("mysql");
 var dbconfig = require("./dbconfig.json");
 var bodyParser = require('body-parser');//引入body parser用于解析post的body
+var url=require('url');
+
 
 app.use(bodyParser.json());//使用body parser用于解析post的body
 app.use(bodyParser.urlencoded({ extended: true }));//使用body parser用于解析post的body
