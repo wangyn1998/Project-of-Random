@@ -18,7 +18,7 @@ export default class Block extends Component {
                         <Route path='/aite' component={Aite}/>
                         <Route path='/jinghao' component={Jinghao}/>
                         <Route path='/postImg' component={PostImg}/>
-                        <Route path="/blockmessage" component={BlockMessage}/>
+                        <Route path="/blockmessage/:id" component={BlockMessage}/>
                         <Route path='/postmessage' component={PostMessage}/>
                         <Route path='/put' component={Put}/>
                         <Route component={Block1}/>
