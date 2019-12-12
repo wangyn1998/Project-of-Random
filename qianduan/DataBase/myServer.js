@@ -367,6 +367,7 @@ app.get('/usermessage',function(req,res,next){
 })
 app.post('/postmessage',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
+    let postImage=req.body.postImage;
     con.connect();
     function getDate(){
         var myDate = new Date();
@@ -391,7 +392,7 @@ app.post('/postmessage',function(req,res,next){
             if(user1==''){
                 user1='未命名';
             }
-            con.query('insert into post(postTime,postContent,userName,Uimage) values(?,?,?,?)',[time,req.body.postContent,user1,img1],function(err,result){
+            con.query('insert into post(postTime,postContent,userName,Uimage,postImage) values(?,?,?,?,?)',[time,req.body.postContent,user1,img1,postImage],function(err,result){
                 if(err){
                     console.log(err);
                 }
