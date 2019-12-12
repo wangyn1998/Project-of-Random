@@ -4,6 +4,7 @@ import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 let str="";
 let arr="";
 let path={};
+let arr1="";
 export default class Jinghao extends Component {
     constructor(){
         super();
@@ -23,15 +24,19 @@ export default class Jinghao extends Component {
     }
     post=(e)=>{
         str=e.target.innerHTML;
-        arr=str.split('>');
+        if(str!=null){
+            arr=str.split('>');
         path = {
             pathname:'/post',
             state1:arr[1]
         };
-        window.localStorage.setItem('topic', JSON.stringify(arr[1]));
+        window.localStorage.setItem('topic', JSON.stringify(arr));
+        }
+        
     }
     
     render() {
+        console.log(str,arr,arr1)
         return (
             <div>
                 <NavBar

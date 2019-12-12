@@ -10,7 +10,7 @@ export default class Aite extends Component {
         this.state={
             user:[]
         }
-    }
+    } 
     componentWillMount(){
         fetch('http://localhost:8001/usermessage2')
         .then((res)=>res.json())
@@ -23,11 +23,13 @@ export default class Aite extends Component {
     }
     post=(e)=>{
         str=e.target.innerHTML;
-        arr=str.split('>');
-        path = {
+        if(str!=null){
+             arr=str.split('>');
+             path = {
             pathname:'/post',
             state:arr[1]
         };
+        }
         window.localStorage.setItem('friend', JSON.stringify(arr[1]));          
     }
     render() {
@@ -41,21 +43,6 @@ export default class Aite extends Component {
                     ]}
                     >选择好友</NavBar>
                 <SearchBar placeholder="搜索好友" ref={ref => this.autoFocusInst = ref} />
-                {/* <Card style={{minHeight:'0'}} className='aite1'>
-                    <Card.Header
-                        title="This is title"
-                        ref='1'
-                        thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                        onClick={this.post.bind(this)}
-                        />
-                </Card>
-                <Card style={{minHeight:'0'}} className='aite1'>
-                    <Card.Header
-                        title="This is title"
-                        thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                        onClick={this.post.bind(this)}
-                    />
-                </Card> */}
                 <div>
                 {
                     this.state.user.map((item)=>(
