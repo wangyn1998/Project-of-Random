@@ -6,6 +6,7 @@ import PostMessage from './PostMessage';
 import BlockMessage from './BlockMessage';
 import {Link} from 'react-router-dom';
 import NumberInput from 'antd-mobile/lib/input-item/CustomInput';
+import {con} from './Context'
 
 const data1= Array.from(new Array(3)).map((_val, i) => ({
     idx: i
@@ -185,7 +186,7 @@ export default class Block1 extends Component {
                     this.state.post.map((item,index)=>(
                         
                         <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'1%',backgroundColor:'#ffffff',padding:'4%',position:'relative',paddingBottom:'0',color:'black'}} >
-                        <Link to='/blockmessage' onClick={this.clicknum.bind(this,item.postId)}>
+                        <Link to={'/blockmessage/'+item.postId} onClick={this.clicknum.bind(this,item.postId)}>
                             <img src={item.Uimage} style={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}/>
                             <span style={{marginLeft:'5%',position:'absolute',top:'10%'}}>{item.userName}</span>
                             <div>

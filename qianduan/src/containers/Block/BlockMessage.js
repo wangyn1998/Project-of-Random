@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavBar, Icon,Card,List, Accordion,InputItem } from 'antd-mobile';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-
+import {con} from './Context'
 
 const Item = List.Item;
 export default class BlockMessage extends Component {
@@ -17,7 +17,7 @@ export default class BlockMessage extends Component {
         }
     }
     componentWillMount(){
-        fetch('http://localhost:8001/clickpost')
+        fetch('http://localhost:8001/clickpost/'+this.props.match.params.id)
         .then((res)=>res.json())
         .then((res)=>{
             console.log(res);
@@ -92,6 +92,7 @@ export default class BlockMessage extends Component {
                         <Icon key="1" type="ellipsis" />,
                     ]}
                     >详情</NavBar>
+                
                 <div className='message3' style={{width:'100%'}}>
                 <Card className='message2' style={{width:'100%'}}>
                     <Card.Header
@@ -111,27 +112,6 @@ export default class BlockMessage extends Component {
                     </div>
                     <Card style={{borderRadius:'20px',minHeight:'250px'}}>
                         <p style={{margin:'6% 7%',fontSize:'20px'}}><b>评论</b></p>
-                        {/* <Card.Header
-                            title='在远方'
-                            thumbStyle={{borderRadius:'50%'}}
-                            thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                            extra={<i className='iconfont icon-dianzan'>200</i>}
-                        />
-                        <Card.Body style={{width:'70%',backgroundColor:'#eeeeee',margin:'30px auto',borderRadius:'6px'}}>
-                        <List className="my-list block1list">
-                            <Item style={{minHeight:'0'}}>向前看：加我一个</Item>
-                            <Item style={{minHeight:'0'}}>向前看：加我一个</Item>
-                            <Accordion defaultActiveKey="0" className="my-accordion">
-                                <Accordion.Panel header="查看更多回复"  className='block1panel'>
-                                    <List className="my-list">
-                                    <List.Item>content 1</List.Item>
-                                    <List.Item>content 2</List.Item>
-                                    <List.Item>content 3</List.Item>
-                                    </List>
-                                </Accordion.Panel>
-                            </Accordion>
-                        </List>
-                        </Card.Body> */}
                         {
                             this.state.reply.map((item,idx)=>{
                                 if(idx==0){
