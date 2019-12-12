@@ -230,7 +230,7 @@
                 cityName: $("#cityName").val(),
                 methodDay: $("#methodDay").val(),
                 cityContent: cityContent,
-                cityImage: image,
+                cityImage: $("#cityImage").val().slice(12),
                 methodContent: methodContent
             },
             success: function(data){

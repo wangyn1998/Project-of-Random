@@ -211,7 +211,7 @@
                 cityName: $("#cityName").val(),
                 methodDay: $("#methodDay").val(),
                 cityContent: cityContent,
-                cityImage: $("#cityImage").val(),
+                cityImage: $("#cityImage").val().slice(12),
                 methodContent: methodContent
             },
             success: function(data){

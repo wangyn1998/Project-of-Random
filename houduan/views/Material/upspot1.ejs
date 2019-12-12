@@ -77,25 +77,25 @@
                     <i id="close-pop1">&#10006;</i>
                         <div class='text'>
                             <h4>城市名：</h4>
-                            <input class="first" type="text" id="spotCity" name="spotCity"/>
+                            <input class="first" type="text" id="spotCity"/>
                         </div>
                         <div class='text'>
                             <h4>景点名：</h4>
-                            <input class="first" type="text" id="spotTitle" name="spotTitle"/>
+                            <input class="first" type="text" id="spotTitle"/>
                         </div>
                         <div class='text'>
                             <h4>景点介绍：</h4>
-                            <input class="second" type="file" id = "fileId" name="spotContent" />
+                            <input class="second" type="file" id = "spotContent" onchange="upload(this)"/>
                         </div>
                         <div class='text'>
                             <h4>景点照片：</h4>
-                            <input class="second" type="file" id="spotImage" name="spotImage"/>
+                            <input class="second" type="file" id="spotImage"/>
                         </div>
                         <div class='text'>
                             <h4>类别：</h4>
-                            <input class="first" type="text"  id="spotType" name="spotType"/>
+                            <input class="first" type="text"  id="spotType"/>
                         </div>
-                        <button type="submit" onclick="check()" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button>
+                        <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button>
                 </div>
             </div>
         </div>
@@ -112,39 +112,7 @@
         temp('pop-container1').style.display = 'none';
         window.location.href="/material/spot";
     }
-    function check() {
-        var objFile = document.getElementById("fileId");
-        if(objFile.value == "") {
-            alert("不能空")
-        }
-        var files = $('#fileId').prop('files');//获取到文件列表
-        if(files.length == 0){
-            alert('请选择文件');
-        }else{
-            var reader = new FileReader();//新建一个FileReader
-            reader.readAsText(files[0], "gb2312");//读取文件 
-            reader.onload = function(evt){ //读取完文件之后会回来这里
-                var spotContent = evt.target.result; // 读取文件内
-                $.ajax({
-                    url: "/upspot",
-                    method: "POST",
-                    data:{ 
-                        spotContent: spotContent,
-                        spotCity:temp('spotCity').value,
-                        spotImage:temp('spotImage').value,
-                        spotTitle:temp('spotTitle').value,
-                        spotType:temp('spotType').value
-                    },
-                    success:function(data){
-                        console.log(data);
-                    if(data=="success"){
-                        window.location.href="/material/spotsuc";
-                    }
-                }
-                })
-            }
-        } 
-    }
+
     //分页
     function getzz() {
         var a = $("ul#all li");
@@ -205,5 +173,39 @@
     }   //一共多少页
     change(1);
 
+    //读取文件内容
+    var spotContent = "";
+    function upload(input) {  
+        //支持chrome IE10  
+        if (window.FileReader) {  
+            var file = input.files[0];  
+            filename = file.name.split(".")[0];  
+            var reader = new FileReader();  
+            reader.onload = function() {    
+                spotContent = this.result;
+            }  
+            reader.readAsText(file);  
+        }  
+    }
+
+    //数据添加
+    $("#save").click(function(){
+        $.ajax({
+            url: '/upspot',
+            method: 'post',
+            data:{
+                spotCity: $("#spotCity").val(),
+                spotTitle: $("#spotTitle").val(),
+                spotContent: spotContent,
+                spotImage: $("#spotImage").val().slice(12),
+                spotType: $("#spotType").val()
+            },
+            success: function(data){
+                if(data == "success"){
+                    window.location.href="/material/spot";
+                }
+            }
+        })
+    });
 </script>
 </html>
