@@ -442,10 +442,12 @@ app.post('/clicknum',function(req,res,next){
     clickid=req.body.postId;
     console.log(clickid);
 })
-app.get('/clickpost',function(req,res,next){
+app.get('/clickpost/:id',function(req,res,next){
+    var urlobj=url.parse(req.url);
+    var arr=urlobj.pathname.split('/');
     var con = mysql.createConnection(dbconfig);
     con.connect();
-    con.query('select * from post where postId=?',[clickid],function(err,result){
+    con.query('select * from post where postId=?',[arr[2]],function(err,result){
         if(err){
             console.log(err);
         }
