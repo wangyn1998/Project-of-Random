@@ -267,7 +267,9 @@ app.get('/Getnum',(req,res)=>{
   }
   var trueCode = randomn(6);
   let message1 = {success:true,trueNum:trueCode};
-  let phoneNum = JSON.parse(req.query.mobile); 
+  console.log(req);
+  let phoneNum = JSON.parse(req.query.phone); 
+  console.log(phoneNum+'aaa');
   // let message2 = {success:false};
   var QcloudSms = require("qcloudsms_js");
   // 短信应用 SDK AppID
@@ -277,7 +279,7 @@ app.get('/Getnum',(req,res)=>{
   // 需要发送短信的手机号码
   var phoneNumbers = [phoneNum];
   // 短信模板 ID，需要在短信控制台中申请
-  var templateId = 486355;  // NOTE: 这里的模板ID`7839`只是示例，真实的模板 ID 需要在短信控制台中申请
+  var templateId = 486866;  // NOTE: 这里的模板ID`7839`只是示例，真实的模板 ID 需要在短信控制台中申请
   // 签名
   var smsSign = "fymt1公众号";  // NOTE: 签名参数使用的是`签名内容`，而不是`签名ID`。这里的签名"腾讯云"只是示例，真实的签名需要在短信控制台申请
   // 设置请求回调处理, 这里只是演示，用户需要自定义相应处理回调
@@ -292,7 +294,7 @@ app.get('/Getnum',(req,res)=>{
   // 实例化 QcloudSms
   var qcloudsms = QcloudSms(appid, appkey);
   var ssender = qcloudsms.SmsSingleSender();
-  var params = [trueCode];
+  var params = [trueCode,2];
   ssender.sendWithParam("86", phoneNumbers[0], templateId,
   params, smsSign, "", "", callback);
   res.send(message1);
