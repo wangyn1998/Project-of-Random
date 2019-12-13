@@ -8,6 +8,7 @@ const his = createBrowserHistory();
 const Item = Popover.Item;
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 const Item1 = List.Item;
+const times = 0;
 export default class App extends Component {
     constructor(props){
         super(props);
@@ -96,13 +97,14 @@ export default class App extends Component {
   jump(value){
     this.props.history.push(value)
   }
+  jump1(value){
+    localStorage.setItem("click",true)
+    this.props.history.push(value)
+  }
   logout(){
     this.setState({logif:false})
     sessionStorage.removeItem('user');
     sessionStorage.setItem("logif",false);
-    // his.push('/my')
-    // window.location.reload();
-    // this.props.history.push('/my');
   }
   render() {
     const sidebar = (<List>
@@ -184,12 +186,12 @@ export default class App extends Component {
                                 <div style={{lineHeight:'20px'}} onClick={() => this.jump('/register')}>点击注册</div>
                             </div>
                         </div>
-                        {/* <div className={this.state.logif?"qiandao":"touxiang00"}>
-                            <div onClick={() => this.jump('/getscore')} className={this.state.logif?"qiandaop":"touxiang00"}>签到领积分</div>
-                        </div> */}
-                        <div style={{width:'20%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
-                            <div style={{lineHeight:'20px'}} onClick={() => this.jump('/getscore')}>签到领积分</div>
+                        <div className={this.state.logif?"qiandao":"touxiang00"}>
+                            <div onClick={() => this.jump1('/getscore')} >签到领积分></div>
                         </div>
+                        {/* <div style={{width:'20%',height:'20px',borderRadius:'10%',border:'1px gray solid',float:'right',marginRight:'5%',textAlign:'center',marginTop:'3%'}}>
+                            <div style={{lineHeight:'20px'}} onClick={() => this.jump('/getscore')}>签到领积分</div>
+                        </div> */}
                     </div>
                     {/* <div style={{float:'left',width:'30%'}}>
                         <div className={this.state.logif?'deng1':'deng0'}>

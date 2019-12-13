@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import {WhiteSpace,NavBar,Toast,Button,List} from 'antd-mobile'
 import {createBrowserHistory} from 'history'
+import { con } from './context';
+import { is } from '@babel/types';
 const his = createBrowserHistory();
 const Item = List.Item;
 export default class SignIn extends Component {
     constructor(props){
         super(props);
+        const isClick = localStorage.getItem("click")
         this.state = {
             score:0,
-            isClick:true,
+            isClick:isClick,
             username:'',
             taskId:'',
             taskContent:'',
@@ -18,9 +21,13 @@ export default class SignIn extends Component {
         }
     }
     successToast=()=> {       
-        console.log(this.state.score);
-        const isClick = this.state.isClick;
-        if (isClick == true) {   //如果为true 开始执行
+        // const isClick = this.state.isClick;
+        const isClick = localStorage.getItem("click");
+        localStorage.setItem("aa",false)
+        localStorage.setItem("click",false)
+        console.log(isClick);
+        console.log(typeof(isClick));
+        if (isClick=="true") {   //如果为true 开始执行
             Toast.success('签到成功，积分+10', 1);
             let s = this.state.score;
             s=s+10;
@@ -29,9 +36,7 @@ export default class SignIn extends Component {
                 taskId:1,
                 taskContent:'签到'    
             })
-            console.log(this.state.isClick)
             this.setState({ isClick: false })   //将isClick 变成false，将不会执行处理事件
-            console.log(this.state.isClick)
             const that = this   // 为定时器中的setState绑定this
             const now = new Date().getHours();
             const now1 = new Date().getMinutes();
@@ -40,8 +45,7 @@ export default class SignIn extends Component {
             const minutes = (59-now1)*60*1000;
             const seconds = (60-now2)*1000;
             const time = hour+minutes+seconds;
-            console.log(that.state.isClick)
-            localStorage.setItem('click',that.state.isClick);
+            // localStorage.setItem('click',that.state.isClick);
             let text = {userName:this.state.username,updateTime:new Date(),taskId:1,taskContent:'签到',taskScore:10,phone:this.state.phone} //获取数据
             let send = JSON.stringify(text);   //重要！将对象转换成json字符串
             fetch(`http://127.0.0.1:8001/getscore`,{   //Fetch方法y
@@ -62,19 +66,14 @@ export default class SignIn extends Component {
             )
             setTimeout(function () {       // 设置延迟事件，1秒后将执行
                 that.setState({ isClick: true })   // 将isClick设置为true
+                localStorage.setItem('click',true);
             }, time);
-            localStorage.setItem('click',this.state.isClick);
-            console.log(that.state.isClick)
         }
         else{
             Toast.fail('今日已签到，明日再来叭', 1);
             // Toast.success('今日已签到，明日再来叭', 1);
         }
     }
-    // aaa=()=>{
-    //     his.push('/post');
-    //     window.location.reload();
-    // }
     jump1(value){
         this.props.history.push(value);
         let s = this.state.score;
@@ -174,6 +173,7 @@ export default class SignIn extends Component {
                     <Item extra="去发帖" arrow="horizontal" onClick={() => this.jump1('/post')}>发帖</Item>
                     {/* <Item extra="去完善资料" arrow="horizontal" onClick={() => this.jump('/updateuser')}>资料完善度超过60%</Item> */}
                     <Item extra="去搜索攻略" arrow="horizontal" onClick={() => this.jump2('/')}>搜索攻略</Item>
+                    <Item extra="去搜索攻略" arrow="horizontal" onClick={() =>{console.log(this.state.isClick)}}>搜索攻略</Item>
                 </List>
             </div>
         )
