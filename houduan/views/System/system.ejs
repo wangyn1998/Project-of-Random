@@ -48,25 +48,25 @@
                     </p>
                     <button id="out" style="width:100px;height:40px;background:#70bdf1;border:none;color:white;margin-top:20px;font-size:18px;">退出登录</button>
                 </div> 
-                <div style="width:600px;height:210px;margin:20px auto;text-align:center;line-height:40px;">
+                <div style="width:600px;height:210px;margin:0 auto;text-align:center;line-height:40px;">
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
                         <p>性别：
-                            <span><%= user.adminSex %></span>
+                            <span id="sex"><%= user.adminSex %></span>
                         </p>
                     </div>
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
                         <p>手机号：
-                            <span><%= user.adminTel %></span>
+                            <span id="phone"><%= user.adminTel %></span>
                         </p>
                     </div>
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
                         <p>邮箱：
-                            <span><%= user.adminEmail %></span>
+                            <span id="email"><%= user.adminEmail %></span>
                         </p>
                     </div>
                     <div style="width:240px;height:40px;background:#eef7fe;margin-left:50px;margin-top:20px;color:#5a71c5;float:left;">
                         <p>职位：
-                            <span><%= user.adminPosition %></span>
+                            <span id="position"><%= user.adminPosition %></span>
                         </p>
                     </div>
                     <button id="btn" style="width:180px;height:40px;background:#70bdf1;border:none;color:#6882da;margin-left:40px;margin-top:30px;font-size:18px;">编辑</button>
@@ -81,19 +81,19 @@
                     <form action="/system" method="post" style="margin-top:40px;">
                         <div class='text'>
                             <h4>性别：</h4>
-                            <input class="first" type="text"  name="sex"/>
+                            <input class="first" type="text"  name="sex" id="newsex"/>
                         </div>
                         <div class='text'>
                             <h4>手机号：</h4>
-                            <input class="first" type="text"  name="phone"/>
+                            <input class="first" type="text"  name="phone" id="newphone"/>
                         </div>
                         <div class='text'>
                             <h4>邮箱：</h4>
-                            <input class="first" type="text" name="email"/>
+                            <input class="first" type="text" name="email" id="newemail"/>
                         </div>
                         <div class='text'>
                             <h4>职位：</h4>
-                            <input class="first" type="text"  name="position"/>
+                            <input class="first" type="text"  name="position" id="newposition"/>
                         </div>
                         <button type="submit" id="save" style="border:1px solid #888;width:50px;height:30px;background:#61b3ed;color:white;margin-top:40px">保存</button> 
                     </form>
@@ -111,6 +111,10 @@
     // 点击按钮出现弹出层
     temp('btn').onclick = function() {
         temp('pop-container').style.display = 'block';
+        $("#newsex").val( $("#sex").html() );
+        $("#newphone").val( $("#phone").html() );
+        $("#newemail").val( $("#email").html() );
+        $("#newposition").val( $("#position").html() );
     }
     // 点击右上角X弹出层隐藏
     temp('close-pop').onclick = function() {
