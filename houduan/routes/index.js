@@ -292,6 +292,7 @@ router.post("/topic",function (req,res,next) {
   });
 });
 // 编辑话题页面
+// 编辑话题页面
 router.post("/update",function (req,res,next) {
   var adminUsername=req.body.name1;
   var topicContent=req.body.content1;
@@ -310,7 +311,7 @@ router.post("/update",function (req,res,next) {
     getDate();
   var con=mysql.createConnection(dbconfig);
   con.connect(); 
-  con.query("update topic set topicContent=?,adminUsername=?,topicTime=?,topicType=? where topicId=?",[topicContent,adminUsername,now,topicType,topicId],function (err,result) {
+  con.query("update topic set topicContent=?,adminUsername=?,topicTime=?,topicSign=? where topicId=?",[topicContent,adminUsername,now,topicType,topicId],function (err,result) {
     if(err){
       console.log(err);
     }else{
