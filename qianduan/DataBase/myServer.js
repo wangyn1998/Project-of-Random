@@ -396,6 +396,9 @@ app.post('/postmessage',function(req,res,next){
             if(user1==''){
                 user1='未命名';
             }
+            if(img1==null){
+                img1='http://img2.3png.com/eebe5ef277285d150546fd77d248786d2a9e.png';
+            }
             con.query('insert into post(postTime,postContent,userName,Uimage,postImage) values(?,?,?,?,?)',[time,req.body.postContent,user1,img1,postImage],function(err,result){
                 if(err){
                     console.log(err);
