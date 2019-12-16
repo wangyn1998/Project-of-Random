@@ -6,7 +6,6 @@ import PostMessage from './PostMessage';
 import BlockMessage from './BlockMessage';
 import {Link} from 'react-router-dom';
 import NumberInput from 'antd-mobile/lib/input-item/CustomInput';
-import {con} from './Context'
 
 const data1= Array.from(new Array(3)).map((_val, i) => ({
     idx: i
@@ -18,7 +17,8 @@ export default class Block1 extends Component {
         this.state={
             topic:[],
             post:[],
-            count:[]
+            count:[],
+            show:'none'
         }
     }
     componentWillMount(){
@@ -52,6 +52,16 @@ export default class Block1 extends Component {
         this.setState({
             count:it
         })
+        if(sessionStorage.getItem("logif")=='true'){
+            this.setState({
+                show:'block'
+            })
+        }
+        else{
+            this.setState({
+                show:'none'
+            })
+        }
     }
     addNum(num,path,id,index,event){
         // if(num==null)
@@ -134,11 +144,11 @@ export default class Block1 extends Component {
                 <NavBar
                     mode="dark"
                     leftContent={[
-                        <i className='icon-wode iconfont' style={{marginRight:'7px'}}/>,
-                        <Link to='/put'><span style={{color:'white'}}>我发出的</span></Link>
+                        <i className='icon-wode iconfont' style={{marginRight:'7px',display:this.state.show}}/>,
+                        <Link to='/put'><span style={{color:'white',display:this.state.show}}>我发出的</span></Link>
                     ]}
                     rightContent={[
-                        <Link to='/post'><i  className='icon-75bianji iconfont' style={{color:'white'}}/></Link>
+                        <Link to='/post'><i  className='icon-75bianji iconfont' style={{color:'white',display:this.state.show}}/></Link>
                     ]}
                     >论坛</NavBar>
                 <WingBlank style={{height:'100%',borderRadius:'5px',border:'1px solid #BBBBBB',marginTop:'0.3%',position:'relative'}}>
