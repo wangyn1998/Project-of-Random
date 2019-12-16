@@ -681,17 +681,8 @@ router.post('/spot1', function(req, res, next) {
     }
   });    
 });
-router.get('/material/spotsuc', function(req, res, next) {
-  var con = mysql.createConnection(dbconfig);
-  con.connect();
-  con.query("select * from spot",function(err,result){
-    if(err){
-      console.log(err);
-    }
-    else{
-      res.render('Material/spotsuc', { spotList:result });
-    }
-  });
+router.get('/material/spotsuc',function(req,res,next){
+  res.render('Material/spotsuc', { title:'spotsuc' });
 });
 //删除景点
 router.get('/material/delspot', function(req, res, next) {
