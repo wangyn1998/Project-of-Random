@@ -94,7 +94,7 @@ function change(e){
         e=pageall;pageno=pageall; //输入页和当前页都=最大页
     }
     $("#all").html("");//全部清空
-    var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>话题内容</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作时间</b></h3></li>";
+    var html="<li class='Topichead'><h3 class='Topichead1' style='margin-block-start:0.5em;margin-block-end: 0;'><b>回复内容</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作</b></h3><h3 class='Topichead3' style='margin-block-start:0.5em;margin-block-end: 0;'><b>操作人</b></h3><h3 class='Topichead2' style='margin-block-start:0.5em;margin-block-end: 0;'><b>回复时间</b></h3></li>";
     for(var i=0;i<pagesize;i++){
         if(zz[(e-1)*pagesize+i]){
             html += '<li>' + zz[(e-1)*pagesize+i] +'</li>';//创建一页的li列表

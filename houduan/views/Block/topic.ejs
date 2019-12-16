@@ -63,7 +63,7 @@
                     <% for(var i=0;i<topicList.length;i++){%>
                         <li>
                             <p class='TopicContent'><%=topicList[i]["topicContent"]%></p>
-                            <p class="TopicType"><%=topicList[i]["topicType"]%></p>
+                            <p class="TopicType"><%=topicList[i]["topicSign"]%></p>
                             <div class='Topicoperation'>
                                 <form method="post" action="/topic" class="operation1">
                                     <button style="float: left;color: white;" name="topic" type='submit' id='bianji' value='<%=topicList[i]["topicId"]%>'>编辑
