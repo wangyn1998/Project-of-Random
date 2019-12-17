@@ -423,7 +423,15 @@ app.post('/zhuanfa',function(req,res,next){
         }
     })
 })
-
+app.post('/delnum',function(req,res,next){
+    var con = mysql.createConnection(dbconfig);
+    con.connect();
+    con.query('delete from post where postId=?',[req.body.postId],function(err,result){
+        if(err){
+            console.log(err);
+        }
+    })
+})
 app.post('/pinglun',function(req,res,next){
     var con = mysql.createConnection(dbconfig);
     con.connect();
