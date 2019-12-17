@@ -68,7 +68,7 @@
                         <p class='Userbody'><%= userList[i]["userName"] %></p>
                         <p class='Userbody'><%= userList[i]["Uphone"] %></p>
                         <p class='Userbody'><%= userList[i]["Usex"] %></p>
-                        <p class='Userbody' style="height:50px;overflow:hidden;font-size:12px;"><%= userList[i]["Ubirthday"]%></p>
+                        <p class='Userbody' style="height:50px;overflow:hidden;font-size:12px;"><%= userList[i]["Ubirthday"].slice(0,10)%></p>
                         <p class='Userbody' style="height:50px;overflow:hidden;font-size:10px"><%= userList[i]["Uaddress"] %></p>
                         <p class='Userbody'><a href='/deleteuser?Uphone=<%= userList[i]["Uphone"]%>'><button class='Userdel' >移除</button></a></p>
                     </li>
