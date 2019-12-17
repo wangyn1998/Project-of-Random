@@ -111,9 +111,23 @@ export default class Make extends Component {
                 </div>
                 {
                     this.state.method.map((item)=>(
-                        <div style={{height:'280px',width:'98%',marginLeft:'1%',borderRadius:'10px',marginTop:'48px',background:'url(./images/method/' + item.cityImage +')'}}>
-                            <div style={{float:'left',width:'10px',fontSize:'48px',color:'white',marginTop:'15%',marginLeft:'18%',marginRight:'20%'}}>{item.cityName}</div>
-                            <div style={{float:'left',width:'55%',height:'80%',fontSize:'20px',color:'white',marginTop:'2%',lineHeight:'28px'}}>{item.methodContent} </div>
+                        <div>
+                            <div style={{height:'420px',borderRadius:'5px',marginTop:'20px',width:'94%',marginLeft:'3%',background:'white'}}>
+                                <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}>
+                                    <img src={'./images/method/'+item.cityImage} style={{height:'160px',borderRadius:'5px',width:'100%'}}/>
+                                </div>
+                                <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
+                                    <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>{item.cityName}</p>
+                                    <p style={{color:'grey',fontSize:'18px',lineHeight:'30px'}}>{item.methodContent}</p>
+                                    <p style={{fontSize:'10px',color:'#62c1df'}}>推荐指数：
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                        <span style={{color:'yellow'}} className="iconfont icon-shoucang"></span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     ))
                 }

@@ -45,9 +45,9 @@ export default class Spot extends Component {
                 {
                     this.state.spot.map((item)=>(
                         <div>
-                            <div style={{height:'500px',borderRadius:'5px',marginTop:'20px',width:'94%',marginLeft:'3%',background:'white'}}>
-                                <div  style={{height:'160px',borderRadius:'5px',width:'100%',background:'blue'}}>
-                                    <img src={'./images/spot/' + item.spotImage} style={{height:'160px',borderRadius:'5px',width:'100%'}}/>
+                            <div style={{height:'520px',borderRadius:'5px',marginTop:'20px',width:'94%',marginLeft:'3%',background:'white'}}>
+                                <div  style={{height:'170px',borderRadius:'5px',width:'100%',background:'blue'}}>
+                                    <img src={'./images/spot/' + item.spotImage} style={{height:'170px',borderRadius:'5px',width:'100%'}}/>
                                 </div>
                                 <div style={{height:'140px',width:'94%',marginLeft:'3%'}}>
                                     <p style={{color:'black',fontSize:'18px',fontWeight:'bold'}}>{item.spotTitle}</p>

@@ -98,13 +98,18 @@ export default class App extends Component {
     this.props.history.push(value)
   }
   jump1(value){
-    localStorage.setItem("click",true)
+    var aa = localStorage.getItem("aa");
+    console.log(aa);
+    var bb = aa==null?true:false
+    localStorage.setItem("click",bb)
     this.props.history.push(value)
   }
   logout(){
     this.setState({logif:false})
     sessionStorage.removeItem('user');
     sessionStorage.setItem("logif",false);
+    localStorage.removeItem('aa');
+    localStorage.removeItem('click');
   }
   render() {
     const sidebar = (<List>

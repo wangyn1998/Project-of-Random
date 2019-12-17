@@ -200,7 +200,6 @@ export default class Block1 extends Component {
                             <img src={item.Uimage} style={{borderRadius:'50%',width:'13%',height:'13%',border:'1px solid #BBBBBB'}}/>
                             <span style={{marginLeft:'5%',position:'absolute',top:'10%'}}>{item.userName}</span>
                             <div>
-                                <p style={{color:'blue',margin:'5% 0'}}>{item.postTopic}</p>
                                 <div style={{width:'100%'}}><p style={{wordWrap:'break-word'}}>{item.postContent}</p><img src={item.postImage} style={{width:'40%'}}/></div>
                             </div>
                         </Link>
